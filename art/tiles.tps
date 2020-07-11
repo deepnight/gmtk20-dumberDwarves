@@ -182,6 +182,10 @@
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
             <key type="filename">export_tiles/a_idle0.png</key>
+            <key type="filename">export_tiles/a_idle1.png</key>
+            <key type="filename">export_tiles/a_walk0.png</key>
+            <key type="filename">export_tiles/a_walk1.png</key>
+            <key type="filename">export_tiles/a_walk2.png</key>
             <key type="filename">export_tiles/fxCircle0.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>

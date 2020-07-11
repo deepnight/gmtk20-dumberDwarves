@@ -11,6 +11,9 @@ class Ai extends Entity {
 	private function new(x,y) {
 		super(x,y);
 
+		Game.ME.scroller.add(spr, Const.DP_AI);
+		spr.filter = new dn.heaps.filter.PixelOutline();
+
 		ALL.push(this);
 		task = Idle;
 		moveTarget = new CPoint(-1,-1);

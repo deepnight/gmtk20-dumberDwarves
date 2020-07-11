@@ -90,9 +90,12 @@ class Game extends Process {
 	function onMouseDown(e:hxd.Event) {
 		var m = new tools.MouseCoords(e.relX, e.relY);
 
-		for(e in en.Ai.ALL)
-			if( e.isAlive() && M.dist(m.levelX,m.levelY, e.footX, e.footY)<=Const.GRID*2 )
-				e.wrathOfGod(m.levelX, m.levelY);
+		var dh = new dn.DecisionHelper(en.Ai.ALL);
+		dh.keepOnly( function(e) return e.isAlive() && M.dist(m.levelX, m.levelY, e.footX, e.footY) <= Const.GRID*2 );
+		dh.score( function(e) return -M.dist(m.levelX, m.levelY, e.footX, e.footY) );
+		dh.useBest( function(e) {
+			e.wrathOfGod(m.levelX, m.levelY);
+		});
 	}
 	function onMouseUp(e:hxd.Event) {
 		var m = new tools.MouseCoords(e.relX, e.relY);

@@ -10,7 +10,7 @@ class Item extends Entity {
 
 		if( t==null )
 			throw "Unknown item type";
-		
+
 		ALL.push(this);
 		type = t;
 
@@ -22,6 +22,20 @@ class Item extends Entity {
 	override function dispose() {
 		super.dispose();
 		ALL.remove(this);
+	}
+
+	function suggestTaskAround(t:Task) {
+		for(e in Ai.ALL)
+			if( e.isAlive() && e.canDetect(this) )
+				e.suggestTask(t);
+	}
+
+	override function update() {
+		super.update();
+
+		switch type {
+			case Coin: suggestTaskAround( Gather(type) );
+		}
 	}
 }
 

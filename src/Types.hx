@@ -17,9 +17,10 @@ enum ItemType {
 enum Task {
 	Idle;
 	Gather(it:ItemType);
+	JudgeOther(e:en.Ai);
 }
 
 enum JudgeableThing {
 	DoingTask(taskId:Int);
-	GrabbingItem(it:ItemType);
+	CarryingItem(it:ItemType);
 }

@@ -129,6 +129,9 @@ class Entity {
 	}
 
 	public function wrathOfGod(x:Int, y:Int) {
+		fx.flashBangS(0xffcc00, 0.1, 0.5);
+		game.camera.shakeS(1, 0.2);
+		game.camera.bump(0,5);
 	}
 
 	function onDamage(dmg:Int, from:Entity) {

@@ -6,6 +6,7 @@ class Ai extends Entity {
 	var task : Task;
 	var moveTarget : CPoint;
 	var badThings : Array<JudgeableThing> = [];
+	var detectRadius = 4;
 
 	private function new(x,y) {
 		super(x,y);
@@ -14,7 +15,11 @@ class Ai extends Entity {
 		task = Idle;
 		moveTarget = new CPoint(-1,-1);
 
-		doTask( Gather(Coin) );
+		doTask(Idle);
+	}
+
+	public function canDetect(e:Entity) {
+		return isAlive() && e.isAlive() && distCase(e)<=detectRadius;
 	}
 
 	override function dispose() {
@@ -27,32 +32,97 @@ class Ai extends Entity {
 	}
 
 	public function doTask(t:Task) {
+		if( isTaskBad(t) )
+			return;
+
 		cancelMove();
 		task = t;
+	}
+
+	public function suggestTask(t:Task) {
+		if( task==Idle && !isTaskBad(t) )
+			doTask(t);
+	}
+
+	function isTaskBad(t:Task) {
+		if( isJudgeableThingBad( DoingTask(t.getIndex()) ) )
+			return true;
+
+		switch t {
+			case Idle:
+			case JudgeOther(e):
+
+			case Gather(it):
+				if( isJudgeableThingBad(CarryingItem(it)) )
+					return true;
+		}
+
+		return false;
+	}
+
+	function isDoingSomethingBad(e:Ai) {
+		if( !isTaskBad(e.task) )
+			return false;
+
+		switch e.task {
+			case Idle:
+
+			case Gather(it):
+				return e.isCarryingItem(it);
+
+			case JudgeOther(e):
+		}
+		return true;
 	}
 
 	override function wrathOfGod(x,y) {
 		super.wrathOfGod(x,y);
 
+		cancelAction();
 		cancelVelocities();
+
 		switch task {
 			case Idle:
+
+			case JudgeOther(e):
 				registerBadThing( DoingTask(task.getIndex()) );
 
 			case Gather(it):
-				if( carriedEnt!=null )
-					registerBadThing( GrabbingItem(it) );
+				registerBadThing( CarryingItem(it) );
 		}
+
 		doTask(Idle);
 	}
 
 	function registerBadThing(e:JudgeableThing) {
+		for(bad in badThings)
+			if( bad.equals(e) )
+				return;
+
 		popText(e+" is bad.");
 		badThings.push(e);
 	}
 
+	function isJudgeableThingBad(e:JudgeableThing) {
+		for(bad in badThings)
+			if( bad.equals(e) )
+				return true;
+		return false;
+	}
+
+	function getTaskDesc(t:Task) {
+		return switch t {
+			case Idle: "Idling";
+			case Gather(it): Std.string(it);
+			case JudgeOther(e): "Judging";
+		}
+	}
+
 	function updateAi() {
 		// Run task
+		if( isTaskBad(task) )
+			doTask(Idle);
+
 		switch task {
 
 			case Idle:
@@ -64,6 +134,21 @@ class Ai extends Entity {
 						footX + rnd(0,Const.GRID*2,true),
 						footY + rnd(0,Const.GRID*2,true)
 					);
+				}
+
+				for(e in Ai.ALL)
+					if( e!=this && canDetect(e) && isDoingSomethingBad(e) ) {
+						doTask( JudgeOther(e) );
+						break;
+					}
+
+			case JudgeOther(e):
+				if( !e.isAlive() || !isDoingSomethingBad(e) )
+					doTask(Idle);
+				else {
+					moveTarget.setEntity(e);
+					if( !cd.hasSetS("warnJudgement",2))
+						popText(getTaskDesc(e.task)+" is bad !");
 				}
 
 			case Gather(it):
@@ -102,7 +187,12 @@ class Ai extends Entity {
 		// Movement
 		if( moveTarget.cx>=0 && moveTarget.distCase(this)>=0.15 && !cd.has("stepLock") ) {
 			var a = Math.atan2(moveTarget.footY-footY, moveTarget.footX-footX);
-			var s = 0.03;
+			var s = 0.04;
+			s *= switch task {
+				case Idle: 0.6;
+				case Gather(it): 1;
+				case JudgeOther(e): 1.1;
+			}
 			dir = dx>0 ? 1 : -1;
 			dx += Math.cos(a)*s;
 			dy += Math.sin(a)*s;

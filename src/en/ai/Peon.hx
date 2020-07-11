@@ -5,12 +5,8 @@ class Peon extends en.Ai {
 		super(x,y);
 		team = t;
 
-		spr.set("a_idle");
-
-		// var g = new h2d.Graphics(spr);
-		// g.beginFill(team==Red ? 0xff0000 : 0x0000ff);
-		// g.lineStyle(1,0x0);
-		// g.drawRect(-3,-16,6,16);
+		spr.anim.registerStateAnim("a_walk", 1, 0.15, function() return isWalking() );
+		spr.anim.registerStateAnim("a_idle", 0, 0.1);
 	}
 
 

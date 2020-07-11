@@ -17,8 +17,13 @@ class Ai extends Entity {
 		ALL.push(this);
 		task = Idle;
 		moveTarget = new CPoint(-1,-1);
+		initLife(3);
 
 		doTask(Idle);
+	}
+
+	public function isWalking() {
+		return canAct() && moveTarget.cx>=0 && moveTarget.distPx(this)>=5;
 	}
 
 	public function canDetect(e:Entity) {
@@ -53,6 +58,8 @@ class Ai extends Entity {
 
 		switch t {
 			case Idle:
+			case Flee(_):
+
 			case JudgeOther(e):
 
 			case Gather(it):
@@ -69,6 +76,7 @@ class Ai extends Entity {
 
 		switch e.task {
 			case Idle:
+			case Flee(_):
 
 			case Gather(it):
 				return e.isCarryingItem(it);
@@ -78,14 +86,12 @@ class Ai extends Entity {
 		return true;
 	}
 
-	override function wrathOfGod(x,y) {
-		super.wrathOfGod(x,y);
-
-		cancelAction();
-		cancelVelocities();
+	override function onWrathOfGod(x:Int,y:Int) {
+		super.onWrathOfGod(x,y);
 
 		switch task {
 			case Idle:
+			case Flee(_):
 
 			case JudgeOther(e):
 				registerBadThing( DoingTask(task.getIndex()) );
@@ -94,7 +100,7 @@ class Ai extends Entity {
 				registerBadThing( CarryingItem(it) );
 		}
 
-		doTask(Idle);
+		doTask( Flee(x,y, 4) );
 	}
 
 	function registerBadThing(e:JudgeableThing) {
@@ -116,6 +122,7 @@ class Ai extends Entity {
 	function getTaskDesc(t:Task) {
 		return switch t {
 			case Idle: "Idling";
+			case Flee(_): "Fleeing";
 			case Gather(it): Std.string(it);
 			case JudgeOther(e): "Judging";
 		}
@@ -146,13 +153,26 @@ class Ai extends Entity {
 					}
 
 			case JudgeOther(e):
+				if( !cd.hasSetS("judgeFx",0.3) )
+					fx.angry(this);
+
 				if( !e.isAlive() || !isDoingSomethingBad(e) )
 					doTask(Idle);
 				else {
 					moveTarget.setEntity(e);
-					if( !cd.hasSetS("warnJudgement",2))
-						popText(getTaskDesc(e.task)+" is bad !");
+					if( distCase(e)<=1 ) {
+						e.hit(1, this);
+						popText(getTaskDesc(e.task)+" is BAD!", 0xff0000);
+						e.doTask( Flee(footX, footY, 5) );
+						doTask( Flee(e.footX, e.footY, 2) );
+					}
 				}
+
+			case Flee(x,y, d):
+				var a = Math.atan2(footY-y, footX-x) + rnd(0,1,true);
+				moveTarget.setPixel( footX+Math.cos(a)*d*Const.GRID, footY+Math.sin(a)*d*Const.GRID );
+				if( distPxFree(x,y)>=d*Const.GRID )
+					doTask(Idle);
 
 			case Gather(it):
 				if( !isCarryingItem(it) ) {
@@ -170,7 +190,6 @@ class Ai extends Entity {
 						if( distCase(i)<=0.3 ) {
 							chargeAction("gather", 1, function() {
 								carry(i);
-								popText("picked "+i.type);
 							});
 						}
 					});
@@ -190,15 +209,16 @@ class Ai extends Entity {
 		// Movement
 		if( moveTarget.cx>=0 && moveTarget.distCase(this)>=0.15 && !cd.has("stepLock") ) {
 			var a = Math.atan2(moveTarget.footY-footY, moveTarget.footX-footX);
-			var s = 0.04;
-			s *= switch task {
+			var spd = 0.04;
+			spd *= switch task {
 				case Idle: 0.6;
-				case Gather(it): 1;
 				case JudgeOther(e): 1.1;
+				case Flee(_): 2;
+				case _: 1;
 			}
 			dir = dx>0 ? 1 : -1;
-			dx += Math.cos(a)*s;
-			dy += Math.sin(a)*s;
+			dx += Math.cos(a)*spd;
+			dy += Math.sin(a)*spd;
 			cd.setS("stepLock",0.4);
 		}
 	}
@@ -224,7 +244,10 @@ class Ai extends Entity {
 				}
 			}
 
-		if( !isChargingAction() )
+		if( canAct() )
 			updateAi();
+
+		if( !cd.hasSetS("dbg",1) )
+			popText(""+life+"/"+maxLife);
 	}
 }

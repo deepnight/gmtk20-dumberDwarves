@@ -31,7 +31,7 @@ class Entity {
 	public var frictY = 0.93;
 	public var bumpFrict = 0.93;
 
-	public var hei(default,set) : Float = Const.GRID;
+	public var hei(default,set) : Float = Const.GRID*0.7;
 	inline function set_hei(v) { invalidateDebugBounds=true;  return hei=v; }
 
 	public var radius(default,set) = Const.GRID*0.5;
@@ -128,16 +128,50 @@ class Entity {
 		}
 	}
 
-	public function wrathOfGod(x:Int, y:Int) {
-		fx.flashBangS(0xffcc00, 0.1, 0.5);
-		game.camera.shakeS(1, 0.2);
-		game.camera.bump(0,5);
+	public function lockAiS(t:Float) {
+		cd.setS("aiLocked", t, false);
 	}
 
-	function onDamage(dmg:Int, from:Entity) {
+	public function aiLocked() {
+		return !isAlive() || cd.has("aiLocked");
+	}
+
+
+	@:final
+	public function wrathOfGod(x:Int, y:Int) {
+		game.camera.shakeS(1, 0.2);
+		game.camera.bump(0,5);
+		hit(1,null);
+
+		if( isAlive() ) {
+			var a = Math.atan2(footY-y, footX-x);
+			var s = 0.1;
+			bump( Math.cos(a)*s, Math.sin(a)*s);
+			lockAiS(1);
+			fx.flashBangS(0xffcc00, 0.1, 0.5);
+			onWrathOfGod(x,y);
+		}
+		else
+			fx.flashBangS(0xff0000, 0.2, 1);
+	}
+
+	function onWrathOfGod(x:Int,y:Int) {
+		cancelAction();
+		cancelVelocities();
+	}
+
+	function onDamage(dmg:Int, from:Null<Entity>) {
+		cancelAction();
+		releaseCarriedEnt();
+
+		if( from!=null ) {
+			var a = from.angTo(this);
+			bump( Math.cos(a)*0.2, Math.sin(a)*0.2 );
+		}
 	}
 
 	function onDie() {
+		releaseCarriedEnt();
 		destroy();
 	}
 
@@ -378,7 +412,7 @@ class Entity {
 
 
 	public function canAct() {
-		return isAlive() && !isCarried;
+		return isAlive() && !isCarried && !aiLocked() && !isChargingAction();
 	}
 
 	public inline function hasAffect(k:Affect) {

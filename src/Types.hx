@@ -18,6 +18,7 @@ enum Task {
 	Idle;
 	Gather(it:ItemType);
 	JudgeOther(e:en.Ai);
+	Flee(x:Float, y:Float, distCase:Int);
 }
 
 enum JudgeableThing {

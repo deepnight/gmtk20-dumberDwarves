@@ -142,6 +142,18 @@ class Fx extends dn.Process {
 		});
 	}
 
+	public function angry(e:Entity) {
+		var n = irnd(3,4);
+		for(i in 0...n) {
+			var a = -M.PIHALF + 0.5 - 1*i/(n-1);
+			var d = irnd(5,7);
+			var p = allocTopNormal(getTile("pixel"), e.headX+Math.cos(a)*d, e.headY+Math.sin(a)*d);
+			p.setFadeS(rnd(0.7,1), 0, 0.1);
+			p.moveAwayFrom(e.headX, e.headY, rnd(0.2, 0.3));
+			p.lifeS = 0.1;
+		}
+	}
+
 	override function update() {
 		super.update();
 

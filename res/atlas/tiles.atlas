@@ -11,30 +11,58 @@ a_idle0
   orig: 16, 16
   offset: 0, 0
   index: -1
-empty
-  rotate: false
-  xy: 62, 35
-  size: 1, 1
-  orig: 1, 1
-  offset: 0, 0
-  index: -1
-fxCircle0
+a_idle1
   rotate: false
   xy: 46, 18
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
+a_walk0
+  rotate: false
+  xy: 46, 35
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+a_walk1
+  rotate: false
+  xy: 35, 52
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+a_walk2
+  rotate: false
+  xy: 1, 66
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+empty
+  rotate: false
+  xy: 44, 46
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1
+fxCircle0
+  rotate: false
+  xy: 18, 66
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
 fxDot0
   rotate: false
-  xy: 42, 46
+  xy: 59, 52
   size: 3, 3
   orig: 3, 3
   offset: 0, 0
   index: -1
 fxImpact0
   rotate: false
-  xy: 46, 35
+  xy: 35, 69
   size: 15, 9
   orig: 15, 9
   offset: 0, 0
@@ -55,7 +83,7 @@ fxLineDir0
   index: -1
 fxSmallCircle0
   rotate: false
-  xy: 55, 45
+  xy: 52, 52
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
@@ -76,21 +104,21 @@ fxTail0
   index: -1
 pixel
   rotate: false
-  xy: 62, 37
+  xy: 44, 48
   size: 1, 1
   orig: 1, 1
   offset: 0, 0
   index: -1
 uiBar
   rotate: false
-  xy: 35, 46
+  xy: 52, 59
   size: 6, 3
   orig: 6, 3
   offset: 0, 0
   index: -1
 uiBarBg
   rotate: false
-  xy: 46, 45
+  xy: 35, 46
   size: 8, 5
   orig: 8, 5
   offset: 0, 0

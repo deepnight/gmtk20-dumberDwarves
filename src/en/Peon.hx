@@ -12,4 +12,10 @@ class Peon extends Entity {
 		g.lineStyle(1,0x0);
 		g.drawRect(-3,-16,6,16);
 	}
+
+	override function update() {
+		super.update();
+		dx += rnd(0,0.02);
+		dy += rnd(0,0.02,true);
+	}
 }

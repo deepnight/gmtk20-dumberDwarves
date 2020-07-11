@@ -464,7 +464,15 @@ class Entity {
 		while( steps>0 ) {
 			xr+=step;
 
-			// [ add X collisions checks here ]
+			if( xr>0.7 && level.hasCollision(cx+1,cy) ) {
+				xr = 0.7;
+				dx *= Math.pow(0.6,tmod);
+			}
+
+			if( xr<0.3 && level.hasCollision(cx-1,cy) ) {
+				xr = 0.3;
+				dx *= Math.pow(0.6,tmod);
+			}
 
 			while( xr>1 ) { xr--; cx++; }
 			while( xr<0 ) { xr++; cx--; }
@@ -481,7 +489,16 @@ class Entity {
 		while( steps>0 ) {
 			yr+=step;
 
-			// [ add Y collisions checks here ]
+
+			if( yr>0.8 && level.hasCollision(cx,cy+1) ) {
+				yr = 0.8;
+				dy *= Math.pow(0.6,tmod);
+			}
+
+			if( yr<0.2 && level.hasCollision(cx,cy-1) ) {
+				yr = 0.2;
+				dy *= Math.pow(0.6,tmod);
+			}
 
 			while( yr>1 ) { yr--; cy++; }
 			while( yr<0 ) { yr++; cy--; }

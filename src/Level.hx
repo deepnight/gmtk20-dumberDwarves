@@ -12,6 +12,8 @@ class Level extends dn.Process {
 	public function new(data:led.Level) {
 		super(Game.ME);
 		this.data = data;
+		wid = Std.int(data.pxWid/Const.GRID);
+		hei= Std.int(data.pxHei/Const.GRID);
 		createRootInLayers(Game.ME.scroller, Const.DP_BG);
 	}
 

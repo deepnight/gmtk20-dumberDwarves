@@ -43,12 +43,24 @@ class Game extends Process {
 		var li = level.data.getLayerInstance("Entities");
 		for( ei in li.entityInstances ) {
 			switch ei.def.name {
-				case "Peon": new en.Peon(ei.getCx(li.def), ei.getCy(li.def));
+				case "Peon":
+					new en.Peon(ei.getCx(li.def), ei.getCy(li.def));
+
 				case "Village":
 					var v = new en.Village(
 						ei.getCx(li.def),
 						ei.getCy(li.def),
-						ei.getStringField("team")=="Red" ? Red : Blue
+						ei.getStringField("Team")=="Red" ? Red : Blue
+					);
+
+				case "Item":
+					var v = new en.Item(
+						ei.getCx(li.def),
+						ei.getCy(li.def),
+						switch ei.getStringField("Type") {
+							case "Coin" : Coin;
+							case _: throw "Unknown item type";
+						}
 					);
 
 				case _: trace("Unknown entity "+ei.def.name);

@@ -9,3 +9,7 @@ enum Team {
 	Red;
 	Blue;
 }
+
+enum ItemType {
+	Coin;
+}

@@ -48,8 +48,20 @@ class Ai extends Entity {
 	}
 
 	public function suggestTask(t:Task) {
-		if( task==Idle && !isTaskBad(t) )
+		if( task==Idle && !isTaskBad(t) ) {
+			switch t {
+				case Idle:
+				case Gather(it):
+					switch it {
+						case Coin:
+						case Food: if( life>=maxLife ) return; // useless
+					}
+
+				case JudgeOther(e):
+				case Flee(x, y, distCase):
+			}
 			doTask(t);
+		}
 	}
 
 	function isTaskBad(t:Task) {
@@ -189,7 +201,16 @@ class Ai extends Entity {
 						moveTarget.setEntity(i);
 						if( distCase(i)<=0.3 ) {
 							chargeAction("gather", 1, function() {
-								carry(i);
+								switch it {
+									case Coin: carry(i);
+
+									case Food:
+										if( life<maxLife )
+											life++;
+										i.destroy();
+										doTask(Idle);
+								}
+
 							});
 						}
 					});

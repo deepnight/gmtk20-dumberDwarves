@@ -130,6 +130,11 @@ class Game extends Process {
 	override function onDispose() {
 		super.onDispose();
 
+		Boot.ME.s2d.removeEventListener(onEvent);
+
+		if( ME==this )
+			ME = null;
+
 		fx.destroy();
 		for(e in Entity.ALL)
 			e.destroy();

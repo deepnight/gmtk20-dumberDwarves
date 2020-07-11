@@ -1,152 +1,229 @@
 
 tiles.png
-size: 64,128
+size: 128,256
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 a_idle0
   rotate: false
-  xy: 46, 1
+  xy: 105, 103
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_idle1
   rotate: false
-  xy: 26, 91
+  xy: 71, 109
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_walk0
   rotate: false
-  xy: 46, 18
+  xy: 88, 109
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_walk1
   rotate: false
-  xy: 43, 91
+  xy: 105, 120
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_walk2
   rotate: false
-  xy: 26, 108
+  xy: 46, 113
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
+d_atk_charge0
+  rotate: false
+  xy: 99, 1
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+d_atkA0
+  rotate: false
+  xy: 1, 1
+  size: 48, 24
+  orig: 48, 24
+  offset: 0, 0
+  index: -1
+d_atkA1
+  rotate: false
+  xy: 50, 1
+  size: 48, 24
+  orig: 48, 24
+  offset: 0, 0
+  index: -1
+d_atkA2
+  rotate: false
+  xy: 1, 26
+  size: 48, 24
+  orig: 48, 24
+  offset: 0, 0
+  index: -1
+d_atkA3
+  rotate: false
+  xy: 99, 1
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+d_atkB0
+  rotate: false
+  xy: 50, 26
+  size: 48, 24
+  orig: 48, 24
+  offset: 0, 0
+  index: -1
+d_atkB1
+  rotate: false
+  xy: 1, 51
+  size: 48, 24
+  orig: 48, 24
+  offset: 0, 0
+  index: -1
+d_atkB2
+  rotate: false
+  xy: 50, 51
+  size: 48, 24
+  orig: 48, 24
+  offset: 0, 0
+  index: -1
 d_idle0
   rotate: false
-  xy: 1, 46
+  xy: 99, 26
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 d_walk0
   rotate: false
-  xy: 1, 71
+  xy: 99, 51
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 d_walk1
   rotate: false
-  xy: 1, 96
+  xy: 80, 84
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 d_walk2
   rotate: false
-  xy: 26, 46
+  xy: 46, 88
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 empty
   rotate: false
-  xy: 24, 121
+  xy: 124, 5
   size: 1, 1
   orig: 1, 1
   offset: 0, 0
   index: -1
 fxCircle0
   rotate: false
-  xy: 43, 108
+  xy: 63, 126
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 fxDot0
   rotate: false
-  xy: 51, 45
+  xy: 124, 1
   size: 3, 3
   orig: 3, 3
   offset: 0, 0
   index: -1
+fxGib0
+  rotate: false
+  xy: 105, 91
+  size: 6, 5
+  orig: 6, 5
+  offset: 0, 0
+  index: -1
+fxGib1
+  rotate: false
+  xy: 114, 82
+  size: 7, 6
+  orig: 7, 6
+  offset: 0, 0
+  index: -1
+fxGib2
+  rotate: false
+  xy: 105, 97
+  size: 6, 5
+  orig: 6, 5
+  offset: 0, 0
+  index: -1
 fxImpact0
   rotate: false
-  xy: 46, 35
+  xy: 112, 89
   size: 15, 9
   orig: 15, 9
   offset: 0, 0
   index: -1
 fxLine0
   rotate: false
-  xy: 26, 83
+  xy: 80, 76
   size: 33, 3
   orig: 33, 3
   offset: 0, 0
   index: -1
 fxLineDir0
   rotate: false
-  xy: 26, 87
+  xy: 80, 80
   size: 33, 3
   orig: 33, 3
   offset: 0, 0
   index: -1
 fxSmallCircle0
   rotate: false
-  xy: 1, 121
+  xy: 105, 84
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 fxSmoke0
   rotate: false
-  xy: 1, 1
+  xy: 1, 76
   size: 44, 44
   orig: 44, 44
   offset: 0, 0
   index: -1
 fxTail0
   rotate: false
-  xy: 26, 71
+  xy: 46, 76
   size: 33, 11
   orig: 33, 11
   offset: 0, 0
   index: -1
 pixel
   rotate: false
-  xy: 24, 123
+  xy: 126, 5
   size: 1, 1
   orig: 1, 1
   offset: 0, 0
   index: -1
 uiBar
   rotate: false
-  xy: 17, 121
+  xy: 112, 99
   size: 6, 3
   orig: 6, 3
   offset: 0, 0
   index: -1
 uiBarBg
   rotate: false
-  xy: 8, 121
+  xy: 114, 76
   size: 8, 5
   orig: 8, 5
   offset: 0, 0

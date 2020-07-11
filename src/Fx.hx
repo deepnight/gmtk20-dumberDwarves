@@ -154,6 +154,42 @@ class Fx extends dn.Process {
 		}
 	}
 
+	function _bloodPhysics(p:HParticle) {
+		if( collides(p) ) {
+			p.dx = p.dy = 0;
+		}
+	}
+
+	function _flatten(p:HParticle) {
+		p.rotation = rnd(0,0.2,true);
+		// p.dsX = rnd(0,0.1);
+		// p.dsFrict = 0.9;
+		// p.moveAng(p.rotation, rnd(0.03, 0.1));
+		p.scaleX*=1.1;
+		p.scaleY*=0.8;
+		p.scaleMul = rnd(0.990, 0.995);
+		p.dx*=rnd(0,0.1);
+		p.dy*=rnd(0,0.1);
+		p.groundY = null;
+		p.gy = 0;
+	}
+
+	public function blood(x:Float, y:Float, ang:Float) {
+		for(i in 0...30) {
+			var a = ang+rnd(0,0.1,true);
+			var p = allocBgNormal( getTile("fxGib"), x+rnd(0,5,true), y+rnd(0,5,true));
+			p.setFadeS(rnd(0.7,1), 0, rnd(6,8));
+			p.colorize(0x880000);
+			p.rotation = rnd(0,M.PI2);
+			p.setScale( rnd(1,1.5,true) );
+			p.moveAng(a, rnd(3,10));
+			p.frict = rnd(0.90, 0.93);
+			p.gy = rnd(0.2, 0.3);
+			p.groundY = p.y + Math.sin(a)*rnd(20,40) + rnd(2,8);
+			p.onTouchGround = _flatten;
+		}
+	}
+
 	override function update() {
 		super.update();
 

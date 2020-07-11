@@ -211,6 +211,12 @@ class Entity {
 		bdy+=y;
 	}
 
+	public function bumpEnt(e:Entity, spd:Float) {
+		var a = angTo(e);
+		e.bdx += Math.cos(a)*spd;
+		e.bdy += Math.sin(a)*spd;
+	}
+
 	public function cancelVelocities() {
 		dx = bdx = 0;
 		dy = bdy = 0;
@@ -238,7 +244,7 @@ class Entity {
 		return sightCheckCase(e.cx, e.cy);
 	}
 	public inline function sightCheckCase(x,y) {
-		dn.Bresenham.checkThinLine( cx,cy, x,y, function(x,y) return !level.hasCollision(x,y) );
+		return dn.Bresenham.checkThinLine( cx,cy, x,y, function(x,y) return !level.hasCollision(x,y) );
 	}
 
 	public function makePoint() return new CPoint(cx,cy, xr,yr);

@@ -6,6 +6,7 @@ class Ai extends Entity {
 	var task : Task;
 	var detectRadius = 10;
 	var path : Array<CPoint> = [];
+	public var weight = 1.0;
 
 	private function new(x,y) {
 		super(x,y);
@@ -33,12 +34,12 @@ class Ai extends Entity {
 		ALL.remove(this);
 	}
 
-	function cancelMove() {
+	function cancelPath() {
 		path = [];
 	}
 
 	public function doTask(t:Task) {
-		cancelMove();
+		cancelPath();
 		task = t;
 	}
 
@@ -72,7 +73,7 @@ class Ai extends Entity {
 				if( !isCarryingItem(it) ) {
 					// Seek target
 					releaseCarriedEnt();
-					cancelMove();
+					cancelPath();
 					var dh = new dn.DecisionHelper(Item.ALL);
 					dh.keepOnly( function(i) return i.isAlive() && i.type==it );
 					dh.remove( function(i) return i.isCarried );
@@ -93,6 +94,17 @@ class Ai extends Entity {
 				}
 				else
 					goto(1,1);
+
+			case AttackDwarf(e):
+				if( distCase(e)>2 || !sightCheckEnt(e) )
+					goto(e.cx, e.cy);
+				else {
+					cancelPath();
+					var a = angTo(e);
+					var spd = getSpeed();
+					dx += Math.cos(a) * spd * tmod;
+					dy += Math.sin(a) * spd * tmod;
+				}
 		}
 
 
@@ -120,34 +132,37 @@ class Ai extends Entity {
 			var pt = path[0];
 			dir = pt.footX<footX ? -1 : 1;
 			var a = Math.atan2(pt.footY-footY, pt.footX-footX);
-			var spd = 0.06;
+			var spd = getSpeed()*10;
 			dx += Math.cos(a)*spd;
 			dy += Math.sin(a)*spd;
 			cd.setS("stepLock",0.4);
-			#if debug
-			fx.markerCase(pt.cx, pt.cy, 1);
-			#end
 		}
 	}
 
+	function getSpeed() {
+		return 0.005;
+	}
 
 	override function update() {
 		super.update();
 
 		// Circular collisions
-		var repel = 0.02;
+		var repel = 0.04;
 		for(e in ALL )
 			if( e!=this && e.isAlive() && M.fabs(e.cx-cx)<=2 && M.fabs(e.cy-cy)<=2 ) {
 				var d = distPx(e);
-				var r = 16;
+				var r = Const.GRID;
 				if( distPx(e)<=r ) {
 					var a = Math.atan2(e.footY-footY, e.footX-footX) + rnd(0,0.05,true);
 					var pow = 1-d/r;
-					e.dx += Math.cos(a) * repel*pow * tmod;
-					e.dy += Math.sin(a) * repel*pow * tmod;
 
-					dx += -Math.cos(a) * repel*pow * tmod;
-					dy += -Math.sin(a) * repel*pow * tmod;
+					var wr = weight / ( e.weight + weight );
+					e.dx += Math.cos(a) * repel*pow*wr * tmod;
+					e.dy += Math.sin(a) * repel*pow*wr * tmod;
+
+					wr = 1-wr;
+					dx += -Math.cos(a) * repel*pow*wr * tmod;
+					dy += -Math.sin(a) * repel*pow*wr * tmod;
 				}
 			}
 

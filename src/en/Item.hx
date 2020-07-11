@@ -35,9 +35,9 @@ class Item extends Entity {
 	override function update() {
 		super.update();
 
-		switch type {
-			case Gem: suggestTaskAround( Grab(type) );
-		}
+		// switch type {
+		// 	case Gem: suggestTaskAround( Grab(type) );
+		// }
 	}
 }
 

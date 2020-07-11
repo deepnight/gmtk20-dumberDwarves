@@ -44,16 +44,14 @@ class Game extends Process {
 		// Attach entities
 		var li = level.data.getLayerInstance("Entities");
 		for( ei in li.entityInstances ) {
+			var cx = ei.getCx(li.def);
+			var cy = ei.getCy(li.def);
 			switch ei.def.name {
-				case "Hero":
-					new en.ai.Dwarf( ei.getCx(li.def), ei.getCy(li.def) );
+				case "Hero": new en.ai.Dwarf(cx,cy);
+				case "Mob": new en.ai.Mob(cx,cy);
 
 				case "Item":
-					var v = new en.Item(
-						ei.getCx(li.def),
-						ei.getCy(li.def),
-						ItemType.createByName( ei.getStringField("Type") )
-					);
+					var v = new en.Item( cx, cy, ItemType.createByName( ei.getStringField("Type") ) );
 
 				case _: trace("Unknown entity "+ei.def.name);
 			}

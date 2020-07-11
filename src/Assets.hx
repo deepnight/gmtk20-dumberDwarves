@@ -23,5 +23,7 @@ class Assets {
 
 		tiles.defineAnim("a_walk", "0(2), 1, 2(2), 1");
 		tiles.defineAnim("d_walk", "0(2), 1, 2(2), 1");
+		tiles.defineAnim("d_atkA", "0, 1(2), 2(2), 3(3)");
+		tiles.defineAnim("d_atkB", "0, 1(2), 2(2)");
 	}
 }

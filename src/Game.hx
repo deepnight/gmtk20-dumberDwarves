@@ -16,6 +16,8 @@ class Game extends Process {
 	var curGameSpeed = 1.0;
 	var slowMos : Map<String, { id:String, t:Float, f:Float }> = new Map();
 
+	public var ledProject : led.Project;
+
 	public function new() {
 		super(Main.ME);
 		ME = this;
@@ -28,13 +30,30 @@ class Game extends Process {
 		root.add(scroller, Const.DP_BG);
 		scroller.filter = new h2d.filter.ColorMatrix(); // force rendering for pixel perfect
 
+		// Load L-Ed project
+		var raw = hxd.Res.ld.world_json.entry.getText();
+		var json = haxe.Json.parse(raw);
+		ledProject = led.Project.fromJson(json);
+
 		camera = new Camera();
-		level = new Level();
+		level = new Level( ledProject.getLevel("Lab") );
 		fx = new Fx();
 		hud = new ui.Hud();
 
-		new en.Peon(10,10);
-		redVillage = new en.Village(5,10);
+		var li = level.data.getLayerInstance("Entities");
+		for( ei in li.entityInstances ) {
+			switch ei.def.name {
+				case "Peon": new en.Peon(ei.getCx(li.def), ei.getCy(li.def));
+				case "Village":
+					var v = new en.Village(
+						ei.getCx(li.def),
+						ei.getCy(li.def),
+						ei.getStringField("team")=="Red" ? Red : Blue
+					);
+
+				case _: trace("Unknown entity "+ei.def.name);
+			}
+		}
 
 		Process.resizeAll();
 		trace(Lang.t._("Game is ready."));

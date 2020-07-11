@@ -7,9 +7,11 @@ class Level extends dn.Process {
 
 	var marks : Map< LevelMark, Map<Int,Bool> > = new Map();
 	var invalidated = true;
+	public var data : led.Level;
 
-	public function new() {
+	public function new(data:led.Level) {
 		super(Game.ME);
+		this.data = data;
 		createRootInLayers(Game.ME.scroller, Const.DP_BG);
 	}
 

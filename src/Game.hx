@@ -30,6 +30,8 @@ class Game extends Process {
 		root.add(scroller, Const.DP_BG);
 		scroller.filter = new h2d.filter.ColorMatrix(); // force rendering for pixel perfect
 
+		Boot.ME.s2d.addEventListener(onEvent);
+
 		// Load L-Ed project
 		var raw = hxd.Res.ld.world_json.entry.getText();
 		var json = haxe.Json.parse(raw);
@@ -65,6 +67,35 @@ class Game extends Process {
 		}
 
 		Process.resizeAll();
+	}
+
+	function onEvent(e:hxd.Event) {
+		switch e.kind {
+			case EPush: onMouseDown(e);
+			case ERelease: onMouseUp(e);
+			case EMove:
+			case EOver:
+			case EOut: onMouseUp(e);
+			case EWheel:
+			case EFocus:
+			case EFocusLost:
+			case EKeyDown:
+			case EKeyUp:
+			case EReleaseOutside: onMouseUp(e);
+			case ETextInput:
+			case ECheck:
+		}
+	}
+
+	function onMouseDown(e:hxd.Event) {
+		var m = new tools.MouseCoords(e.relX, e.relY);
+
+		for(e in en.Ai.ALL)
+			if( e.isAlive() && M.dist(m.levelX,m.levelY, e.footX, e.footY)<=Const.GRID*2 )
+				e.wrathOfGod(m.levelX, m.levelY);
+	}
+	function onMouseUp(e:hxd.Event) {
+		var m = new tools.MouseCoords(e.relX, e.relY);
 	}
 
 	function stringToTeam(s:String) : Team {

@@ -75,8 +75,8 @@ class Entity {
 	var actions : Array<{ id:String, cb:Void->Void, t:Float }> = [];
 
 	public var team : Null<Team>;
-	public var grabbedEnt : Null<Entity>;
-	public var isGrabbed = false;
+	public var carriedEnt : Null<Entity>;
+	public var isCarried = false;
 
 
     public function new(x:Int, y:Int) {
@@ -126,7 +126,9 @@ class Entity {
 			case Red: en.Village.RED;
 			case Blue: en.Village.BLUE;
 		}
+	}
 
+	public function wrathOfGod(x:Int, y:Int) {
 	}
 
 	function onDamage(dmg:Int, from:Entity) {
@@ -213,7 +215,7 @@ class Entity {
     }
 
     public function dispose() {
-		releaseGrab();
+		releaseCarriedEnt();
 
         ALL.remove(this);
 
@@ -236,7 +238,28 @@ class Entity {
 
 		cd.destroy();
 		cd = null;
-    }
+	}
+
+	public function popText(str:String, ?c=0xffffff) {
+		var wrapper = new h2d.Object();
+		game.scroller.add( wrapper, Const.DP_UI );
+		var tf = new h2d.Text(Assets.fontPixel, wrapper);
+		tf.text = str;
+		tf.textColor = c;
+		tf.x = -Std.int( tf.textWidth*0.5 );
+		tf.y = -Std.int( tf.textHeight*0.5 );
+
+		// var p = game.createChildProcess( function(p) {
+		// }, function(p) {
+		// 	wrapper.remove();
+		// });
+
+		wrapper.x = Std.int( headX );
+		wrapper.y = Std.int( headY );
+		game.tw.createMs(wrapper.y, wrapper.y-10, 100).end( function() {
+			game.tw.createMs(wrapper.alpha, 1000|0, 1000).end( wrapper.remove );
+		});
+	}
 
 	public inline function debugFloat(v:Float, ?c=0xffffff) {
 		debug( pretty(v), c );
@@ -352,7 +375,7 @@ class Entity {
 
 
 	public function canAct() {
-		return isAlive() && !isGrabbed;
+		return isAlive() && !isCarried;
 	}
 
 	public inline function hasAffect(k:Affect) {
@@ -422,29 +445,37 @@ class Entity {
 		sprSquashY = v;
 	}
 
-	public function releaseGrab() {
-		if( grabbedEnt==null )
+	public function releaseCarriedEnt() {
+		if( carriedEnt==null )
 			return;
 
-		grabbedEnt.isGrabbed = false;
-		grabbedEnt = null;
+		carriedEnt.isCarried = false;
+		carriedEnt = null;
 	}
 
-	public function grab(e:Entity) {
-		if( grabbedEnt==e )
+	public function carry(e:Entity) {
+		if( carriedEnt==e )
 			return;
 
-		releaseGrab();
-		grabbedEnt = e;
-		grabbedEnt.isGrabbed = true;
+		releaseCarriedEnt();
+		carriedEnt = e;
+		carriedEnt.isCarried = true;
 	}
 
-	public function getGrabber() : Null<Entity> {
-		if( !isGrabbed )
+	public function isCarrying(c:Class<Entity>) {
+		return carriedEnt!=null && carriedEnt.isAlive() && carriedEnt.is(c);
+	}
+
+	public function isCarryingItem(it:ItemType) {
+		return isCarrying(en.Item) && carriedEnt.as(en.Item).type==it;
+	}
+
+	public function getCarrier() : Null<Entity> {
+		if( !isCarried )
 			return null;
 
 		for(e in ALL)
-			if( e.isAlive() && e.grabbedEnt==this )
+			if( e.isAlive() && e.carriedEnt==this )
 				return e;
 
 		return null;
@@ -557,16 +588,16 @@ class Entity {
 		if( M.fabs(bdy)<=0.0005*tmod ) bdy = 0;
 
 
-		// Lost grab
-		if( grabbedEnt!=null && !grabbedEnt.isAlive() )
-			releaseGrab();
+		// Lost carried ent
+		if( carriedEnt!=null && !carriedEnt.isAlive() )
+			releaseCarriedEnt();
 
-		if( grabbedEnt!=null && grabbedEnt.distCase(this)>=0.2 ) {
-			var a = grabbedEnt.angTo(this);
-			grabbedEnt.dx *= Math.pow(0.9,tmod);
-			grabbedEnt.dy *= Math.pow(0.9,tmod);
-			grabbedEnt.dx += Math.cos(a)*0.02 * tmod;
-			grabbedEnt.dy += Math.sin(a)*0.02 * tmod;
+		if( carriedEnt!=null && carriedEnt.distCase(this)>=0.2 ) {
+			var a = carriedEnt.angTo(this);
+			carriedEnt.dx *= Math.pow(0.9,tmod);
+			carriedEnt.dy *= Math.pow(0.9,tmod);
+			carriedEnt.dx += Math.cos(a)*0.02 * tmod;
+			carriedEnt.dy += Math.sin(a)*0.02 * tmod;
 		}
 
 		#if debug

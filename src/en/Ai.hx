@@ -5,6 +5,7 @@ class Ai extends Entity {
 
 	var task : Task;
 	var moveTarget : CPoint;
+	var badThings : Array<JudgeableThing> = [];
 
 	private function new(x,y) {
 		super(x,y);
@@ -30,10 +31,32 @@ class Ai extends Entity {
 		task = t;
 	}
 
+	override function wrathOfGod(x,y) {
+		super.wrathOfGod(x,y);
+
+		cancelVelocities();
+		switch task {
+			case Idle:
+				registerBadThing( DoingTask(task.getIndex()) );
+
+			case Gather(it):
+				if( carriedEnt!=null )
+					registerBadThing( GrabbingItem(it) );
+		}
+		doTask(Idle);
+	}
+
+	function registerBadThing(e:JudgeableThing) {
+		popText(e+" is bad.");
+		badThings.push(e);
+	}
+
 	function updateAi() {
 		// Run task
 		switch task {
+
 			case Idle:
+				releaseCarriedEnt();
 				if( !cd.has("pickIdlePt") ) {
 					cd.setS("pickIdlePt",3);
 					cd.setS("pickIdlePt",rnd(1,3));
@@ -44,13 +67,13 @@ class Ai extends Entity {
 				}
 
 			case Gather(it):
-				if( grabbedEnt==null || !grabbedEnt.is(Item) || grabbedEnt.as(Item).type!=it ) {
+				if( !isCarryingItem(it) ) {
 					// Seek target
-					releaseGrab();
+					releaseCarriedEnt();
 					cancelMove();
 					var dh = new dn.DecisionHelper(Item.ALL);
 					dh.keepOnly( function(i) return i.isAlive() && i.type==it );
-					dh.remove( function(i) return i.isGrabbed && i.getGrabber().team==team );
+					dh.remove( function(i) return i.isCarried && i.getCarrier().team==team );
 					dh.score( function(i) return -distCase(i) );
 					if( dh.countRemaining()<=0 )
 						doTask(Idle);
@@ -58,7 +81,8 @@ class Ai extends Entity {
 						moveTarget.setEntity(i);
 						if( distCase(i)<=0.3 ) {
 							chargeAction("gather", 1, function() {
-								grab(i);
+								carry(i);
+								popText("picked "+i.type);
 							});
 						}
 					});
@@ -68,10 +92,12 @@ class Ai extends Entity {
 					moveTarget.setEntity( getTeamVillage() );
 					if( moveTarget.distCase(this)<=0.1 )
 						chargeAction("drop", 1, function() {
-							grabbedEnt.destroy();
+							getTeamVillage().addTreasure(1);
+							carriedEnt.destroy();
 						});
 				}
 		}
+
 
 		// Movement
 		if( moveTarget.cx>=0 && moveTarget.distCase(this)>=0.15 && !cd.has("stepLock") ) {
@@ -82,7 +108,6 @@ class Ai extends Entity {
 			dy += Math.sin(a)*s;
 			cd.setS("stepLock",0.4);
 		}
-
 	}
 
 

@@ -75,6 +75,8 @@ class Entity {
 	var actions : Array<{ id:String, cb:Void->Void, t:Float }> = [];
 
 	public var team : Null<Team>;
+	public var grabbedEnt : Null<Entity>;
+	public var isGrabbed = false;
 
 
     public function new(x:Int, y:Int) {
@@ -115,6 +117,16 @@ class Entity {
 	public function kill(by:Null<Entity>) {
 		if( isAlive() )
 			hit(life,by);
+	}
+
+
+	public function getTeamVillage() : Null<en.Village> {
+		return switch team {
+			case null: null;
+			case Red: en.Village.RED;
+			case Blue: en.Village.BLUE;
+		}
+
 	}
 
 	function onDamage(dmg:Int, from:Entity) {
@@ -201,6 +213,8 @@ class Entity {
     }
 
     public function dispose() {
+		releaseGrab();
+
         ALL.remove(this);
 
 		baseColor = null;
@@ -337,6 +351,10 @@ class Entity {
 	}
 
 
+	public function canAct() {
+		return isAlive() && !isGrabbed;
+	}
+
 	public inline function hasAffect(k:Affect) {
 		return affects.exists(k) && affects.get(k)>0;
 	}
@@ -402,6 +420,34 @@ class Entity {
 	public function setSquashY(v:Float) {
 		sprSquashX = 2-v;
 		sprSquashY = v;
+	}
+
+	public function releaseGrab() {
+		if( grabbedEnt==null )
+			return;
+
+		grabbedEnt.isGrabbed = false;
+		grabbedEnt = null;
+	}
+
+	public function grab(e:Entity) {
+		if( grabbedEnt==e )
+			return;
+
+		releaseGrab();
+		grabbedEnt = e;
+		grabbedEnt.isGrabbed = true;
+	}
+
+	public function getGrabber() : Null<Entity> {
+		if( !isGrabbed )
+			return null;
+
+		for(e in ALL)
+			if( e.isAlive() && e.grabbedEnt==this )
+				return e;
+
+		return null;
 	}
 
     public function preUpdate() {
@@ -510,6 +556,18 @@ class Entity {
 		if( M.fabs(dy)<=0.0005*tmod ) dy = 0;
 		if( M.fabs(bdy)<=0.0005*tmod ) bdy = 0;
 
+
+		// Lost grab
+		if( grabbedEnt!=null && !grabbedEnt.isAlive() )
+			releaseGrab();
+
+		if( grabbedEnt!=null && grabbedEnt.distCase(this)>=0.2 ) {
+			var a = grabbedEnt.angTo(this);
+			grabbedEnt.dx *= Math.pow(0.9,tmod);
+			grabbedEnt.dy *= Math.pow(0.9,tmod);
+			grabbedEnt.dx += Math.cos(a)*0.02 * tmod;
+			grabbedEnt.dy += Math.sin(a)*0.02 * tmod;
+		}
 
 		#if debug
 		if( ui.Console.ME.hasFlag("affect") ) {

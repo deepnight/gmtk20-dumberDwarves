@@ -13,11 +13,6 @@ class Ai extends Entity {
 		task = Idle;
 		moveTarget = new CPoint(-1,-1);
 
-		var g = new h2d.Graphics(spr);
-		g.beginFill(0x00ff00);
-		g.lineStyle(1,0x0);
-		g.drawRect(-3,-16,6,16);
-
 		doTask( Gather(Coin) );
 	}
 
@@ -49,19 +44,37 @@ class Ai extends Entity {
 				}
 
 			case Gather(it):
-				cancelMove();
-				var dh = new dn.DecisionHelper(Item.ALL);
-				dh.keepOnly( function(i) return i.isAlive() && i.type==it );
-				dh.score( function(i) return -distCase(i) );
-				dh.useBest( function(i) {
-					moveTarget.setEntity(i);
-					if( distCase(i)<=0.5 )
-						i.destroy();
-				});
+				if( grabbedEnt==null || !grabbedEnt.is(Item) || grabbedEnt.as(Item).type!=it ) {
+					// Seek target
+					releaseGrab();
+					cancelMove();
+					var dh = new dn.DecisionHelper(Item.ALL);
+					dh.keepOnly( function(i) return i.isAlive() && i.type==it );
+					dh.remove( function(i) return i.isGrabbed && i.getGrabber().team==team );
+					dh.score( function(i) return -distCase(i) );
+					if( dh.countRemaining()<=0 )
+						doTask(Idle);
+					dh.useBest( function(i) {
+						moveTarget.setEntity(i);
+						if( distCase(i)<=0.3 ) {
+							chargeAction("gather", 1, function() {
+								grab(i);
+							});
+						}
+					});
+				}
+				else {
+					// Go back home
+					moveTarget.setEntity( getTeamVillage() );
+					if( moveTarget.distCase(this)<=0.1 )
+						chargeAction("drop", 1, function() {
+							grabbedEnt.destroy();
+						});
+				}
 		}
 
 		// Movement
-		if( moveTarget.cx>=0 && moveTarget.distCase(this)>=0.25 && !cd.has("stepLock") ) {
+		if( moveTarget.cx>=0 && moveTarget.distCase(this)>=0.15 && !cd.has("stepLock") ) {
 			var a = Math.atan2(moveTarget.footY-footY, moveTarget.footX-footX);
 			var s = 0.03;
 			dir = dx>0 ? 1 : -1;
@@ -93,6 +106,7 @@ class Ai extends Entity {
 				}
 			}
 
-		updateAi();
+		if( !isChargingAction() )
+			updateAi();
 	}
 }

@@ -2513,22 +2513,6 @@
 							]
 						},
 						{
-							"defId":9,
-							"x":232,
-							"y":176,
-							"fieldInstances":[
-								{
-									"defId":10,
-									"internalValue":{
-										"id":3,
-										"p":[
-											"Coin"
-										]
-									}
-								}
-							]
-						},
-						{
 							"defId":2,
 							"x":360,
 							"y":112,
@@ -2545,9 +2529,20 @@
 							]
 						},
 						{
+							"defId":4,
+							"x":184,
+							"y":128,
+							"fieldInstances":[
+								{
+									"defId":5,
+									"internalValue":null
+								}
+							]
+						},
+						{
 							"defId":9,
-							"x":264,
-							"y":112,
+							"x":232,
+							"y":128,
 							"fieldInstances":[
 								{
 									"defId":10,
@@ -2562,12 +2557,17 @@
 						},
 						{
 							"defId":4,
-							"x":136,
-							"y":160,
+							"x":296,
+							"y":128,
 							"fieldInstances":[
 								{
 									"defId":5,
-									"internalValue":null
+									"internalValue":{
+										"id":3,
+										"p":[
+											"Blue"
+										]
+									}
 								}
 							]
 						}

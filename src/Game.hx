@@ -47,7 +47,9 @@ class Game extends Process {
 					new en.ai.Peon( ei.getCx(li.def), ei.getCy(li.def), stringToTeam( ei.getStringField("Team") ) );
 
 				case "Village":
-					new en.Village( ei.getCx(li.def), ei.getCy(li.def), stringToTeam( ei.getStringField("Team") ) );
+					var e = new en.Village( ei.getCx(li.def), ei.getCy(li.def), stringToTeam( ei.getStringField("Team") ) );
+					if( e.team==Red )
+						redVillage = e;
 
 				case "Item":
 					var v = new en.Item(

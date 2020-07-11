@@ -2513,17 +2513,6 @@
 							]
 						},
 						{
-							"defId":4,
-							"x":152,
-							"y":96,
-							"fieldInstances":[
-								{
-									"defId":5,
-									"internalValue":null
-								}
-							]
-						},
-						{
 							"defId":9,
 							"x":232,
 							"y":176,
@@ -2556,22 +2545,6 @@
 							]
 						},
 						{
-							"defId":4,
-							"x":360,
-							"y":144,
-							"fieldInstances":[
-								{
-									"defId":5,
-									"internalValue":{
-										"id":3,
-										"p":[
-											"Blue"
-										]
-									}
-								}
-							]
-						},
-						{
 							"defId":9,
 							"x":264,
 							"y":112,
@@ -2584,6 +2557,17 @@
 											"Coin"
 										]
 									}
+								}
+							]
+						},
+						{
+							"defId":4,
+							"x":136,
+							"y":160,
+							"fieldInstances":[
+								{
+									"defId":5,
+									"internalValue":null
 								}
 							]
 						}

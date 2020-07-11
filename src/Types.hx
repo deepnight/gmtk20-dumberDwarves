@@ -13,3 +13,8 @@ enum Team {
 enum ItemType {
 	Coin;
 }
+
+enum Task {
+	Idle;
+	Gather(it:ItemType);
+}

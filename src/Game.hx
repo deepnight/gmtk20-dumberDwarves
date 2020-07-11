@@ -44,23 +44,16 @@ class Game extends Process {
 		for( ei in li.entityInstances ) {
 			switch ei.def.name {
 				case "Peon":
-					new en.Peon(ei.getCx(li.def), ei.getCy(li.def));
+					new en.ai.Peon( ei.getCx(li.def), ei.getCy(li.def), stringToTeam( ei.getStringField("Team") ) );
 
 				case "Village":
-					var v = new en.Village(
-						ei.getCx(li.def),
-						ei.getCy(li.def),
-						ei.getStringField("Team")=="Red" ? Red : Blue
-					);
+					new en.Village( ei.getCx(li.def), ei.getCy(li.def), stringToTeam( ei.getStringField("Team") ) );
 
 				case "Item":
 					var v = new en.Item(
 						ei.getCx(li.def),
 						ei.getCy(li.def),
-						switch ei.getStringField("Type") {
-							case "Coin" : Coin;
-							case _: throw "Unknown item type";
-						}
+						ItemType.createByName( ei.getStringField("Type") )
 					);
 
 				case _: trace("Unknown entity "+ei.def.name);
@@ -69,6 +62,14 @@ class Game extends Process {
 
 		Process.resizeAll();
 		trace(Lang.t._("Game is ready."));
+	}
+
+	function stringToTeam(s:String) : Team {
+		return switch s.toLowerCase() {
+			case "red" : Red;
+			case "blue" : Blue;
+			case _: throw "Unknown team string "+s;
+		}
 	}
 
 	public function onCdbReload() {

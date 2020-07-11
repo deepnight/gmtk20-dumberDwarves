@@ -27,8 +27,8 @@ class Entity {
     public var bdy = 0.;
 	public var dxTotal(get,never) : Float; inline function get_dxTotal() return dx+bdx;
 	public var dyTotal(get,never) : Float; inline function get_dyTotal() return dy+bdy;
-	public var frictX = 0.82;
-	public var frictY = 0.82;
+	public var frictX = 0.93;
+	public var frictY = 0.93;
 	public var bumpFrict = 0.93;
 
 	public var hei(default,set) : Float = Const.GRID;
@@ -183,6 +183,7 @@ class Entity {
 	public inline function dirTo(e:Entity) return e.centerX<centerX ? -1 : 1;
 	public inline function dirToAng() return dir==1 ? 0. : M.PI;
 	public inline function getMoveAng() return Math.atan2(dyTotal,dxTotal);
+	public inline function angTo(e:Entity) return Math.atan2(e.footY-footY, e.footX-footX);
 
 	public inline function distCase(e:Entity) return M.dist(cx+xr, cy+yr, e.cx+e.xr, e.cy+e.yr);
 	public inline function distCaseFree(tcx:Int, tcy:Int, ?txr=0.5, ?tyr=0.5) return M.dist(cx+xr, cy+yr, tcx+txr, tcy+tyr);

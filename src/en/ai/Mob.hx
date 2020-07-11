@@ -6,6 +6,7 @@ class Mob extends en.Ai {
 	public function new(x,y) {
 		super(x,y);
 		ALL.push(this);
+		initLife(3);
 
 		spr.anim.registerStateAnim("a_walk", 1, 0.15, function() return isWalking() );
 		spr.anim.registerStateAnim("a_idle", 0, 0.1);

@@ -158,9 +158,6 @@ class Entity {
 
 		blink(0xffffff);
 		lockAiS(rnd(0.6,0.8));
-
-		if( from!=null )
-			bumpFrom(from, rnd(0.11,0.13));
 	}
 
 	function onDie() {

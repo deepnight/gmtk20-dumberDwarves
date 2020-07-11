@@ -16,13 +16,12 @@ class Ai extends Entity {
 
 		ALL.push(this);
 		task = Idle;
-		initLife(3);
 
 		doTask(Idle);
 	}
 
 	public function isWalking() {
-		return canAct() && ( M.fabs(dx)>=0.002 || M.fabs(dy)>=0.002 );
+		return canAct() && ( M.fabs(dx)>=0.004 || M.fabs(dy)>=0.004 );
 	}
 
 	public function canDetect(e:Entity) {

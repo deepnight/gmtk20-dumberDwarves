@@ -22,5 +22,6 @@ class Assets {
 		tiles = dn.heaps.assets.Atlas.load("atlas/tiles.atlas");
 
 		tiles.defineAnim("a_walk", "0(2), 1, 2(2), 1");
+		tiles.defineAnim("d_walk", "0(2), 1, 2(2), 1");
 	}
 }

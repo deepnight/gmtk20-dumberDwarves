@@ -9,12 +9,28 @@ class Level extends dn.Process {
 	var invalidated = true;
 	public var data : led.Level;
 
+	var fastCollGrid: Map<Int,Int>;
+	public var pf : dn.pathfinder.AStar<CPoint>;
+
 	public function new(data:led.Level) {
 		super(Game.ME);
 		this.data = data;
 		wid = Std.int(data.pxWid/Const.GRID);
 		hei= Std.int(data.pxHei/Const.GRID);
 		createRootInLayers(Game.ME.scroller, Const.DP_BG);
+
+		initCollisions();
+		pf = new dn.pathfinder.AStar( function(x,y) return new CPoint(x,y,0.5,0.5) );
+		pf.init(wid, hei, hasCollision);
+	}
+
+	public function initCollisions() {
+		fastCollGrid = new Map();
+
+		var li = data.getLayerInstance("Collisions");
+		for(cy in 0...hei)
+		for(cx in 0...wid)
+			fastCollGrid.set( coordId(cx,cy), li.getIntGrid(cx,cy) );
 	}
 
 	public inline function isValid(cx,cy) return cx>=0 && cx<wid && cy>=0 && cy<hei;
@@ -39,7 +55,7 @@ class Level extends dn.Process {
 	}
 
 	public inline function hasCollision(cx,cy) : Bool {
-		return !isValid(cx,cy) ? true : false;
+		return isValid(cx,cy) ? fastCollGrid.get(coordId(cx,cy))==0 : true;
 	}
 
 	public function render() {
@@ -48,7 +64,10 @@ class Level extends dn.Process {
 		var g = new h2d.Graphics(root);
 		for(cx in 0...wid)
 		for(cy in 0...hei) {
-			g.beginFill( C.makeColorHsl(rnd(0,0.03), 0.6, 0.4) );
+			if( hasCollision(cx,cy) )
+				g.beginFill(0x0);
+			else
+				g.beginFill( C.makeColorHsl(rnd(0,0.03), 0.6, 0.4) );
 			g.drawRect(cx*Const.GRID, cy*Const.GRID, Const.GRID, Const.GRID);
 		}
 	}

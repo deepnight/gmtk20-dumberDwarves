@@ -13,77 +13,105 @@ a_idle0
   index: -1
 a_idle1
   rotate: false
-  xy: 46, 18
+  xy: 26, 91
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_walk0
   rotate: false
-  xy: 46, 35
+  xy: 46, 18
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_walk1
   rotate: false
-  xy: 35, 52
+  xy: 43, 91
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_walk2
   rotate: false
-  xy: 1, 66
+  xy: 26, 108
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
+d_idle0
+  rotate: false
+  xy: 1, 46
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+d_walk0
+  rotate: false
+  xy: 1, 71
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+d_walk1
+  rotate: false
+  xy: 1, 96
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+d_walk2
+  rotate: false
+  xy: 26, 46
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
 empty
   rotate: false
-  xy: 44, 46
+  xy: 24, 121
   size: 1, 1
   orig: 1, 1
   offset: 0, 0
   index: -1
 fxCircle0
   rotate: false
-  xy: 18, 66
+  xy: 43, 108
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 fxDot0
   rotate: false
-  xy: 59, 52
+  xy: 51, 45
   size: 3, 3
   orig: 3, 3
   offset: 0, 0
   index: -1
 fxImpact0
   rotate: false
-  xy: 35, 69
+  xy: 46, 35
   size: 15, 9
   orig: 15, 9
   offset: 0, 0
   index: -1
 fxLine0
   rotate: false
-  xy: 1, 58
+  xy: 26, 83
   size: 33, 3
   orig: 33, 3
   offset: 0, 0
   index: -1
 fxLineDir0
   rotate: false
-  xy: 1, 62
+  xy: 26, 87
   size: 33, 3
   orig: 33, 3
   offset: 0, 0
   index: -1
 fxSmallCircle0
   rotate: false
-  xy: 52, 52
+  xy: 1, 121
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
@@ -97,28 +125,28 @@ fxSmoke0
   index: -1
 fxTail0
   rotate: false
-  xy: 1, 46
+  xy: 26, 71
   size: 33, 11
   orig: 33, 11
   offset: 0, 0
   index: -1
 pixel
   rotate: false
-  xy: 44, 48
+  xy: 24, 123
   size: 1, 1
   orig: 1, 1
   offset: 0, 0
   index: -1
 uiBar
   rotate: false
-  xy: 52, 59
+  xy: 17, 121
   size: 6, 3
   orig: 6, 3
   offset: 0, 0
   index: -1
 uiBarBg
   rotate: false
-  xy: 35, 46
+  xy: 8, 121
   size: 8, 5
   orig: 8, 5
   offset: 0, 0

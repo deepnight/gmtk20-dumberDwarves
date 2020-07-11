@@ -11,8 +11,6 @@ class Game extends Process {
 	public var level : Level;
 	public var hud : ui.Hud;
 
-	public var redVillage : en.Village;
-
 	var curGameSpeed = 1.0;
 	var slowMos : Map<String, { id:String, t:Float, f:Float }> = new Map();
 
@@ -47,13 +45,8 @@ class Game extends Process {
 		var li = level.data.getLayerInstance("Entities");
 		for( ei in li.entityInstances ) {
 			switch ei.def.name {
-				case "Peon":
-					new en.ai.Peon( ei.getCx(li.def), ei.getCy(li.def), stringToTeam( ei.getStringField("Team") ) );
-
-				case "Village":
-					var e = new en.Village( ei.getCx(li.def), ei.getCy(li.def), stringToTeam( ei.getStringField("Team") ) );
-					if( e.team==Red )
-						redVillage = e;
+				case "Hero":
+					new en.ai.Dwarf( ei.getCx(li.def), ei.getCy(li.def) );
 
 				case "Item":
 					var v = new en.Item(
@@ -90,23 +83,17 @@ class Game extends Process {
 	function onMouseDown(e:hxd.Event) {
 		var m = new tools.MouseCoords(e.relX, e.relY);
 
-		var dh = new dn.DecisionHelper(en.Ai.ALL);
-		dh.keepOnly( function(e) return e.isAlive() && M.dist(m.levelX, m.levelY, e.footX, e.footY) <= Const.GRID*2 );
-		dh.score( function(e) return -M.dist(m.levelX, m.levelY, e.footX, e.footY) );
-		dh.useBest( function(e) {
-			e.wrathOfGod(m.levelX, m.levelY);
-		});
+		// var dh = new dn.DecisionHelper(en.Ai.ALL);
+		// dh.keepOnly( function(e) return e.isAlive() && M.dist(m.levelX, m.levelY, e.footX, e.footY) <= Const.GRID*2 );
+		// dh.score( function(e) return -M.dist(m.levelX, m.levelY, e.footX, e.footY) );
+		// dh.useBest( function(e) {
+		// 	e.wrathOfGod(m.levelX, m.levelY);
+		// });
+
+		en.Ai.ALL[0].goto(m.cx, m.cy);
 	}
 	function onMouseUp(e:hxd.Event) {
 		var m = new tools.MouseCoords(e.relX, e.relY);
-	}
-
-	function stringToTeam(s:String) : Team {
-		return switch s.toLowerCase() {
-			case "red" : Red;
-			case "blue" : Blue;
-			case _: throw "Unknown team string "+s;
-		}
 	}
 
 	public function onCdbReload() {

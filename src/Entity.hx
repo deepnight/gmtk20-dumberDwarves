@@ -30,6 +30,7 @@ class Entity {
 	public var frictX = 0.93;
 	public var frictY = 0.93;
 	public var bumpFrict = 0.93;
+	public var hasCollisions = true;
 
 	public var hei(default,set) : Float = Const.GRID*0.7;
 	inline function set_hei(v) { invalidateDebugBounds=true;  return hei=v; }
@@ -74,7 +75,6 @@ class Entity {
 
 	var actions : Array<{ id:String, cb:Void->Void, t:Float }> = [];
 
-	public var team : Null<Team>;
 	public var carriedEnt : Null<Entity>;
 	public var isCarried = false;
 
@@ -119,14 +119,6 @@ class Entity {
 			hit(life,by);
 	}
 
-
-	public function getTeamVillage() : Null<en.Village> {
-		return switch team {
-			case null: null;
-			case Red: en.Village.RED;
-			case Blue: en.Village.BLUE;
-		}
-	}
 
 	public function lockAiS(t:Float) {
 		cd.setS("aiLocked", t, false);
@@ -241,6 +233,13 @@ class Entity {
 
 	public inline function distPx(e:Entity) return M.dist(footX, footY, e.footX, e.footY);
 	public inline function distPxFree(x:Float, y:Float) return M.dist(footX, footY, x, y);
+
+	public inline function sightCheckEnt(e:Entity) {
+		return sightCheckCase(e.cx, e.cy);
+	}
+	public inline function sightCheckCase(x,y) {
+		dn.Bresenham.checkThinLine( cx,cy, x,y, function(x,y) return !level.hasCollision(x,y) );
+	}
 
 	public function makePoint() return new CPoint(cx,cy, xr,yr);
 
@@ -579,12 +578,12 @@ class Entity {
 		while( steps>0 ) {
 			xr+=step;
 
-			if( xr>0.7 && level.hasCollision(cx+1,cy) ) {
+			if( hasCollisions && xr>0.7 && level.hasCollision(cx+1,cy) ) {
 				xr = 0.7;
 				dx *= Math.pow(0.6,tmod);
 			}
 
-			if( xr<0.3 && level.hasCollision(cx-1,cy) ) {
+			if( hasCollisions && xr<0.3 && level.hasCollision(cx-1,cy) ) {
 				xr = 0.3;
 				dx *= Math.pow(0.6,tmod);
 			}
@@ -604,13 +603,12 @@ class Entity {
 		while( steps>0 ) {
 			yr+=step;
 
-
-			if( yr>0.8 && level.hasCollision(cx,cy+1) ) {
+			if( hasCollisions && yr>0.8 && level.hasCollision(cx,cy+1) ) {
 				yr = 0.8;
 				dy *= Math.pow(0.6,tmod);
 			}
 
-			if( yr<0.2 && level.hasCollision(cx,cy-1) ) {
+			if( hasCollisions && yr<0.2 && level.hasCollision(cx,cy-1) ) {
 				yr = 0.2;
 				dy *= Math.pow(0.6,tmod);
 			}
@@ -629,12 +627,13 @@ class Entity {
 		if( carriedEnt!=null && !carriedEnt.isAlive() )
 			releaseCarriedEnt();
 
+		// Carried ent follows
 		if( carriedEnt!=null && carriedEnt.distCase(this)>=0.2 ) {
-			var a = carriedEnt.angTo(this);
-			carriedEnt.dx *= Math.pow(0.9,tmod);
-			carriedEnt.dy *= Math.pow(0.9,tmod);
-			carriedEnt.dx += Math.cos(a)*0.02 * tmod;
-			carriedEnt.dy += Math.sin(a)*0.02 * tmod;
+			var a = carriedEnt.angTo(this) + rnd(0,0.7,true);
+			carriedEnt.dx *= Math.pow(0.85,tmod);
+			carriedEnt.dy *= Math.pow(0.85,tmod);
+			carriedEnt.dx += Math.cos(a)*0.008 * tmod;
+			carriedEnt.dy += Math.sin(a)*0.008 * tmod;
 		}
 
 		#if debug

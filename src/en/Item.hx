@@ -16,8 +16,7 @@ class Item extends Entity {
 
 		var g = new h2d.Graphics(spr);
 		g.beginFill(switch type {
-			case Coin: 0xffcc00;
-			case Food: 0xe1544c;
+			case Gem: 0xffcc00;
 		});
 		g.drawCircle(0, -Const.GRID*0.5, Const.GRID*0.5);
 	}
@@ -37,8 +36,7 @@ class Item extends Entity {
 		super.update();
 
 		switch type {
-			case Coin: suggestTaskAround( Gather(type) );
-			case Food: suggestTaskAround( Gather(type) );
+			case Gem: suggestTaskAround( Grab(type) );
 		}
 	}
 }

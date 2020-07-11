@@ -7,10 +7,12 @@ class Ai extends Entity {
 	var detectRadius = 10;
 	var path : Array<CPoint> = [];
 	public var weight = 1.0;
+	var origin : CPoint;
 
 	private function new(x,y) {
 		super(x,y);
 
+		origin = this.makePoint();
 		Game.ME.scroller.add(spr, Const.DP_AI);
 		spr.filter = new dn.heaps.filter.PixelOutline();
 
@@ -31,6 +33,8 @@ class Ai extends Entity {
 	override function dispose() {
 		super.dispose();
 		ALL.remove(this);
+		origin = null;
+		path = null;
 	}
 
 	function cancelPath() {
@@ -62,11 +66,6 @@ class Ai extends Entity {
 		switch task {
 
 			case Idle:
-				releaseCarriedEnt();
-				if( !cd.has("pickIdlePt") ) {
-					cd.setS("pickIdlePt",rnd(2,3));
-					// TODO
-				}
 
 			case Grab(it):
 				if( !isCarryingItem(it) ) {

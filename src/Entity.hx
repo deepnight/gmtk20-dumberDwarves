@@ -157,7 +157,6 @@ class Entity {
 		releaseCarriedEnt();
 
 		blink(0xffffff);
-		lockAiS(rnd(0.6,0.8));
 	}
 
 	function onDie(?from:Entity) {
@@ -217,6 +216,12 @@ class Entity {
 
 	public function bumpFrom(e:Entity, spd:Float) {
 		var a = e.angTo(this);
+		bdx += Math.cos(a)*spd;
+		bdy += Math.sin(a)*spd;
+	}
+
+	public function bumpTo(e:Entity, spd:Float) {
+		var a = angTo(e);
 		bdx += Math.cos(a)*spd;
 		bdy += Math.sin(a)*spd;
 	}
@@ -478,7 +483,7 @@ class Entity {
 
 	public function blink(c:UInt) {
 		blinkColor.setColor(c);
-		cd.setS("keepBlink",0.06);
+		cd.setS("keepBlink",0.2);
 	}
 
 

@@ -1,6 +1,6 @@
 {
 	"dataVersion":1,
-	"nextUniqId":15,
+	"nextUniqId":16,
 	"defs":{
 		"layers":[
 			{
@@ -284,10 +284,6 @@
 							"v":0
 						},
 						{
-							"coordId":62,
-							"v":0
-						},
-						{
 							"coordId":77,
 							"v":0
 						},
@@ -296,19 +292,11 @@
 							"v":0
 						},
 						{
-							"coordId":88,
-							"v":0
-						},
-						{
 							"coordId":103,
 							"v":0
 						},
 						{
 							"coordId":104,
-							"v":0
-						},
-						{
-							"coordId":114,
 							"v":0
 						},
 						{
@@ -337,10 +325,6 @@
 						},
 						{
 							"coordId":158,
-							"v":0
-						},
-						{
-							"coordId":159,
 							"v":0
 						},
 						{
@@ -416,10 +400,6 @@
 							"v":0
 						},
 						{
-							"coordId":249,
-							"v":0
-						},
-						{
 							"coordId":259,
 							"v":0
 						},
@@ -429,10 +409,6 @@
 						},
 						{
 							"coordId":261,
-							"v":0
-						},
-						{
-							"coordId":264,
 							"v":0
 						},
 						{
@@ -473,10 +449,6 @@
 						},
 						{
 							"coordId":312,
-							"v":0
-						},
-						{
-							"coordId":321,
 							"v":0
 						},
 						{
@@ -765,54 +737,18 @@
 						},
 						{
 							"defId":11,
-							"x":168,
+							"x":88,
 							"y":144,
 							"fieldInstances":[
 								
 							]
 						},
 						{
-							"defId":13,
-							"x":104,
-							"y":144,
-							"fieldInstances":[
-								{
-									"defId":14,
-									"internalValue":null
-								}
-							]
-						},
-						{
-							"defId":13,
-							"x":120,
+							"defId":11,
+							"x":72,
 							"y":128,
 							"fieldInstances":[
-								{
-									"defId":14,
-									"internalValue":null
-								}
-							]
-						},
-						{
-							"defId":13,
-							"x":72,
-							"y":160,
-							"fieldInstances":[
-								{
-									"defId":14,
-									"internalValue":null
-								}
-							]
-						},
-						{
-							"defId":13,
-							"x":120,
-							"y":160,
-							"fieldInstances":[
-								{
-									"defId":14,
-									"internalValue":null
-								}
+								
 							]
 						}
 					]

@@ -10,8 +10,8 @@ class Dwarf extends en.Ai {
 		ALL.push(this);
 		weight = 8;
 
-		spr.anim.registerStateAnim("d_atk_charge", 1, 0.15, function() return isChargingAction("atk") );
-		spr.anim.registerStateAnim("d_walk", 1, 0.15, function() return isWalking() );
+		spr.anim.registerStateAnim("d_atk_charge", 2, 0.15, function() return isChargingAction("atk") );
+		spr.anim.registerStateAnim("d_walk", 1, rnd(0.11,0.15), function() return isWalking() );
 		spr.anim.registerStateAnim("d_idle", 0, 0.1);
 		// spr.anim.registerStateAnim("a_walk", 1, 0.15, function() return isWalking() );
 		// spr.anim.registerStateAnim("a_idle", 0, 0.1);
@@ -23,12 +23,32 @@ class Dwarf extends en.Ai {
 	}
 
 	override function getSpeed():Float {
-		return super.getSpeed()*1.7;
+		return super.getSpeed();
 	}
 
 	var atkA = true;
 	override function updateAi() {
 		super.updateAi();
+
+		switch task {
+			case Idle:
+				if( !cd.has("pickIdlePt") ) {
+					cd.setS("pickIdlePt",rnd(1,1.5));
+					var dh = new dn.DecisionHelper( dn.Bresenham.getDisc(cx,cy, 4) );
+					dh.keepOnly( function(pt) return !level.hasCollision(pt.x,pt.y) && sightCheckCase(pt.x,pt.y) );
+					dh.score( function(pt) return rnd(0,1,true) + distCaseFree(pt.x,pt.y)*0.5 );
+					for(d in ALL)
+						if( d!=this && distCase(d)<=5 )
+							dh.score( function(pt) return d.distCaseFree(pt.x,pt.y)*0.08 );
+
+					dh.useBest( function(pt) {
+						goto(pt.x,pt.y);
+					});
+				}
+
+			case Grab(it):
+			case AttackDwarf(e):
+		}
 
 		// Attack mobs
 		if( canAct() )

@@ -47,8 +47,11 @@ class Game extends Process {
 			var cx = ei.getCx(li.def);
 			var cy = ei.getCy(li.def);
 			switch ei.def.name {
-				case "Hero": new en.ai.Dwarf(cx,cy);
-				case "Mob": new en.ai.Mob(cx,cy);
+				case "Hero":
+					var e = new en.ai.Dwarf(cx,cy);
+
+				case "Mob":
+					new en.ai.Mob(cx,cy);
 
 				case "Item":
 					var v = new en.Item( cx, cy, ItemType.createByName( ei.getStringField("Type") ) );

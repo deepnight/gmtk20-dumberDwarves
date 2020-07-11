@@ -4,37 +4,58 @@ size: 128,256
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+a_atk0
+  rotate: false
+  xy: 80, 84
+  size: 32, 16
+  orig: 32, 16
+  offset: 0, 0
+  index: -1
+a_atk1
+  rotate: false
+  xy: 46, 88
+  size: 32, 16
+  orig: 32, 16
+  offset: 0, 0
+  index: -1
+a_atk_charge0
+  rotate: false
+  xy: 104, 101
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
 a_idle0
   rotate: false
-  xy: 105, 103
+  xy: 104, 118
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_idle1
   rotate: false
-  xy: 71, 109
+  xy: 71, 126
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_walk0
   rotate: false
-  xy: 88, 109
+  xy: 104, 135
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_walk1
   rotate: false
-  xy: 105, 120
+  xy: 1, 121
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_walk2
   rotate: false
-  xy: 46, 113
+  xy: 18, 121
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -111,14 +132,14 @@ d_walk0
   index: -1
 d_walk1
   rotate: false
-  xy: 80, 84
+  xy: 79, 101
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 d_walk2
   rotate: false
-  xy: 46, 88
+  xy: 46, 105
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
@@ -132,7 +153,7 @@ empty
   index: -1
 fxCircle0
   rotate: false
-  xy: 63, 126
+  xy: 35, 130
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -146,7 +167,7 @@ fxDot0
   index: -1
 fxGib0
   rotate: false
-  xy: 105, 91
+  xy: 120, 89
   size: 6, 5
   orig: 6, 5
   offset: 0, 0
@@ -160,14 +181,14 @@ fxGib1
   index: -1
 fxGib2
   rotate: false
-  xy: 105, 97
+  xy: 120, 95
   size: 6, 5
   orig: 6, 5
   offset: 0, 0
   index: -1
 fxImpact0
   rotate: false
-  xy: 112, 89
+  xy: 88, 126
   size: 15, 9
   orig: 15, 9
   offset: 0, 0
@@ -188,7 +209,7 @@ fxLineDir0
   index: -1
 fxSmallCircle0
   rotate: false
-  xy: 105, 84
+  xy: 113, 89
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
@@ -216,7 +237,7 @@ pixel
   index: -1
 uiBar
   rotate: false
-  xy: 112, 99
+  xy: 113, 96
   size: 6, 3
   orig: 6, 3
   offset: 0, 0

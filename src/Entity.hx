@@ -111,7 +111,7 @@ class Entity {
 		lastDmgSource = from;
 		onDamage(dmg, from);
 		if( life<=0 )
-			onDie();
+			onDie(from);
 	}
 
 	public function kill(by:Null<Entity>) {
@@ -160,7 +160,7 @@ class Entity {
 		lockAiS(rnd(0.6,0.8));
 	}
 
-	function onDie() {
+	function onDie(?from:Entity) {
 		releaseCarriedEnt();
 		destroy();
 	}

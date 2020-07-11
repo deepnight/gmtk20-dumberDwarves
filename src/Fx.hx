@@ -164,12 +164,8 @@ class Fx extends dn.Process {
 
 	function _flatten(p:HParticle) {
 		p.rotation = rnd(0,0.2,true);
-		// p.dsX = rnd(0,0.1);
-		// p.dsFrict = 0.9;
-		// p.moveAng(p.rotation, rnd(0.03, 0.1));
 		p.scaleX*=1.1;
 		p.scaleY*=0.8;
-		p.scaleMul = rnd(0.990, 0.995);
 		p.dx*=rnd(0,0.1);
 		p.dy*=rnd(0,0.1);
 		p.groundY = null;
@@ -184,11 +180,14 @@ class Fx extends dn.Process {
 			p.colorize(0x880000);
 			p.rotation = rnd(0,M.PI2);
 			p.setScale( rnd(1,1.5,true) );
+			p.scaleMul = rnd(0.990, 0.995);
+
 			p.moveAng(a, rnd(3,10));
-			p.frict = rnd(0.90, 0.93);
 			p.gy = rnd(0.2, 0.3);
+			p.frict = rnd(0.90, 0.93);
 			p.groundY = p.y + Math.sin(a)*rnd(20,40) + rnd(2,8);
 			p.onTouchGround = _flatten;
+
 			p.onUpdate = _bloodPhysics;
 		}
 	}
@@ -196,14 +195,14 @@ class Fx extends dn.Process {
 	public function bloodImpact(x:Float, y:Float, ang:Float) {
 		for(i in 0...3) {
 			var p = allocTopAdd(getTile("fxImpact"), x+rnd(0,2,true),y+4+rnd(0,2,true));
-			p.setFadeS(rnd(0.3,0.8), 0, 0.1);
+			p.setFadeS(rnd(0.3,0.8), 0, 0.07);
 			p.colorize(0xffcc00);
 			p.scaleY = rnd(1.2,1.7,true);
 			p.rotation = ang + rnd(0,0.1,true);
 			p.dsX = rnd(0.1,0.2);
 			p.dsFrict = 0.9;
 			p.scaleXMul = rnd(0.994, 0.996);
-			p.lifeS = rnd(0.1,0.2);
+			p.lifeS = rnd(0.06,0.08);
 		}
 
 		for(i in 0...40) {
@@ -219,6 +218,29 @@ class Fx extends dn.Process {
 			p.frict = rnd(0.90, 0.93);
 			p.lifeS = rnd(0.6,1.1);
 			p.onUpdate = _bloodPhysics;
+		}
+	}
+
+	public function gibs(x:Float, y:Float, ang:Float, c:UInt) {
+		var n = 40;
+		for(i in 0...n) {
+			var a = ang+rnd(0,0.3,true);
+			var p = allocBgNormal( getTile("fxGib"), x+rnd(0,3,true), y+rnd(0,6,true));
+			p.setFadeS(rnd(0.7,1), 0, rnd(13,15));
+			p.colorize( i<=n*0.4 ? 0x880000 : C.toBlack(c,rnd(0,0.4)) );
+			p.rotation = rnd(0,M.PI2);
+			p.setScale( rnd(0.6,1,true) );
+			p.scaleMul = rnd(0.997, 0.999);
+
+			p.moveAng(a, rnd(0.2,0.6));
+			p.gy = rnd(0.01, 0.08);
+			p.frict = rnd(0.96, 0.98);
+			p.groundY = p.y + rnd(5,16);
+			// p.groundY = p.y + Math.sin(a)*rnd(20,40) + rnd(2,8);
+			p.onTouchGround = _flatten;
+
+			p.onUpdate = _bloodPhysics;
+			p.lifeS = rnd(10,12);
 		}
 	}
 

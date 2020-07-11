@@ -6,10 +6,15 @@ class Mob extends en.Ai {
 	public function new(x,y) {
 		super(x,y);
 		ALL.push(this);
-		initLife(3);
+		initLife(2);
 
 		spr.anim.registerStateAnim("a_walk", 1, 0.15, function() return isWalking() );
 		spr.anim.registerStateAnim("a_idle", 0, 0.1);
+	}
+
+	override function onDie(?from:Entity) {
+		super.onDie(from);
+		fx.gibs(centerX, centerY, from.angTo(this), 0x748954);
 	}
 
 	override function dispose() {

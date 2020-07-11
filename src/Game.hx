@@ -11,6 +11,8 @@ class Game extends Process {
 	public var level : Level;
 	public var hud : ui.Hud;
 
+	public var redVillage : en.Village;
+
 	var curGameSpeed = 1.0;
 	var slowMos : Map<String, { id:String, t:Float, f:Float }> = new Map();
 
@@ -30,6 +32,9 @@ class Game extends Process {
 		level = new Level();
 		fx = new Fx();
 		hud = new ui.Hud();
+
+		new en.Peon(10,10);
+		redVillage = new en.Village(5,10);
 
 		Process.resizeAll();
 		trace(Lang.t._("Game is ready."));
@@ -113,7 +118,7 @@ class Game extends Process {
 
 		// Update slow-motions
 		updateSlowMos();
-		timeMultiplier = ( 0.2 + 0.8*curGameSpeed ) * ( ucd.has("stopFrame") ? 0.3 : 1 );
+		setTimeMultiplier( ( 0.2 + 0.8*curGameSpeed ) * ( ucd.has("stopFrame") ? 0.3 : 1 ) );
 		Assets.tiles.tmod = tmod;
 	}
 

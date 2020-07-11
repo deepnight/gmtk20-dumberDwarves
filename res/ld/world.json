@@ -1,0 +1,63 @@
+{
+	"dataVersion":1,
+	"nextUniqId":2,
+	"defs":{
+		"layers":[
+			{
+				"uid":1,
+				"type":{
+					"id":0,
+					"p":[
+						
+					]
+				},
+				"name":"Integer grid",
+				"gridSize":16,
+				"displayOpacity":1,
+				"intGridValues":[
+					{
+						"color":0
+					}
+				]
+			}
+		],
+		"entities":[
+			
+		],
+		"tilesets":[
+			
+		],
+		"enums":[
+			
+		]
+	},
+	"levels":[
+		{
+			"uid":0,
+			"pxWid":544,
+			"pxHei":352,
+			"layerInstances":[
+				{
+					"levelId":0,
+					"layerDefId":1,
+					"pxOffsetX":0,
+					"pxOffsetY":0,
+					"intGrid":[
+						
+					],
+					"gridTiles":[
+						
+					],
+					"entityInstances":[
+						
+					]
+				}
+			]
+		}
+	],
+	"name":"God",
+	"defaultPivotX":0.5,
+	"defaultPivotY":1,
+	"defaultGridSize":16,
+	"bgColor":8355987
+}

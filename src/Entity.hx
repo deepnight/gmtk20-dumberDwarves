@@ -74,6 +74,9 @@ class Entity {
 
 	var actions : Array<{ id:String, cb:Void->Void, t:Float }> = [];
 
+	public var team : Null<Team>;
+
+
     public function new(x:Int, y:Int) {
         uid = Const.NEXT_UNIQ;
         ALL.push(this);

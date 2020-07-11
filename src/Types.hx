@@ -4,3 +4,8 @@ enum Affect {
 
 enum LevelMark {
 }
+
+enum Team {
+	Red;
+	Blue;
+}

@@ -2,10 +2,8 @@ class Level extends dn.Process {
 	public var game(get,never) : Game; inline function get_game() return Game.ME;
 	public var fx(get,never) : Fx; inline function get_fx() return Game.ME.fx;
 
-	public var wid(get,never) : Int; inline function get_wid() return data.getLayerByName("collisions").cWid;
-	public var hei(get,never) : Int; inline function get_hei() return data.getLayerByName("collisions").cHei;
-	var ogmo : ogmo.Project;
-	var data : ogmo.Level;
+	public var wid = 32;
+	public var hei = 16;
 
 	var marks : Map< LevelMark, Map<Int,Bool> > = new Map();
 	var invalidated = true;
@@ -13,9 +11,6 @@ class Level extends dn.Process {
 	public function new() {
 		super(Game.ME);
 		createRootInLayers(Game.ME.scroller, Const.DP_BG);
-
-		ogmo = new ogmo.Project(hxd.Res.ld.world, false);
-		data = ogmo.getLevelByName("baseLevel");
 	}
 
 	public inline function isValid(cx,cy) return cx>=0 && cx<wid && cy>=0 && cy<hei;
@@ -39,31 +34,18 @@ class Level extends dn.Process {
 			marks.get(mid).remove( coordId(cx,cy) );
 	}
 
-	public inline function getOgmoEntity(id:String) : Null<ogmo.Entity> {
-		return data.getLayerByName("entities").getEntity(id);
-	}
-
-	public inline function getOgmoEntities(id:String) : Array<ogmo.Entity> {
-		return data.getLayerByName("entities").getEntities(id);
-	}
-
 	public inline function hasCollision(cx,cy) : Bool {
-		return !isValid(cx,cy) ? true : data.getLayerByName("collisions").getIntGrid(cx,cy)==1;
+		return !isValid(cx,cy) ? true : false;
 	}
 
 	public function render() {
 		// Debug level render
 		root.removeChildren();
+		var g = new h2d.Graphics(root);
 		for(cx in 0...wid)
 		for(cy in 0...hei) {
-			var g = new h2d.Graphics(root);
-			g.beginFill(Color.randomColor(rnd(0,1), 0.5, 0.4), 1);
+			g.beginFill( C.makeColorHsl(rnd(0,0.03), 0.6, 0.4) );
 			g.drawRect(cx*Const.GRID, cy*Const.GRID, Const.GRID, Const.GRID);
-
-			if( hasCollision(cx,cy) ) {
-				g.beginFill(0xffffff);
-				g.drawRect(cx*Const.GRID, cy*Const.GRID, Const.GRID, Const.GRID);
-			}
 		}
 	}
 

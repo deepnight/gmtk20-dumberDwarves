@@ -33,14 +33,14 @@ class Dwarf extends en.Ai {
 		for(e in Mob.ALL)
 			if( e.isAlive() && distCase(e)<=1 ) {
 				dir = dirTo(e);
-				chargeAction("atk", 0.18, function() {
+				chargeAction("atk", 0.07, function() {
 					spr.anim.play(atkB ? "d_atkB" : "d_atkA").setSpeed(0.2);
 					atkB = !atkB;
 					game.camera.shakeS(0.2,0.4);
 					game.camera.bump(dir*4,0);
 					e.hit(1, this);
 					fx.blood(e.headX, e.headY, angTo(e));
-					bumpEnt(e, 0.2);
+					fx.bloodImpact(e.headX, e.headY, angTo(e));
 					lockAiS(0.3);
 				});
 				break;

@@ -29,7 +29,7 @@ class Entity {
 	public var dyTotal(get,never) : Float; inline function get_dyTotal() return dy+bdy;
 	public var frictX = 0.93;
 	public var frictY = 0.93;
-	public var bumpFrict = 0.93;
+	public var bumpFrict = 0.97;
 	public var hasCollisions = true;
 
 	public var hei(default,set) : Float = Const.GRID*0.7;
@@ -156,10 +156,11 @@ class Entity {
 		cancelAction();
 		releaseCarriedEnt();
 
-		if( from!=null ) {
-			var a = from.angTo(this);
-			bump( Math.cos(a)*0.2, Math.sin(a)*0.2 );
-		}
+		blink(0xffffff);
+		lockAiS(rnd(0.6,0.8));
+
+		if( from!=null )
+			bumpFrom(from, rnd(0.11,0.13));
 	}
 
 	function onDie() {
@@ -215,6 +216,12 @@ class Entity {
 		var a = angTo(e);
 		e.bdx += Math.cos(a)*spd;
 		e.bdy += Math.sin(a)*spd;
+	}
+
+	public function bumpFrom(e:Entity, spd:Float) {
+		var a = e.angTo(this);
+		bdx += Math.cos(a)*spd;
+		bdy += Math.sin(a)*spd;
 	}
 
 	public function cancelVelocities() {

@@ -35,11 +35,13 @@ class Game extends Process {
 		var json = haxe.Json.parse(raw);
 		ledProject = led.Project.fromJson(json);
 
+		// Init main components
 		camera = new Camera();
 		level = new Level( ledProject.getLevel("Lab") );
 		fx = new Fx();
 		hud = new ui.Hud();
 
+		// Attach entities
 		var li = level.data.getLayerInstance("Entities");
 		for( ei in li.entityInstances ) {
 			switch ei.def.name {
@@ -63,7 +65,6 @@ class Game extends Process {
 		}
 
 		Process.resizeAll();
-		trace(Lang.t._("Game is ready."));
 	}
 
 	function stringToTeam(s:String) : Team {

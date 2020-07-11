@@ -12,6 +12,7 @@ enum Team {
 
 enum ItemType {
 	Coin;
+	Food;
 }
 
 enum Task {

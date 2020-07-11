@@ -246,8 +246,5 @@ class Ai extends Entity {
 
 		if( canAct() )
 			updateAi();
-
-		if( !cd.hasSetS("dbg",1) )
-			popText(""+life+"/"+maxLife);
 	}
 }

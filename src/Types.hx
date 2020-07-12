@@ -7,6 +7,7 @@ enum LevelMark {
 
 enum ItemType {
 	Gem;
+	Bait;
 }
 
 enum Task {

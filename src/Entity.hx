@@ -20,9 +20,11 @@ class Entity {
     public var cy = 0;
     public var xr = 0.5;
     public var yr = 1.0;
+    public var zr = 1.0;
 
     public var dx = 0.;
     public var dy = 0.;
+    public var dz = 0.;
     public var bdx = 0.;
     public var bdy = 0.;
 	public var dxTotal(get,never) : Float; inline function get_dxTotal() return dx+bdx;
@@ -59,6 +61,7 @@ class Entity {
 	public var baseColor : h3d.Vector;
 	public var blinkColor : h3d.Vector;
 	public var colorMatrix : h3d.Matrix;
+	var shadow : Null<HSprite>;
 
 	var debugLabel : Null<h2d.Text>;
 	var debugBounds : Null<h2d.Graphics>;
@@ -97,7 +100,17 @@ class Entity {
 
 		if( ui.Console.ME.hasFlag("bounds") )
 			enableBounds();
-    }
+	}
+
+	function enableShadow() {
+		if( shadow!=null )
+			shadow.remove();
+
+		shadow = Assets.tiles.h_get("fxSmallCircle");
+		game.scroller.add(shadow, Const.DP_BG);
+		shadow.colorize(0x0);
+		shadow.setCenterRatio(0.5,1);
+	}
 
 	public function initLife(v) {
 		life = maxLife = v;
@@ -155,6 +168,7 @@ class Entity {
 	function onDamage(dmg:Int, from:Null<Entity>) {
 		cancelAction();
 		releaseCarriedEnt();
+		dz = -0.1;
 
 		blink(0xffffff);
 	}
@@ -276,6 +290,11 @@ class Entity {
 
 		spr.remove();
 		spr = null;
+
+		if( shadow!=null ) {
+			shadow.remove();
+			shadow = null;
+		}
 
 		if( debugLabel!=null ) {
 			debugLabel.remove();
@@ -540,11 +559,22 @@ class Entity {
     }
 
     public function postUpdate() {
-        spr.x = (cx+xr)*Const.GRID;
-        spr.y = (cy+yr)*Const.GRID;
+        spr.x = M.floor( (cx+xr)*Const.GRID );
+		spr.y = M.floor( (cy+yr+zr)*Const.GRID );
         spr.scaleX = dir*sprScaleX * sprSquashX;
         spr.scaleY = sprScaleY * sprSquashY;
 		spr.visible = entityVisible;
+
+		if( shadow!=null ) {
+			// shadow.visible = !isCarried;
+			shadow.set(spr.groupName,spr.frame);
+			shadow.x = spr.x;
+			shadow.y = M.floor( (cy+yr)*Const.GRID ) + 2;
+			var hr = M.fclamp( M.fabs(zr)/0.5, 0, 1 );
+			shadow.alpha = 0.2 + 0.8*(1-hr);
+			shadow.scaleX = 0.9 * (0.4+0.6*(1-hr));
+			shadow.scaleY = 0.5 * (0.4+0.6*(1-hr));
+		}
 
 		sprSquashX += (1-sprSquashX) * 0.2;
 		sprSquashY += (1-sprSquashY) * 0.2;
@@ -636,6 +666,17 @@ class Entity {
 		bdy*=Math.pow(bumpFrict,tmod);
 		if( M.fabs(dy)<=0.0005*tmod ) dy = 0;
 		if( M.fabs(bdy)<=0.0005*tmod ) bdy = 0;
+
+		// Z
+		if( zr<0 )
+			dz+=0.02*tmod;
+		zr+=dz*tmod;
+		if( zr>0 ) {
+			dz = -M.fabs(dz)*0.3;
+			if( M.fabs(dz)<=0.01 )
+				dz = 0;
+			zr = 0;
+		}
 
 
 		// Lost carried ent

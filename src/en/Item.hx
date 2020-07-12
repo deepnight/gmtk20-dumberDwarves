@@ -13,12 +13,11 @@ class Item extends Entity {
 
 		ALL.push(this);
 		type = t;
+		enableShadow();
+		hei = Const.GRID*1.05;
 
-		var g = new h2d.Graphics(spr);
-		g.beginFill(switch type {
-			case Gem: 0xffcc00;
-		});
-		g.drawCircle(0, -Const.GRID*0.5, Const.GRID*0.5);
+		spr.set("i_"+type.getName());
+		cd.setS("jump",rnd(0,1));
 	}
 
 	override function dispose() {
@@ -32,12 +31,21 @@ class Item extends Entity {
 				e.suggestTask(t);
 	}
 
+	public function consume(by:Entity) {
+		destroy();
+	}
+
+	override function postUpdate() {
+		super.postUpdate();
+		if( type==Gem && !cd.hasSetS("shine",0.1) )
+			fx.shine(this, 0x78deff);
+	}
+
 	override function update() {
 		super.update();
 
-		// switch type {
-		// 	case Gem: suggestTaskAround( Grab(type) );
-		// }
+		if( !isCarried && type==Gem && zr==0 && !cd.hasSetS("jump",1) )
+			dz = -0.05;
 	}
 }
 

@@ -19,6 +19,7 @@ class Ai extends Entity {
 
 		ALL.push(this);
 		task = Idle;
+		enableShadow();
 
 		doTask(Idle);
 	}
@@ -85,6 +86,7 @@ class Ai extends Entity {
 							chargeAction("gather", 1, function() {
 								switch it {
 									case Gem: carry(i);
+									case Bait: i.consume(this);
 								}
 
 							});

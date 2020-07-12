@@ -49,13 +49,13 @@
 			{
 				"uid":9,
 				"name":"Item",
-				"width":16,
-				"height":16,
+				"width":10,
+				"height":10,
 				"color":16768256,
 				"maxPerLevel":0,
 				"discardExcess":true,
 				"pivotX":0.5,
-				"pivotY":1,
+				"pivotY":0.5,
 				"fieldDefs":[
 					{
 						"uid":10,
@@ -626,7 +626,7 @@
 						{
 							"defId":9,
 							"x":24,
-							"y":256,
+							"y":248,
 							"fieldInstances":[
 								{
 									"defId":10,
@@ -642,7 +642,7 @@
 						{
 							"defId":9,
 							"x":232,
-							"y":128,
+							"y":120,
 							"fieldInstances":[
 								{
 									"defId":10,
@@ -658,7 +658,7 @@
 						{
 							"defId":9,
 							"x":152,
-							"y":32,
+							"y":24,
 							"fieldInstances":[
 								{
 									"defId":10,
@@ -722,7 +722,7 @@
 						{
 							"defId":9,
 							"x":344,
-							"y":64,
+							"y":24,
 							"fieldInstances":[
 								{
 									"defId":10,
@@ -806,6 +806,54 @@
 								{
 									"defId":14,
 									"internalValue":null
+								}
+							]
+						},
+						{
+							"defId":9,
+							"x":72,
+							"y":136,
+							"fieldInstances":[
+								{
+									"defId":10,
+									"internalValue":{
+										"id":3,
+										"p":[
+											"Bait"
+										]
+									}
+								}
+							]
+						},
+						{
+							"defId":9,
+							"x":72,
+							"y":64,
+							"fieldInstances":[
+								{
+									"defId":10,
+									"internalValue":{
+										"id":3,
+										"p":[
+											"Bait"
+										]
+									}
+								}
+							]
+						},
+						{
+							"defId":9,
+							"x":216,
+							"y":56,
+							"fieldInstances":[
+								{
+									"defId":10,
+									"internalValue":{
+										"id":3,
+										"p":[
+											"Bait"
+										]
+									}
 								}
 							]
 						}

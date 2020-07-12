@@ -27,42 +27,42 @@ a_atk2
   index: -1
 a_atk_charge0
   rotate: false
-  xy: 26, 121
+  xy: 44, 130
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_idle0
   rotate: false
-  xy: 43, 130
+  xy: 26, 139
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_idle1
   rotate: false
-  xy: 26, 138
+  xy: 1, 146
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_walk0
   rotate: false
-  xy: 1, 146
+  xy: 96, 118
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_walk1
   rotate: false
-  xy: 96, 118
+  xy: 96, 135
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_walk2
   rotate: false
-  xy: 96, 135
+  xy: 61, 143
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -160,21 +160,21 @@ d_walk2
   index: -1
 empty
   rotate: false
-  xy: 124, 5
+  xy: 124, 11
   size: 1, 1
   orig: 1, 1
   offset: 0, 0
   index: -1
 fxCircle0
   rotate: false
-  xy: 60, 143
+  xy: 43, 147
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 fxDot0
   rotate: false
-  xy: 124, 1
+  xy: 124, 7
   size: 3, 3
   orig: 3, 3
   offset: 0, 0
@@ -235,6 +235,13 @@ fxSmoke0
   orig: 44, 44
   offset: 0, 0
   index: -1
+fxStar0
+  rotate: false
+  xy: 124, 1
+  size: 3, 5
+  orig: 3, 5
+  offset: 0, 0
+  index: -1
 fxTail0
   rotate: false
   xy: 46, 76
@@ -242,9 +249,23 @@ fxTail0
   orig: 33, 11
   offset: 0, 0
   index: -1
+i_Bait
+  rotate: false
+  xy: 78, 143
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+i_Gem
+  rotate: false
+  xy: 26, 121
+  size: 17, 17
+  orig: 17, 17
+  offset: 0, 0
+  index: -1
 pixel
   rotate: false
-  xy: 126, 5
+  xy: 126, 11
   size: 1, 1
   orig: 1, 1
   offset: 0, 0

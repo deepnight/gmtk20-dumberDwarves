@@ -244,6 +244,15 @@ class Fx extends dn.Process {
 		}
 	}
 
+	public function shine(e:Entity, c:UInt) {
+		var p = allocTopAdd(getTile("fxStar"), e.footX+rnd(-7,2), e.footY-e.hei*rnd(0.4,0.9));
+		p.colorize(c);
+		p.dr = rnd(0.1,0.2);
+		p.setFadeS(1, rnd(0.03,0.15), rnd(0.1,0.2));
+		p.setScale(rnd(1,2));
+		p.lifeS = 0.1;
+	}
+
 	override function update() {
 		super.update();
 

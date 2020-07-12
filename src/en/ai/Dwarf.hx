@@ -28,6 +28,12 @@ class Dwarf extends en.Ai {
 	override function onDamage(dmg:Int, from:Null<Entity>) {
 		super.onDamage(dmg, from);
 
+		cancelAction();
+		if( isAlive() )
+			releaseCarriedEnt(true);
+
+		blink(0xffffff);
+
 		setAffectS(Stun,0.45);
 		fx.flashBangS(0xff0000, 0.1, 0.2);
 
@@ -38,6 +44,7 @@ class Dwarf extends en.Ai {
 	override function onDie(?from:Entity) {
 		super.onDie(from);
 		fx.bloodExplosion(centerX, centerY);
+		game.announce("Dwarf obliterated", 0xff0000, true);
 	}
 
 	override function getSpeed():Float {
@@ -45,6 +52,17 @@ class Dwarf extends en.Ai {
 	}
 
 	function takeDecision() {
+		if( game.countRemainingGems()==0 ) {
+			doTask(ExitLevel);
+			return;
+		}
+
+		var boss = en.ai.mob.Boss.ME;
+		if( boss!=null && distCase(boss)<=4 ) {
+			doTask(FleeBoss(boss));
+			return;
+		}
+
 		var dh = new dn.DecisionHelper(Entity.ALL);
 		dh.keepOnly( function(e) return e.is(Item) || e.is(Breakable) );
 		dh.keepOnly( function(e) return e.isAlive() && !isProhibited(e) && canDetect(e) );
@@ -93,11 +111,6 @@ class Dwarf extends en.Ai {
 
 		switch task {
 			case Idle:
-				if( game.countRemainingGems()==0 ) {
-					doTask(ExitLevel);
-					return;
-				}
-
 				if( !cd.has("pickIdlePt") ) {
 					cd.setS("pickIdlePt",rnd(1,1.5));
 					var dh = new dn.DecisionHelper( dn.Bresenham.getDisc(cx,cy, 4) );

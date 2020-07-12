@@ -88,6 +88,13 @@ crate0-60
   orig: 16, 16
   offset: 0, 0
   index: -1
+crate0-61
+  rotate: false
+  xy: 145, 69
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
 crate0
   rotate: false
   xy: 138, 106
@@ -111,7 +118,7 @@ d_act1
   index: -1
 d_atk_charge0
   rotate: false
-  xy: 203, 39
+  xy: 206, 86
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
@@ -139,7 +146,7 @@ d_atkA2
   index: -1
 d_atkA3
   rotate: false
-  xy: 203, 39
+  xy: 206, 86
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
@@ -167,14 +174,14 @@ d_atkB2
   index: -1
 d_hit0
   rotate: false
-  xy: 221, 1
+  xy: 203, 39
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 d_idle0
   rotate: false
-  xy: 206, 86
+  xy: 221, 1
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
@@ -200,6 +207,13 @@ d_walk2
   orig: 24, 24
   offset: 0, 0
   index: -1
+danger
+  rotate: false
+  xy: 155, 112
+  size: 13, 14
+  orig: 13, 14
+  offset: 0, 0
+  index: -1
 empty
   rotate: false
   xy: 80, 44
@@ -209,7 +223,7 @@ empty
   index: -1
 emptyBone
   rotate: false
-  xy: 155, 112
+  xy: 169, 112
   size: 15, 8
   orig: 15, 8
   offset: 0, 0
@@ -272,7 +286,7 @@ fxGib0
   index: -1
 fxGib1
   rotate: false
-  xy: 155, 121
+  xy: 169, 121
   size: 7, 6
   orig: 7, 6
   offset: 0, 0
@@ -307,14 +321,14 @@ fxLineDir0
   index: -1
 fxProhib
   rotate: false
-  xy: 171, 112
+  xy: 219, 111
   size: 7, 7
   orig: 7, 7
   offset: 0, 0
   index: -1
 fxSmallCircle0
   rotate: false
-  xy: 163, 121
+  xy: 177, 121
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
@@ -377,14 +391,14 @@ i_BaitFull
   index: -1
 i_BaitPart
   rotate: false
-  xy: 181, 111
+  xy: 185, 111
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 i_Bomb
   rotate: false
-  xy: 198, 111
+  xy: 202, 111
   size: 16, 16
   orig: 16, 16
   offset: 0, 0

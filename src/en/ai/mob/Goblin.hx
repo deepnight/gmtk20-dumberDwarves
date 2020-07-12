@@ -13,6 +13,13 @@ class Goblin extends en.ai.Mob {
 		spr.anim.registerStateAnim("a_idle", 0, 0.1);
 	}
 
+	override function onDamage(dmg:Int, from:Null<Entity>) {
+		super.onDamage(dmg, from);
+		cancelAction();
+		lockAiS(rnd(0.6,0.8));
+		blink(0xffffff);
+	}
+
 	override function onDie(?from:Entity) {
 		super.onDie(from);
 		fx.gibs(centerX, centerY, from.angTo(this), 0x748954);

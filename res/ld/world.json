@@ -316,6 +316,46 @@
 							"fieldInstances":[
 								
 							]
+						},
+						{
+							"defId":9,
+							"x":184,
+							"y":168,
+							"fieldInstances":[
+								{
+									"defId":10,
+									"internalValue":{
+										"id":3,
+										"p":[
+											"Gem"
+										]
+									}
+								}
+							]
+						},
+						{
+							"defId":9,
+							"x":152,
+							"y":200,
+							"fieldInstances":[
+								{
+									"defId":10,
+									"internalValue":{
+										"id":3,
+										"p":[
+											"Gem"
+										]
+									}
+								}
+							]
+						},
+						{
+							"defId":11,
+							"x":88,
+							"y":128,
+							"fieldInstances":[
+								
+							]
 						}
 					]
 				},

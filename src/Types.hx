@@ -20,4 +20,5 @@ enum Task {
 	AttackDwarf(e:en.ai.Dwarf);
 	WaitWithItem(e:en.Item);
 	ExitLevel;
+	FleeBoss(e:en.ai.mob.Boss);
 }

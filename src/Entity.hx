@@ -157,15 +157,11 @@ class Entity {
 	}
 
 	function onDamage(dmg:Int, from:Null<Entity>) {
-		cancelAction();
-		releaseCarriedEnt();
 		dz = -0.1;
-
-		blink(0xffffff);
 	}
 
 	function onDie(?from:Entity) {
-		releaseCarriedEnt();
+		releaseCarriedEnt(true);
 		destroy();
 	}
 
@@ -388,6 +384,13 @@ class Entity {
 		return false;
 	}
 
+	public function getActionRemainingSec(id:String) {
+		for(a in actions)
+			if( a.id==id )
+				return a.t;
+		return 0.;
+	}
+
 	public function cancelAction(?id:String) {
 		if( id==null )
 			actions = [];
@@ -502,8 +505,8 @@ class Entity {
 			return;
 
 		if( throwIt ) {
-			carriedEnt.dz = -0.12;
-			carriedEnt.dx = dir*0.2;
+			carriedEnt.dz = -0.2;
+			carriedEnt.dx = dir*0.3;
 		}
 		carriedEnt.isCarried = false;
 		carriedEnt.toBack();

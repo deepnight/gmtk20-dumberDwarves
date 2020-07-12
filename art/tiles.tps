@@ -204,6 +204,8 @@
             <key type="filename">export_tiles/a_walk0.png</key>
             <key type="filename">export_tiles/a_walk1.png</key>
             <key type="filename">export_tiles/a_walk2.png</key>
+            <key type="filename">export_tiles/crate0-60.png</key>
+            <key type="filename">export_tiles/crate0-61.png</key>
             <key type="filename">export_tiles/crate0.png</key>
             <key type="filename">export_tiles/fxCircle0.png</key>
             <key type="filename">export_tiles/i_Bait.png</key>
@@ -294,6 +296,21 @@
                 <rect>12,6,24,12</rect>
                 <key>scale9Paddings</key>
                 <rect>12,6,24,12</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export_tiles/danger.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>3,4,7,7</rect>
+                <key>scale9Paddings</key>
+                <rect>3,4,7,7</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>

@@ -151,6 +151,9 @@ class Ai extends Entity {
 				releaseCarriedEnt(true);
 
 			case AttackDwarf(e):
+
+			case FleeBoss(e):
+				popText("??");
 		}
 
 		doTask( Idle );
@@ -189,10 +192,15 @@ class Ai extends Entity {
 				setBubble("i_"+Std.string(i.type), i.type!=Bomb);
 				if( distCase(i)<=0.8 ) {
 					var t = switch i.type {
-						case BaitFull, BaitPart: 0.4;
+						case BaitFull, BaitPart: 0.3;
+						case Gem: 0.6;
 						case _: 1;
 					}
 					chargeAction("pick", t, function() {
+						if( i.isCarried ) {
+							popText("?");
+							return;
+						}
 						switch i.type {
 							case Gem:
 								carry(i);
@@ -224,6 +232,24 @@ class Ai extends Entity {
 						c.onDropGem();
 						doTask(Idle);
 					});
+
+			case FleeBoss(e):
+				if( distCase(e)>=8 ) {
+					doTask(Idle);
+					return;
+				}
+
+				setBubble("danger", false);
+
+				if( !cd.hasSetS("pickFleePt",0.5) ) {
+					var dh = new dn.DecisionHelper( dn.Bresenham.getDisc(cx,cy,5) );
+					dh.keepOnly( function(pt) return !level.hasCollision(pt.x,pt.y) && sightCheckCase(pt.x,pt.y) );
+					dh.score( function(pt) return e.distCaseFree(pt.x, pt.y) );
+					dh.score( function(pt) return !e.sightCheckCase(pt.x, pt.y) ? 3 : 0 );
+					dh.useBest( function(pt) {
+						goto(pt.x, pt.y);
+					});
+				}
 
 			case ExitLevel:
 				var c = en.Cart.ME;
@@ -275,6 +301,7 @@ class Ai extends Entity {
 					case Bomb:
 				}
 				case ExitLevel: spd*=3;
+				case FleeBoss(e): spd*=2.5;
 				case WaitWithItem(e):
 				case Break(e):
 				case BringToCart: spd*=2;
@@ -290,14 +317,17 @@ class Ai extends Entity {
 		return [];
 	}
 
-	function chargeAtk(e:Entity) {}
+	var curAtkTarget : Null<Entity>;
+	function chargeAtk(e:Entity) {
+		curAtkTarget = e;
+	}
 
 	function updateAutoAttack() {
 		if( isChargingAction("atk") || !canAct() && !isChargingAction() )
 			return;
 
 		for(e in getAttackables())
-			if( e.isAlive() && distCase(e)<=atkRange ) {
+			if( e.isAlive() && distCase(e)<=atkRange && !e.is(en.ai.mob.Boss) ) {
 				cancelAction();
 				dir = dirTo(e);
 				dx*=0.8;
@@ -338,5 +368,8 @@ class Ai extends Entity {
 				i++;
 			}
 		}
+
+		if( isChargingAction("atk") && curAtkTarget!=null )
+			dir = dirTo(curAtkTarget);
 	}
 }

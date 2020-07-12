@@ -12,7 +12,6 @@ class Mob extends en.Ai {
 
 	override function onDamage(dmg:Int, from:Null<Entity>) {
 		super.onDamage(dmg, from);
-		lockAiS(rnd(0.6,0.8));
 	}
 
 	override function dispose() {

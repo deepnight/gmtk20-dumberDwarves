@@ -79,6 +79,7 @@ class Game extends Process {
 				case "Mob":
 					switch ei.getStringField("Type") {
 						case "Gob": new en.ai.mob.Goblin(cx,cy);
+						case "Boss": new en.ai.mob.Boss(cx,cy);
 						case _: trace("unknown mob");
 					}
 
@@ -348,7 +349,7 @@ class Game extends Process {
 
 			#if debug
 			if( ca.isKeyboardPressed(Key.D) )
-				fx.bloodExplosion(50,50);
+				fx.bossAtk(50,50);
 			if( ca.isKeyboardPressed(Key.N) )
 				nextLevel();
 			#end

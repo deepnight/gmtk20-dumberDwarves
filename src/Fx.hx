@@ -346,6 +346,49 @@ class Fx extends dn.Process {
 		}
 	}
 
+
+	public function bossAtk(x:Float, y:Float) {
+		// Core
+		var n = 20;
+		for(i in 0...n) {
+			var p = allocBgAdd( getTile("fxExplosion"), x+rnd(0,10,true), y+rnd(0,5,true));
+			p.playAnimAndKill(Assets.tiles, "fxExplosion", 0.5);
+			p.colorize( 0xddaa55 );
+			p.setFadeS(rnd(0.7,1), 0, 0.1);
+			// p.rotation = rnd(0,M.PIHALF);
+			p.setScale( rnd(0.9, 2) );
+			p.scaleY *= 0.6;
+			// p.ds = rnd(0.1,0.2);
+			// p.dsFrict = rnd(0.8,0.9);
+
+			p.moveAwayFrom(x,y, rnd(0.5,1));
+			p.frict = rnd(0.92, 0.95);
+
+			p.delayS = 0.1 + i/n * 0.1;
+			p.lifeS = 3;
+		}
+
+		// Lines
+		n = 50;
+		var a = rnd(0,M.PI);
+		for(i in 0...n) {
+			var p = allocTopAdd(getTile("fxLineDir"), x+rnd(0,20,true), y-rnd(30,50));
+			p.scaleX = rnd(1,3);
+			p.scaleY = rnd(1,2);
+			p.dy = rnd(5,8);
+			p.setCenterRatio(1,0.5);
+			p.colorize(0xffcc00);
+			p.frict = rnd(0.93,0.95);
+			p.rotation = M.PIHALF;
+			p.groundY = y+rnd(0,5,true);
+			p.scaleXMul = rnd(0.88,0.89);
+			p.lifeS = rnd(0.2,0.3);
+			p.onBounce = function() {
+				p.dy = 0;
+			}
+		}
+	}
+
 	public function shine(e:Entity, c:UInt) {
 		var p = allocTopAdd(getTile("fxStar"), e.footX+rnd(-7,2), e.footY-e.hei*rnd(0.4,0.9));
 		p.colorize(c);

@@ -4,6 +4,7 @@ class Item extends Entity {
 	public static var ALL : Array<Item> = [];
 
 	public var type : ItemType;
+	var bombTimerS = 0.;
 
 	public function new(x,y, t:ItemType) {
 		super(x,y);
@@ -11,10 +12,14 @@ class Item extends Entity {
 		if( t==null )
 			throw "Unknown item type";
 
+		game.scroller.add(spr, Const.DP_FRONT);
 		ALL.push(this);
 		type = t;
 		enableShadow();
 		hei = Const.GRID*1.05;
+
+		if( type!=Gem )
+			spr.filter = new dn.heaps.filter.PixelOutline();
 
 		spr.set("i_"+type.getName());
 		cd.setS("jump",rnd(0,1));
@@ -28,6 +33,8 @@ class Item extends Entity {
 	public function consume(by:en.Ai) {
 		switch type {
 			case Gem:
+			case Bomb:
+
 			case BaitFull:
 				type = BaitPart;
 				spr.set("i_"+type.getName());
@@ -52,6 +59,21 @@ class Item extends Entity {
 
 		if( !isCarried && type==Gem && zr==0 && !cd.hasSetS("jump",1) )
 			dz = -0.05;
+
+		if( type==Bomb && isCarried ) {
+			bombTimerS += tmod/Const.FPS;
+			if( !cd.hasSetS("warn",0.2) )
+				blink(0xffffff, 0);
+
+			if( bombTimerS>=2 ) {
+				popText("BOOM");
+				getCarrier().hit(99,this);
+				fx.flashBangS(0xffcc00, 0.5, 0.5);
+				game.camera.shakeS(2, 0.2);
+				fx.explosion(centerX, centerY);
+				destroy();
+			}
+		}
 	}
 }
 

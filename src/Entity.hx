@@ -491,9 +491,9 @@ class Entity {
 		return !hasAffect(Stun) && isAlive();
 	}
 
-	public function blink(c:UInt) {
+	public function blink(c:UInt, keep=0.2) {
 		blinkColor.setColor(c);
-		cd.setS("keepBlink",0.2);
+		cd.setS("keepBlink",keep);
 	}
 
 
@@ -562,7 +562,7 @@ class Entity {
         spr.scaleX = dir*sprScaleX * sprSquashX;
         spr.scaleY = sprScaleY * sprSquashY;
 		spr.visible = entityVisible;
-		spr.alpha = isCarried ? 0.6 : 1;
+		spr.alpha = isCarried ? 0.85 : 1;
 
 		var zs = 1 + M.fabs(zr)*0.5;
 		spr.scaleX *= zs;

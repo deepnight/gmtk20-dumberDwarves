@@ -975,6 +975,22 @@
 							"fieldInstances":[
 								
 							]
+						},
+						{
+							"defId":9,
+							"x":40,
+							"y":248,
+							"fieldInstances":[
+								{
+									"defId":10,
+									"internalValue":{
+										"id":3,
+										"p":[
+											"Bomb"
+										]
+									}
+								}
+							]
 						}
 					]
 				},

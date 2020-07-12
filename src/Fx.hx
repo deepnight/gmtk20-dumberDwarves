@@ -221,6 +221,37 @@ class Fx extends dn.Process {
 		}
 	}
 
+
+	public function bloodExplosion(x:Float,y:Float) {
+		for(i in 0...70) {
+			var p = allocTopNormal( getTile("fxGib"), x+rnd(0,5,true), y+rnd(0,5,true));
+			p.setFadeS(rnd(0.4,0.6), 0, rnd(1,2));
+			p.colorize(0xdd0000);
+			p.rotation = rnd(0,M.PI2);
+			p.setScale(rnd(0.8,1.5,true));
+			p.scaleMul = rnd(0.995, 0.999);
+			p.moveAwayFrom(x,y, rnd(7,9));
+			p.gy = rnd(0.002,0.010);
+			p.frict = rnd(0.84, 0.93);
+			p.lifeS = rnd(8,10);
+			p.onUpdate = _bloodPhysics;
+		}
+
+		for(i in 0...20) {
+			var p = allocTopNormal( getTile("fxSplatter"), x+rnd(0,5,true), y+rnd(0,5,true));
+			p.setFadeS(rnd(0.4,0.6), 0, rnd(1,2));
+			p.setCenterRatio(0.3,0.5);
+			p.colorize( C.interpolateInt(0x550000,0xdd0000,rnd(0,1)) );
+			p.setScale(rnd(0.8,1));
+			// p.scaleMul = rnd(0.995, 0.999);
+			p.moveAwayFrom(x,y, rnd(1,2));
+			p.rotation = p.getMoveAng();
+			p.frict = rnd(0.84, 0.87);
+			p.lifeS = rnd(8,10);
+			p.onUpdate = _bloodPhysics;
+		}
+	}
+
 	public function gibs(x:Float, y:Float, ang:Float, c:UInt) {
 		var n = 40;
 		for(i in 0...n) {
@@ -241,6 +272,80 @@ class Fx extends dn.Process {
 
 			p.onUpdate = _bloodPhysics;
 			p.lifeS = rnd(10,12);
+		}
+	}
+
+	public function dirtGibs(x:Float, y:Float, ang:Float, c:UInt) {
+		var n = 40;
+		for(i in 0...n) {
+			var a = ang+rnd(0,0.3,true);
+			var p = allocBgNormal( getTile("fxGib"), x+rnd(0,3,true), y+rnd(0,6,true));
+			p.colorize(c);
+			p.setFadeS(rnd(0.7,1), 0, rnd(13,15));
+			p.rotation = rnd(0,M.PI2);
+			p.setScale( rnd(0.4, 0.7,true) );
+			p.scaleMul = rnd(0.997, 0.999);
+
+			p.moveAng(a, rnd(0.2,0.6));
+			p.gy = rnd(0.01, 0.08);
+			p.frict = rnd(0.96, 0.98);
+			p.groundY = p.y + rnd(5,16);
+			p.onUpdate = _bloodPhysics;
+
+			p.lifeS = rnd(10,12);
+		}
+	}
+
+	public function explosion(x:Float, y:Float) {
+		// Core
+		var n = 20;
+		for(i in 0...n) {
+			var p = allocTopAdd( getTile("fxExplosion"), x+rnd(0,5,true), y+rnd(0,10,true));
+			p.playAnimAndKill(Assets.tiles, "fxExplosion", 0.3);
+			p.colorize( C.interpolateInt(0xff0000,0xffcc88,rnd(0,1)) );
+			p.setFadeS(rnd(0.7,1), 0, 0.1);
+			p.rotation = rnd(0,M.PIHALF);
+			p.setScale( rnd(0.7, 1) );
+			p.ds = rnd(0.1,0.2);
+			p.dsFrict = rnd(0.8,0.9);
+
+			p.moveAwayFrom(x,y, rnd(0.5,1));
+			p.frict = rnd(0.92, 0.95);
+
+			p.delayS = i/n * 0.2 + rnd(0,0.1,true);
+			p.lifeS = 3;
+		}
+
+		// Lines
+		n = 40;
+		var a = rnd(0,M.PI);
+		for(i in 0...n) {
+			var a = a + i/n * M.PI2 + rnd(0,0.2,true);
+			var p = allocTopAdd(getTile("fxLineDir"), x+Math.cos(a)*4, y+Math.sin(a)*4);
+			p.scaleX = rnd(0.5,1);
+			p.moveAwayFrom(x,y, rnd(5,7));
+			p.setCenterRatio(0,0.5);
+			p.colorize(0xffcc00);
+			p.frict = rnd(0.89,0.90);
+			p.rotation = a;
+			p.scaleXMul = rnd(0.97,0.99);
+			p.lifeS = rnd(0.5,1);
+		}
+
+		// Smoke
+		var n = 10;
+		for(i in 0...n) {
+			var p = allocTopNormal( getTile("fxSmoke"), x+rnd(0,5,true), y+rnd(0,10,true));
+			p.colorize(0x0);
+			p.setFadeS(0, 0.4, rnd(3,8));
+			p.rotation = rnd(0,M.PI2);
+			p.setScale( rnd(0.7, 1,true) );
+			p.scaleMul = rnd(1.001, 1.003);
+
+			p.moveAwayFrom(x,y, rnd(0.2,0.6));
+			p.frict = rnd(0.96, 0.98);
+
+			p.lifeS = rnd(3,8);
 		}
 	}
 

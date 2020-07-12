@@ -114,6 +114,10 @@ class Ai extends Entity {
 			case Break(e):
 				prohibit(e);
 
+			case WaitWithItem(e):
+				prohibit(e);
+				releaseCarriedEnt(true);
+
 			case BringToCart:
 				if( isCarrying(Item) )
 					prohibit( carriedEnt );
@@ -140,6 +144,10 @@ class Ai extends Entity {
 
 			case Idle:
 
+			case WaitWithItem(e):
+				if( carriedEnt==null )
+					doTask(Idle);
+
 			case Grab(i):
  				if( !i.isAlive() || i.isCarried && i.getCarrier()!=this ) {
 					// Lost target
@@ -151,7 +159,7 @@ class Ai extends Entity {
 				releaseCarriedEnt();
 				goto(i.cx,i.cy);
 				showTaskFocus(i);
-				setBubble("i_"+Std.string(i.type));
+				setBubble("i_"+Std.string(i.type), i.type!=Bomb);
 				if( distCase(i)<=0.8 ) {
 					var t = switch i.type {
 						case BaitFull, BaitPart: 0.4;
@@ -166,6 +174,10 @@ class Ai extends Entity {
 							case BaitFull, BaitPart:
 								i.consume(this);
 								doTask(Idle);
+
+							case Bomb:
+								carry(i);
+								doTask(WaitWithItem(i));
 						}
 					});
 				}
@@ -226,7 +238,9 @@ class Ai extends Entity {
 				case Grab(e): switch e.type {
 					case Gem: spd*=2;
 					case BaitFull, BaitPart: spd*=1.5;
+					case Bomb:
 				}
+				case WaitWithItem(e):
 				case Break(e):
 				case BringToCart: spd*=2;
 				case AttackDwarf(e):

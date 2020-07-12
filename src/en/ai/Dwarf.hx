@@ -34,6 +34,11 @@ class Dwarf extends en.Ai {
 			bumpFrom(from, 0.04);
 	}
 
+	override function onDie(?from:Entity) {
+		super.onDie(from);
+		fx.bloodExplosion(centerX, centerY);
+	}
+
 	override function getSpeed():Float {
 		return super.getSpeed();
 	}
@@ -50,9 +55,10 @@ class Dwarf extends en.Ai {
 					switch e.as(Item).type {
 						case Gem: 1;
 						case BaitFull, BaitPart: 5;
+						case Bomb: 0.75;
 					}
 				else if( e.is(Breakable) )
-					1;
+					0.75;
 				else
 					0;
 		});
@@ -111,6 +117,9 @@ class Dwarf extends en.Ai {
 			case Grab(it):
 			case BringToCart:
 			case AttackDwarf(e):
+			case WaitWithItem(e):
+				if( !cd.hasSetS("huh",3) )
+					popText("Huh?");
 		}
 	}
 

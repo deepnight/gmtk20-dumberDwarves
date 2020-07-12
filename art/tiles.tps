@@ -209,6 +209,7 @@
             <key type="filename">export_tiles/i_Bait.png</key>
             <key type="filename">export_tiles/i_BaitFull.png</key>
             <key type="filename">export_tiles/i_BaitPart.png</key>
+            <key type="filename">export_tiles/i_Bomb.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -342,6 +343,25 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">export_tiles/fxExplosion0.png</key>
+            <key type="filename">export_tiles/fxExplosion1.png</key>
+            <key type="filename">export_tiles/fxExplosion2.png</key>
+            <key type="filename">export_tiles/fxExplosion3.png</key>
+            <key type="filename">export_tiles/fxExplosion4.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>6,6,13,13</rect>
+                <key>scale9Paddings</key>
+                <rect>6,6,13,13</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">export_tiles/fxGib0.png</key>
             <key type="filename">export_tiles/fxGib2.png</key>
             <struct type="IndividualSpriteSettings">
@@ -432,6 +452,51 @@
                 <rect>11,11,22,22</rect>
                 <key>scale9Paddings</key>
                 <rect>11,11,22,22</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export_tiles/fxSplatter0.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>18,4,35,7</rect>
+                <key>scale9Paddings</key>
+                <rect>18,4,35,7</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export_tiles/fxSplatter1.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>18,4,35,9</rect>
+                <key>scale9Paddings</key>
+                <rect>18,4,35,9</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export_tiles/fxSplatter2.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>19,4,39,9</rect>
+                <key>scale9Paddings</key>
+                <rect>19,4,39,9</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>

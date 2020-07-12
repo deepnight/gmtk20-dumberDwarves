@@ -237,6 +237,11 @@ class Game extends Process {
 					hxd.System.exit();
 			#end
 
+			#if debug
+			if( ca.isKeyboardPressed(Key.D) )
+				fx.bloodExplosion(50,50);
+			#end
+
 			// Restart
 			if( ca.selectPressed() )
 				Main.ME.startGame();

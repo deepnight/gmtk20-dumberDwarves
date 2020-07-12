@@ -9,6 +9,7 @@ enum ItemType {
 	Gem;
 	BaitFull;
 	BaitPart;
+	Bomb;
 }
 
 enum Task {
@@ -17,4 +18,5 @@ enum Task {
 	Break(e:en.Breakable);
 	BringToCart;
 	AttackDwarf(e:en.ai.Dwarf);
+	WaitWithItem(e:en.Item);
 }

@@ -144,7 +144,8 @@ class Entity {
 
 
 	public function slap(fromX:Int, fromY:Int) {
-		lockAiS(0.4);
+		popText("!");
+		lockAiS(0.25);
 		cancelAction();
 		cancelVelocities();
 

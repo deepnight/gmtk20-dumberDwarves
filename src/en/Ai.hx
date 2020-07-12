@@ -327,7 +327,7 @@ class Ai extends Entity {
 			return;
 
 		for(e in getAttackables())
-			if( e.isAlive() && distCase(e)<=atkRange && !e.is(en.ai.mob.Boss) ) {
+			if( e.isAlive() && distCase(e)<=atkRange && !e.is(en.ai.mob.Boss) && sightCheckEnt(e) ) {
 				cancelAction();
 				dir = dirTo(e);
 				dx*=0.8;

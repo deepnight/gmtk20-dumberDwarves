@@ -1,6 +1,6 @@
 {
 	"dataVersion":1,
-	"nextUniqId":28,
+	"nextUniqId":29,
 	"defs":{
 		"layers":[
 			{
@@ -283,6 +283,37 @@
 								1
 							]
 						}
+					},
+					{
+						"uid":28,
+						"type":{
+							"id":1,
+							"p":[
+								
+							]
+						},
+						"name":"Delay",
+						"canBeNull":false,
+						"editorDisplayMode":{
+							"id":2,
+							"p":[
+								
+							]
+						},
+						"editorDisplayPos":{
+							"id":0,
+							"p":[
+								
+							]
+						},
+						"min":1,
+						"max":null,
+						"defaultOverride":{
+							"id":1,
+							"p":[
+								5
+							]
+						}
 					}
 				]
 			},
@@ -361,7 +392,50 @@
 					"pxOffsetX":0,
 					"pxOffsetY":0,
 					"intGrid":[
-						
+						{
+							"coordId":65,
+							"v":0
+						},
+						{
+							"coordId":66,
+							"v":0
+						},
+						{
+							"coordId":67,
+							"v":0
+						},
+						{
+							"coordId":68,
+							"v":0
+						},
+						{
+							"coordId":69,
+							"v":0
+						},
+						{
+							"coordId":70,
+							"v":0
+						},
+						{
+							"coordId":71,
+							"v":0
+						},
+						{
+							"coordId":72,
+							"v":0
+						},
+						{
+							"coordId":73,
+							"v":0
+						},
+						{
+							"coordId":74,
+							"v":0
+						},
+						{
+							"coordId":75,
+							"v":0
+						}
 					],
 					"gridTiles":[
 						
@@ -397,11 +471,30 @@
 							"fieldInstances":[
 								{
 									"defId":26,
-									"internalValue":null
+									"internalValue":{
+										"id":0,
+										"p":[
+											10
+										]
+									}
 								},
 								{
 									"defId":27,
-									"internalValue":null
+									"internalValue":{
+										"id":0,
+										"p":[
+											10
+										]
+									}
+								},
+								{
+									"defId":28,
+									"internalValue":{
+										"id":1,
+										"p":[
+											20
+										]
+									}
 								}
 							]
 						},
@@ -423,8 +516,8 @@
 						},
 						{
 							"defId":11,
-							"x":72,
-							"y":96,
+							"x":24,
+							"y":128,
 							"fieldInstances":[
 								
 							]
@@ -471,7 +564,7 @@
 						},
 						{
 							"defId":24,
-							"x":136,
+							"x":72,
 							"y":48,
 							"fieldInstances":[
 								{
@@ -479,7 +572,23 @@
 									"internalValue":{
 										"id":0,
 										"p":[
-											5
+											1
+										]
+									}
+								}
+							]
+						},
+						{
+							"defId":9,
+							"x":136,
+							"y":40,
+							"fieldInstances":[
+								{
+									"defId":10,
+									"internalValue":{
+										"id":3,
+										"p":[
+											"Gem"
 										]
 									}
 								}
@@ -1089,19 +1198,8 @@
 						},
 						{
 							"defId":13,
-							"x":185,
-							"y":204,
-							"fieldInstances":[
-								{
-									"defId":14,
-									"internalValue":null
-								}
-							]
-						},
-						{
-							"defId":13,
-							"x":327,
-							"y":158,
+							"x":376,
+							"y":128,
 							"fieldInstances":[
 								{
 									"defId":14,
@@ -1113,39 +1211,6 @@
 							"defId":13,
 							"x":344,
 							"y":98,
-							"fieldInstances":[
-								{
-									"defId":14,
-									"internalValue":null
-								}
-							]
-						},
-						{
-							"defId":13,
-							"x":236,
-							"y":40,
-							"fieldInstances":[
-								{
-									"defId":14,
-									"internalValue":null
-								}
-							]
-						},
-						{
-							"defId":13,
-							"x":253,
-							"y":79,
-							"fieldInstances":[
-								{
-									"defId":14,
-									"internalValue":null
-								}
-							]
-						},
-						{
-							"defId":13,
-							"x":144,
-							"y":62,
 							"fieldInstances":[
 								{
 									"defId":14,
@@ -1283,8 +1348,8 @@
 						},
 						{
 							"defId":9,
-							"x":376,
-							"y":120,
+							"x":312,
+							"y":248,
 							"fieldInstances":[
 								{
 									"defId":10,
@@ -1319,6 +1384,90 @@
 							"y":112,
 							"fieldInstances":[
 								
+							]
+						},
+						{
+							"defId":23,
+							"x":88,
+							"y":56,
+							"fieldInstances":[
+								{
+									"defId":26,
+									"internalValue":null
+								},
+								{
+									"defId":27,
+									"internalValue":null
+								},
+								{
+									"defId":28,
+									"internalValue":null
+								}
+							]
+						},
+						{
+							"defId":23,
+							"x":296,
+							"y":56,
+							"fieldInstances":[
+								{
+									"defId":26,
+									"internalValue":null
+								},
+								{
+									"defId":27,
+									"internalValue":null
+								},
+								{
+									"defId":28,
+									"internalValue":null
+								}
+							]
+						},
+						{
+							"defId":24,
+							"x":376,
+							"y":48,
+							"fieldInstances":[
+								{
+									"defId":25,
+									"internalValue":null
+								}
+							]
+						},
+						{
+							"defId":23,
+							"x":200,
+							"y":232,
+							"fieldInstances":[
+								{
+									"defId":26,
+									"internalValue":{
+										"id":0,
+										"p":[
+											2
+										]
+									}
+								},
+								{
+									"defId":27,
+									"internalValue":null
+								},
+								{
+									"defId":28,
+									"internalValue":null
+								}
+							]
+						},
+						{
+							"defId":13,
+							"x":136,
+							"y":192,
+							"fieldInstances":[
+								{
+									"defId":14,
+									"internalValue":null
+								}
 							]
 						}
 					]

@@ -36,7 +36,7 @@ class Boss extends en.ai.Mob {
 		super.chargeAtk(e);
 
 		bumpTo(e, 0.05);
-		chargeAction("atk", 1.5, function() {
+		chargeAction("atk", 2, function() {
 			dir = dirTo(e);
 
 			spr.anim.play("a_atk").setSpeed(0.2);
@@ -46,7 +46,7 @@ class Boss extends en.ai.Mob {
 			fx.bossAtk(footX+Math.cos(a)*atkRange*Const.GRID, footY+Math.sin(a)*atkRange*Const.GRID);
 			game.camera.shakeS(0.4, 1);
 
-			if( !e.isAlive() || distCase(e)>atkRange*2 )
+			if( !e.isAlive() || distCase(e)>atkRange*2 || !sightCheckEnt(e) )
 				return;
 
 			lockAtk(1);
@@ -54,6 +54,30 @@ class Boss extends en.ai.Mob {
 			game.addSlowMo("boss",0.5, 0.3);
 			fx.bloodImpact(e.headX, e.headY, angTo(e));
 		});
+	}
+
+
+	override function updateAggro() {
+		if( Dwarf.ALL.length==0 )
+			return;
+
+		if( task==Idle )
+			doTask( AttackDwarf(Dwarf.ALL[0]) );
+
+		if( !cd.hasSetS("aggroBoss", 1) ) {
+			var dh = new dn.DecisionHelper(Dwarf.ALL);
+			dh.keepOnly( function(e) return e.isAlive() );
+			dh.score( function(e) return -distCase(e)*0.2 );
+			dh.score( function(e) return sightCheckEnt(e) ? 3 : 0 );
+			dh.useBest( function(e) {
+				doTask( AttackDwarf(e) );
+			});
+		}
+	}
+
+	override function showTaskFocus(e:Entity) {
+		super.showTaskFocus(e);
+		fx.focus(this, e, 0xff0000);
 	}
 
 

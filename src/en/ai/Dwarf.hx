@@ -58,7 +58,7 @@ class Dwarf extends en.Ai {
 		}
 
 		var boss = en.ai.mob.Boss.ME;
-		if( boss!=null && distCase(boss)<=4 ) {
+		if( boss!=null && distCase(boss)<=4 && ( sightCheckEnt(boss) || boss.isChargingAction("atk") ) ) {
 			doTask(FleeBoss(boss));
 			return;
 		}
@@ -138,7 +138,7 @@ class Dwarf extends en.Ai {
 
 			case WaitWithItem(e):
 				if( !cd.hasSetS("huh",3) )
-					popText("Huh?");
+					popText("Huh?", 0xff6600);
 
 			case _:
 		}

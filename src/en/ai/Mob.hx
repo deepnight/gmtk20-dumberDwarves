@@ -22,8 +22,10 @@ class Mob extends en.Ai {
 
 	override function updateAi() {
 		super.updateAi();
+		updateAggro();
+	}
 
-		// Aggro dwarf
+	function updateAggro() {
 		if( task==Idle ) {
 			for(e in Dwarf.ALL)
 				if( distCase(e)<=detectRadius && sightCheckEnt(e) ) {

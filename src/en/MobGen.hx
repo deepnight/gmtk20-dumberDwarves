@@ -6,6 +6,7 @@ class MobGen extends Entity {
 	var children : Array<en.ai.Mob> = [];
 	public var maxChildren = 5;
 	public var perSpawn = 2;
+	public var delay = 5.;
 
 	public function new(x,y) {
 		super(x,y);
@@ -40,7 +41,7 @@ class MobGen extends Entity {
 				i++;
 
 		// Spawn
-		if( !cd.hasSetS("spawn",1) ) {
+		if( !cd.hasSetS("spawn",delay) ) {
 			var n = perSpawn;
 			while( n-->0 && children.length<maxChildren )
 				children.push( spawn() );

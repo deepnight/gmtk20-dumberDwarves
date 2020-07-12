@@ -87,6 +87,7 @@ class Game extends Process {
 					var e = new en.MobGen(cx,cy);
 					e.perSpawn = ei.getIntField("PerSpawn");
 					e.maxChildren = ei.getIntField("MaxChildren");
+					e.delay = ei.getFloatField("Delay");
 
 				case "BossDoor":
 					new en.BossDoor(cx,cy, ei.getIntField("Time"));

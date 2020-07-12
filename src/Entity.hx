@@ -528,6 +528,9 @@ class Entity {
 		if( carriedEnt==e )
 			return;
 
+		if( e.isCarried )
+			e.getCarrier().releaseCarriedEnt();
+
 		releaseCarriedEnt();
 		carriedEnt = e;
 		carriedEnt.isCarried = true;
@@ -567,6 +570,10 @@ class Entity {
 		spr.visible = entityVisible;
 		spr.alpha = isCarried ? 0.6 : 1;
 
+		var zs = 1 + M.fabs(zr)*0.5;
+		spr.scaleX *= zs;
+		spr.scaleY *= zs;
+
 		if( shadow!=null ) {
 			// shadow.visible = !isCarried;
 			shadow.set(spr.groupName,spr.frame);
@@ -576,6 +583,7 @@ class Entity {
 			shadow.alpha = 0.2 + 0.8*(1-hr);
 			shadow.scaleX = 0.9 * (0.4+0.6*(1-hr));
 			shadow.scaleY = 0.5 * (0.4+0.6*(1-hr));
+			shadow.scaleX *= dir;
 		}
 
 		sprSquashX += (1-sprSquashX) * 0.2;

@@ -6,7 +6,7 @@ class Mob extends en.Ai {
 	public function new(x,y) {
 		super(x,y);
 		ALL.push(this);
-		initLife(1);
+		initLife(3);
 		detectRadius = 5;
 		atkRange = 0.8;
 		weight = 1;

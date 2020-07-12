@@ -128,7 +128,7 @@ class Dwarf extends en.Ai {
 
 		chargeAction("atk", 0.12, function() {
 			spr.anim.play(atkA ? "d_atkA" : "d_atkB").setSpeed(0.2);
-			lockAiS(atkA ? 0.1 : 0.3);
+			lockAiS(atkA ? 0.2 : 0.5);
 			cd.setS("resetAtk",0.7);
 			atkA = !atkA;
 

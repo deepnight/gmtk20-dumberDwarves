@@ -32,6 +32,10 @@ class Item extends Entity {
 	}
 
 	public function consume(by:Entity) {
+		switch type {
+			case Gem:
+			case Bait:
+		}
 		destroy();
 	}
 

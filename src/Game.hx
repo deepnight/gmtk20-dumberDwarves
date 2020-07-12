@@ -11,6 +11,8 @@ class Game extends Process {
 	public var level : Level;
 	public var hud : ui.Hud;
 
+	public var baits : Int;
+
 	var curGameSpeed = 1.0;
 	var slowMos : Map<String, { id:String, t:Float, f:Float }> = new Map();
 
@@ -63,6 +65,8 @@ class Game extends Process {
 			}
 		}
 
+		refillBaits();
+
 		Process.resizeAll();
 	}
 
@@ -84,6 +88,24 @@ class Game extends Process {
 		}
 	}
 
+	public function useBait() {
+		if( baits<=0 )
+			return false;
+
+		baits--;
+		hud.invalidate();
+
+		return true;
+	}
+
+	public function refillBaits() {
+		if( baits>=Const.BAITS )
+			return;
+
+		baits = Const.BAITS;
+		hud.invalidate();
+	}
+
 	function onMouseDown(e:hxd.Event) {
 		var m = new tools.MouseCoords(e.relX, e.relY);
 
@@ -93,6 +115,12 @@ class Game extends Process {
 		dh.useBest( function(e) {
 			e.wrathOfGod(m.levelX, m.levelY);
 		});
+		if( dh.countRemaining()==0 ) {
+			if( useBait() ) {
+				var e = new en.Item(m.cx, m.cy, Bait);
+				e.zr = -2;
+			}
+		}
 
 		en.Ai.ALL[0].goto(m.cx, m.cy);
 	}

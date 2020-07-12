@@ -16,6 +16,8 @@ class Cart extends Entity {
 	public function dropGem() {
 		score++;
 		popText("+1 GEM");
+		game.refillBaits();
+
 		var g = new h2d.Bitmap(Assets.tiles.getTile("i_Gem"), spr);
 		g.tile = g.tile.sub(0,0, g.tile.width, Std.int( g.tile.height*rnd(0.7,1) ));
 		g.tile.setCenterRatio(0.5,1);

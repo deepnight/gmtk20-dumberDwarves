@@ -74,7 +74,7 @@ class Ai extends Entity {
 					releaseCarriedEnt();
 					cancelPath();
 					var dh = new dn.DecisionHelper(Item.ALL);
-					dh.keepOnly( function(i) return i.isAlive() && i.type==it );
+					dh.keepOnly( function(i) return i.isAlive() && i.type==it && canDetect(i) );
 					dh.remove( function(i) return i.isCarried );
 					dh.score( function(i) return -distCase(i) );
 					if( dh.countRemaining()<=0 )
@@ -82,10 +82,16 @@ class Ai extends Entity {
 					dh.useBest( function(i) {
 						goto(i.cx, i.cy);
 						if( distCase(i)<=0.8 ) {
-							chargeAction("gather", 1, function() {
+							chargeAction("pick", 1, function() {
 								switch it {
-									case Gem: carry(i);
-									case Bait: i.consume(this);
+									case Gem:
+										carry(i);
+
+									case Bait:
+										chargeAction("useItem", 0.5, function() {
+											i.consume(this);
+											doTask(Idle);
+										});
 								}
 							});
 						}

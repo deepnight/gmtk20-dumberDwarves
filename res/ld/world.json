@@ -899,6 +899,22 @@
 							"fieldInstances":[
 								
 							]
+						},
+						{
+							"defId":9,
+							"x":56,
+							"y":200,
+							"fieldInstances":[
+								{
+									"defId":10,
+									"internalValue":{
+										"id":3,
+										"p":[
+											"Bait"
+										]
+									}
+								}
+							]
 						}
 					]
 				},

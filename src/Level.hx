@@ -70,6 +70,10 @@ class Level extends dn.Process {
 				g.beginFill( C.makeColorHsl(rnd(0,0.03), 0.6, 0.4) );
 			g.drawRect(cx*Const.GRID, cy*Const.GRID, Const.GRID, Const.GRID);
 		}
+
+		for(li in data.layerInstances)
+			if( li.def.type==Tiles )
+				li.render(root);
 	}
 
 	override function postUpdate() {

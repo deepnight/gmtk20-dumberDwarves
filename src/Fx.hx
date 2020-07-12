@@ -435,6 +435,44 @@ class Fx extends dn.Process {
 	}
 
 
+	public function bossDoor(e:Entity, crit:Bool) {
+		var c = crit ? 0xd36228 : 0x89acf3;
+		for(i in 0...4) {
+			var p = allocBgAdd(getTile("fxGib"), e.centerX+rnd(0,5,true), e.centerY+rnd(0,10,true));
+			p.setFadeS(rnd(0.6,0.8), 0.2, 0.2);
+			p.colorize(c);
+			p.rotation = rnd(0,M.PI2);
+			p.dr = rnd(0,0.03,true);
+			p.lifeS = rnd(0.4,0.6);
+			p.delayS = rnd(0,0.2);
+		}
+
+		for(i in 0...4) {
+			var p = allocTopAdd(getTile("pixel"), e.centerX+rnd(0,5,true), e.centerY+rnd(0,10,true));
+			p.setFadeS(rnd(0.8,1), 0.1, 0.2);
+			p.colorize(c);
+			p.moveAwayFrom(e.centerX, e.centerY, rnd(0.2,0.5));
+			p.dy+=0.3;
+			p.delayS = rnd(0,0.2);
+			p.frict = rnd(0.96, 0.99);
+			p.lifeS = rnd(0.4,0.6);
+		}
+		for(i in 0...2) {
+			var p = allocTopAdd(getTile("fxLineDir"), e.centerX+rnd(0,5,true), e.centerY+rnd(0,10,true));
+			p.setCenterRatio(1,0.5);
+			p.setFadeS(rnd(0.8,1), 0.3, 0.3);
+			p.scaleX = rnd(0.4,0.6);
+			p.scaleY = rnd(1,3);
+			p.colorize(c);
+			p.moveAwayFrom(e.centerX, e.headY, rnd(0.2,0.5));
+			p.rotation = p.getMoveAng() + M.PI;
+			p.delayS = rnd(0,0.2);
+			p.frict = rnd(0.96, 0.99);
+			p.lifeS = rnd(0.4,0.6);
+		}
+	}
+
+
 	override function update() {
 		super.update();
 

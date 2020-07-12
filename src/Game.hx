@@ -324,8 +324,10 @@ class Game extends Process {
 		var wid = this.w();
 		var hei = this.h();
 		w.y = Std.int( hei*0.5-tf.textHeight*0.5*w.scaleY );
+		if( big )
+			w.y-=150;
 		tw.createMs(w.x, -200 > wid-tf.textWidth*w.scaleX, 200, TElasticEnd);
-		if( sub==null )
+		if( sub==null && !big )
 			tw.createMs(w.alpha, 1000|0, 200).end( w.remove );
 		else
 			tw.createMs(w.alpha, 2500|0, 200).end( w.remove );

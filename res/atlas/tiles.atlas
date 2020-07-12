@@ -1,453 +1,460 @@
 
 tiles.png
-size: 256,128
+size: 256,256
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 a_atk0
   rotate: false
-  xy: 50, 90
+  xy: 35, 44
   size: 32, 16
   orig: 32, 16
   offset: 0, 0
   index: -1
 a_atk1
   rotate: false
-  xy: 76, 71
+  xy: 1, 46
   size: 32, 16
   orig: 32, 16
   offset: 0, 0
   index: -1
 a_atk2
   rotate: false
-  xy: 83, 88
+  xy: 68, 44
   size: 32, 16
   orig: 32, 16
   offset: 0, 0
   index: -1
 a_atk_charge0
   rotate: false
-  xy: 52, 111
+  xy: 84, 61
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_idle0
   rotate: false
-  xy: 69, 111
+  xy: 109, 78
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_idle1
   rotate: false
-  xy: 86, 111
+  xy: 126, 79
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_walk0
   rotate: false
-  xy: 103, 111
+  xy: 109, 95
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_walk1
   rotate: false
-  xy: 116, 88
+  xy: 126, 96
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_walk2
   rotate: false
-  xy: 128, 69
+  xy: 1, 108
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
+bossDoor
+  rotate: false
+  xy: 101, 44
+  size: 26, 33
+  orig: 26, 33
+  offset: 0, 0
+  index: -1
 bubble
   rotate: false
-  xy: 120, 109
+  xy: 128, 61
   size: 17, 17
   orig: 17, 17
   offset: 0, 0
   index: -1
 cart
   rotate: false
-  xy: 133, 86
+  xy: 1, 88
   size: 21, 19
   orig: 21, 19
   offset: 0, 0
   index: -1
 crate0-60
   rotate: false
-  xy: 145, 69
+  xy: 51, 86
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 crate0-61
   rotate: false
-  xy: 145, 69
+  xy: 51, 86
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 crate0
   rotate: false
-  xy: 138, 106
+  xy: 51, 103
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 d_act0
   rotate: false
-  xy: 196, 14
+  xy: 172, 67
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 d_act1
   rotate: false
-  xy: 181, 86
+  xy: 172, 92
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 d_atk_charge0
   rotate: false
-  xy: 206, 86
+  xy: 34, 61
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 d_atkA0
   rotate: false
-  xy: 46, 19
+  xy: 150, 17
   size: 48, 24
   orig: 48, 24
   offset: 0, 0
   index: -1
 d_atkA1
   rotate: false
-  xy: 79, 46
+  xy: 199, 17
   size: 48, 24
   orig: 48, 24
   offset: 0, 0
   index: -1
 d_atkA2
   rotate: false
-  xy: 95, 19
+  xy: 1, 19
   size: 48, 24
   orig: 48, 24
   offset: 0, 0
   index: -1
 d_atkA3
   rotate: false
-  xy: 206, 86
+  xy: 34, 61
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 d_atkB0
   rotate: false
-  xy: 1, 64
+  xy: 50, 19
   size: 48, 24
   orig: 48, 24
   offset: 0, 0
   index: -1
 d_atkB1
   rotate: false
-  xy: 1, 89
+  xy: 99, 19
   size: 48, 24
   orig: 48, 24
   offset: 0, 0
   index: -1
 d_atkB2
   rotate: false
-  xy: 128, 44
+  xy: 148, 42
   size: 48, 24
   orig: 48, 24
   offset: 0, 0
   index: -1
 d_hit0
   rotate: false
-  xy: 203, 39
+  xy: 1, 63
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 d_idle0
   rotate: false
-  xy: 221, 1
+  xy: 59, 61
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 d_walk0
   rotate: false
-  xy: 228, 26
+  xy: 84, 78
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 d_walk1
   rotate: false
-  xy: 228, 51
+  xy: 143, 93
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 d_walk2
   rotate: false
-  xy: 231, 76
+  xy: 168, 117
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 danger
   rotate: false
-  xy: 155, 112
+  xy: 242, 45
   size: 13, 14
   orig: 13, 14
   offset: 0, 0
   index: -1
 empty
   rotate: false
-  xy: 80, 44
+  xy: 148, 19
   size: 1, 1
   orig: 1, 1
   offset: 0, 0
   index: -1
 emptyBone
   rotate: false
-  xy: 169, 112
+  xy: 68, 96
   size: 15, 8
   orig: 15, 8
   offset: 0, 0
   index: -1
 fxCircle0
   rotate: false
-  xy: 162, 69
+  xy: 84, 103
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 fxDot0
   rotate: false
-  xy: 118, 105
+  xy: 249, 70
   size: 3, 3
   orig: 3, 3
   offset: 0, 0
   index: -1
 fxExplosion0
   rotate: false
-  xy: 50, 64
+  xy: 146, 67
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
   index: -1
 fxExplosion1
   rotate: false
-  xy: 144, 17
+  xy: 197, 87
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
   index: -1
 fxExplosion2
   rotate: false
-  xy: 170, 17
+  xy: 223, 87
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
   index: -1
 fxExplosion3
   rotate: false
-  xy: 155, 86
+  xy: 197, 113
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
   index: -1
 fxExplosion4
   rotate: false
-  xy: 177, 43
+  xy: 223, 113
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
   index: -1
 fxGib0
   rotate: false
-  xy: 93, 105
+  xy: 248, 39
   size: 6, 5
   orig: 6, 5
   offset: 0, 0
   index: -1
 fxGib1
   rotate: false
-  xy: 169, 121
+  xy: 248, 25
   size: 7, 6
   orig: 7, 6
   offset: 0, 0
   index: -1
 fxGib2
   rotate: false
-  xy: 100, 105
+  xy: 242, 66
   size: 6, 5
   orig: 6, 5
   offset: 0, 0
   index: -1
 fxImpact0
   rotate: false
-  xy: 205, 1
+  xy: 68, 86
   size: 15, 9
   orig: 15, 9
   offset: 0, 0
   index: -1
 fxLine0
   rotate: false
-  xy: 50, 107
+  xy: 221, 13
   size: 33, 3
   orig: 33, 3
   offset: 0, 0
   index: -1
 fxLineDir0
   rotate: false
-  xy: 46, 44
+  xy: 1, 44
   size: 33, 1
   orig: 33, 1
   offset: 0, 0
   index: -1
 fxProhib
   rotate: false
-  xy: 219, 111
+  xy: 248, 17
   size: 7, 7
   orig: 7, 7
   offset: 0, 0
   index: -1
 fxSmallCircle0
   rotate: false
-  xy: 177, 121
+  xy: 248, 32
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 fxSmoke0
   rotate: false
-  xy: 1, 1
+  xy: 197, 42
   size: 44, 44
   orig: 44, 44
   offset: 0, 0
   index: -1
 fxSplatter0
   rotate: false
-  xy: 117, 1
+  xy: 150, 1
   size: 70, 15
   orig: 70, 15
   offset: 0, 0
   index: -1
 fxSplatter1
   rotate: false
-  xy: 46, 1
+  xy: 79, 1
   size: 70, 17
   orig: 70, 17
   offset: 0, 0
   index: -1
 fxSplatter2
   rotate: false
-  xy: 1, 46
+  xy: 1, 1
   size: 77, 17
   orig: 77, 17
   offset: 0, 0
   index: -1
 fxStar0
   rotate: false
-  xy: 114, 105
+  xy: 251, 60
   size: 3, 5
   orig: 3, 5
   offset: 0, 0
   index: -1
 fxTail0
   rotate: false
-  xy: 1, 114
+  xy: 221, 1
   size: 33, 11
   orig: 33, 11
   offset: 0, 0
   index: -1
 i_Bait
   rotate: false
-  xy: 179, 69
+  xy: 101, 112
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 i_BaitFull
   rotate: false
-  xy: 196, 69
+  xy: 118, 113
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 i_BaitPart
   rotate: false
-  xy: 185, 111
+  xy: 135, 118
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 i_Bomb
   rotate: false
-  xy: 202, 111
+  xy: 18, 111
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 i_Cart
   rotate: false
-  xy: 109, 71
+  xy: 128, 44
   size: 18, 16
   orig: 18, 16
   offset: 0, 0
   index: -1
 i_Gem
   rotate: false
-  xy: 231, 101
+  xy: 26, 86
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 pixel
   rotate: false
-  xy: 82, 44
+  xy: 148, 21
   size: 1, 1
   orig: 1, 1
   offset: 0, 0
   index: -1
 uiBaitOff
   rotate: false
-  xy: 35, 114
+  xy: 1, 125
   size: 16, 12
   orig: 16, 12
   offset: 0, 0
   index: -1
 uiBaitOn
   rotate: false
-  xy: 188, 1
+  xy: 193, 139
   size: 16, 12
   orig: 16, 12
   offset: 0, 0
   index: -1
 uiBar
   rotate: false
-  xy: 107, 105
+  xy: 249, 66
   size: 6, 3
   orig: 6, 3
   offset: 0, 0
   index: -1
 uiBarBg
   rotate: false
-  xy: 84, 105
+  xy: 242, 60
   size: 8, 5
   orig: 8, 5
   offset: 0, 0

@@ -18,6 +18,8 @@ class Cart extends Entity {
 		popText("+1 GEM");
 		game.refillBaits();
 
+		dz = -0.08;
+
 		var g = new h2d.Bitmap(Assets.tiles.getTile("i_Gem"), spr);
 		g.tile = g.tile.sub(0,0, g.tile.width, Std.int( g.tile.height*rnd(0.7,1) ));
 		g.tile.setCenterRatio(0.5,1);

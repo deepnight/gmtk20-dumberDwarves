@@ -862,8 +862,8 @@
 						},
 						{
 							"defId":9,
-							"x":120,
-							"y":216,
+							"x":56,
+							"y":168,
 							"fieldInstances":[
 								{
 									"defId":10,
@@ -897,17 +897,6 @@
 											"Bait"
 										]
 									}
-								}
-							]
-						},
-						{
-							"defId":13,
-							"x":40,
-							"y":176,
-							"fieldInstances":[
-								{
-									"defId":14,
-									"internalValue":null
 								}
 							]
 						}

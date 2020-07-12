@@ -2,7 +2,6 @@ package en.ai;
 
 class Dwarf extends en.Ai {
 	public static var ALL : Array<Dwarf> = [];
-	var bubble : Null<h2d.Object>;
 
 	public function new(x,y) {
 		super(x,y);
@@ -25,32 +24,6 @@ class Dwarf extends en.Ai {
 
 		ALL.remove(this);
 
-		if( bubble!=null ) {
-			bubble.remove();
-			bubble = null;
-		}
-	}
-
-	function setBubble(iconId:String) {
-		clearBubble();
-		bubble = new h2d.Object();
-		game.scroller.add(bubble, Const.DP_UI);
-
-		var bg = Assets.tiles.getBitmap("bubble",0, 0.5,1, bubble);
-
-		var icon = Assets.tiles.getBitmap(iconId,0, 0.5, 0.5, bubble);
-		// icon.x = Std.int( bg.tile.width*0.5 );
-		icon.y = Std.int( -bg.tile.height*0.5 - 2 );
-		icon.setScale(0.66);
-		icon.alpha = 0.7;
-		icon.smooth = true;
-	}
-
-	function clearBubble() {
-		if( bubble!=null ) {
-			bubble.remove();
-			bubble = null;
-		}
 	}
 
 	override function onDamage(dmg:Int, from:Null<Entity>) {
@@ -83,15 +56,6 @@ class Dwarf extends en.Ai {
 			cd.setS("decision", rnd(1,2));
 
 		super.doTask(t);
-
-		clearBubble();
-		switch task {
-			case Idle:
-			case Grab(it):
-				setBubble("i_"+Std.string(it));
-
-			case AttackDwarf(e):
-		}
 	}
 
 	override function updateAi() {
@@ -126,9 +90,9 @@ class Dwarf extends en.Ai {
 	override function chargeAtk(e) {
 		super.chargeAtk(e);
 
-		chargeAction("atk", 0.12, function() {
+		chargeAction("atk", 0.09, function() {
 			spr.anim.play(atkA ? "d_atkA" : "d_atkB").setSpeed(0.2);
-			lockAiS(atkA ? 0.15 : 0.4);
+			lockAiS(atkA ? 0.1 : 0.4);
 			cd.setS("resetAtk",0.7);
 			atkA = !atkA;
 

@@ -27,51 +27,51 @@ a_atk2
   index: -1
 a_atk_charge0
   rotate: false
-  xy: 71, 143
+  xy: 45, 155
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_idle0
   rotate: false
-  xy: 44, 155
+  xy: 19, 157
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_idle1
   rotate: false
-  xy: 26, 157
+  xy: 1, 164
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_walk0
   rotate: false
-  xy: 1, 171
+  xy: 96, 153
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_walk1
   rotate: false
-  xy: 88, 143
+  xy: 62, 168
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_walk2
   rotate: false
-  xy: 105, 143
+  xy: 79, 168
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 bubble
   rotate: false
-  xy: 26, 140
-  size: 17, 16
-  orig: 17, 16
+  xy: 1, 146
+  size: 17, 17
+  orig: 17, 17
   offset: 0, 0
   index: -1
 cart
@@ -160,28 +160,28 @@ d_hit0
   index: -1
 d_idle0
   rotate: false
-  xy: 1, 121
+  xy: 71, 118
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 d_walk0
   rotate: false
-  xy: 71, 118
+  xy: 96, 128
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 d_walk1
   rotate: false
-  xy: 46, 130
+  xy: 1, 121
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 d_walk2
   rotate: false
-  xy: 1, 146
+  xy: 46, 130
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
@@ -195,7 +195,7 @@ empty
   index: -1
 fxCircle0
   rotate: false
-  xy: 61, 160
+  xy: 36, 172
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -230,7 +230,7 @@ fxGib2
   index: -1
 fxImpact0
   rotate: false
-  xy: 112, 101
+  xy: 96, 118
   size: 15, 9
   orig: 15, 9
   offset: 0, 0
@@ -279,14 +279,21 @@ fxTail0
   index: -1
 i_Bait
   rotate: false
-  xy: 43, 172
+  xy: 18, 174
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
+i_Cart
+  rotate: false
+  xy: 26, 140
+  size: 18, 16
+  orig: 18, 16
+  offset: 0, 0
+  index: -1
 i_Gem
   rotate: false
-  xy: 96, 118
+  xy: 71, 143
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
@@ -296,6 +303,20 @@ pixel
   xy: 126, 11
   size: 1, 1
   orig: 1, 1
+  offset: 0, 0
+  index: -1
+uiBaitOff
+  rotate: false
+  xy: 112, 101
+  size: 15, 12
+  orig: 15, 12
+  offset: 0, 0
+  index: -1
+uiBaitOn
+  rotate: false
+  xy: 112, 114
+  size: 15, 12
+  orig: 15, 12
   offset: 0, 0
   index: -1
 uiBar

@@ -446,6 +446,21 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">export_tiles/i_Cart.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>5,4,9,8</rect>
+                <key>scale9Paddings</key>
+                <rect>5,4,9,8</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">export_tiles/i_Gem.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -458,6 +473,22 @@
                 <rect>4,4,9,9</rect>
                 <key>scale9Paddings</key>
                 <rect>4,4,9,9</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export_tiles/uiBaitOff.png</key>
+            <key type="filename">export_tiles/uiBaitOn.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>4,3,7,6</rect>
+                <key>scale9Paddings</key>
+                <rect>4,3,7,6</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>

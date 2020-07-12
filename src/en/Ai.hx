@@ -8,6 +8,7 @@ class Ai extends Entity {
 	var path : Array<CPoint> = [];
 	var origin : CPoint;
 	var atkRange = 1.0; // case
+	var bubble : Null<h2d.Object>;
 
 	private function new(x,y) {
 		super(x,y);
@@ -36,6 +37,34 @@ class Ai extends Entity {
 		ALL.remove(this);
 		origin = null;
 		path = null;
+
+		if( bubble!=null ) {
+			bubble.remove();
+			bubble = null;
+		}
+	}
+
+	function setBubble(iconId:String, resize=true) {
+		clearBubble();
+		bubble = new h2d.Object();
+		game.scroller.add(bubble, Const.DP_UI);
+
+		var bg = Assets.tiles.getBitmap("bubble",0, 0.5,1, bubble);
+
+		var icon = Assets.tiles.getBitmap(iconId,0, 0.5, 0.5, bubble);
+		icon.x = 1;
+		icon.y = Std.int( -bg.tile.height*0.5 - 3 );
+		if( resize )
+			icon.setScale(0.66);
+		icon.alpha = 0.7;
+		icon.smooth = true;
+	}
+
+	function clearBubble() {
+		if( bubble!=null ) {
+			bubble.remove();
+			bubble = null;
+		}
 	}
 
 	function cancelPath() {
@@ -45,6 +74,7 @@ class Ai extends Entity {
 	public function doTask(t:Task) {
 		cancelPath();
 		task = t;
+		clearBubble();
 	}
 
 	public function suggestTask(t:Task) {
@@ -73,6 +103,7 @@ class Ai extends Entity {
 					// Seek target
 					releaseCarriedEnt();
 					cancelPath();
+					setBubble("i_"+Std.string(it));
 					var dh = new dn.DecisionHelper(Item.ALL);
 					dh.keepOnly( function(i) return i.isAlive() && i.type==it && canDetect(i) );
 					dh.remove( function(i) return i.isCarried );
@@ -99,6 +130,7 @@ class Ai extends Entity {
 				}
 				else {
 					var c = en.Cart.ME;
+					setBubble("i_Cart", false);
 					goto(c.cx, c.cy);
 					if( distCase(c)<=1 )
 						chargeAction("drop", 1, function() {

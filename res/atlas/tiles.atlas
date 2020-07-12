@@ -48,7 +48,7 @@ a_idle1
   index: -1
 a_walk0
   rotate: false
-  xy: 96, 153
+  xy: 96, 154
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -167,7 +167,7 @@ d_idle0
   index: -1
 d_walk0
   rotate: false
-  xy: 96, 128
+  xy: 96, 129
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
@@ -209,21 +209,21 @@ fxDot0
   index: -1
 fxGib0
   rotate: false
-  xy: 120, 89
+  xy: 113, 97
   size: 6, 5
   orig: 6, 5
   offset: 0, 0
   index: -1
 fxGib1
   rotate: false
-  xy: 114, 82
+  xy: 113, 90
   size: 7, 6
   orig: 7, 6
   offset: 0, 0
   index: -1
 fxGib2
   rotate: false
-  xy: 120, 95
+  xy: 120, 97
   size: 6, 5
   orig: 6, 5
   offset: 0, 0
@@ -249,9 +249,16 @@ fxLineDir0
   orig: 33, 3
   offset: 0, 0
   index: -1
+fxProhib
+  rotate: false
+  xy: 114, 82
+  size: 7, 7
+  orig: 7, 7
+  offset: 0, 0
+  index: -1
 fxSmallCircle0
   rotate: false
-  xy: 113, 89
+  xy: 121, 90
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
@@ -307,21 +314,21 @@ pixel
   index: -1
 uiBaitOff
   rotate: false
-  xy: 112, 101
+  xy: 112, 103
   size: 15, 12
   orig: 15, 12
   offset: 0, 0
   index: -1
 uiBaitOn
   rotate: false
-  xy: 112, 114
+  xy: 112, 116
   size: 15, 12
   orig: 15, 12
   offset: 0, 0
   index: -1
 uiBar
   rotate: false
-  xy: 113, 96
+  xy: 71, 105
   size: 6, 3
   orig: 6, 3
   offset: 0, 0

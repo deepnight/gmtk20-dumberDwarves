@@ -253,6 +253,25 @@ class Fx extends dn.Process {
 		p.lifeS = 0.1;
 	}
 
+	public function focus(from:Entity, to:Entity, ?c=0x7cebff) {
+		var p = allocBgAdd( getTile("fxLineDir"), from.headX, from.headY);
+		var a = Math.atan2(to.headY-from.headY, to.headX-from.headX);
+		var d = M.dist(from.headX, from.headY, to.headX, to.headY);
+		p.setFadeS(0.5, 0.1, 0.1);
+		p.rotation = a+M.PI;
+		p.scaleX = d/p.t.width;
+		p.colorize(c);
+		p.setCenterRatio(1,0.5);
+		p.lifeS = 0.1;
+	}
+
+	public function prohibited(e:Entity) {
+		var p = allocTopNormal(getTile("fxProhib"), e.centerX, e.centerY);
+		p.colorize(0xff0000);
+		p.lifeS = 0.2;
+	}
+
+
 	override function update() {
 		super.update();
 

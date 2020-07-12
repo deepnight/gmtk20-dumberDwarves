@@ -25,12 +25,6 @@ class Item extends Entity {
 		ALL.remove(this);
 	}
 
-	function suggestTaskAround(t:Task) {
-		for(e in Ai.ALL)
-			if( e.isAlive() && e.canDetect(this) )
-				e.suggestTask(t);
-	}
-
 	public function consume(by:Entity) {
 		switch type {
 			case Gem:

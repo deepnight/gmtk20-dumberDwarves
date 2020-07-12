@@ -143,27 +143,17 @@ class Entity {
 	}
 
 
-	@:final
-	public function wrathOfGod(x:Int, y:Int) {
-		game.camera.shakeS(1, 0.2);
-		game.camera.bump(0,5);
-		hit(1,null);
-
-		if( isAlive() ) {
-			var a = Math.atan2(footY-y, footX-x);
-			var s = 0.1;
-			bump( Math.cos(a)*s, Math.sin(a)*s);
-			lockAiS(1);
-			fx.flashBangS(0xffcc00, 0.1, 0.5);
-			onWrathOfGod(x,y);
-		}
-		else
-			fx.flashBangS(0xff0000, 0.2, 1);
-	}
-
-	function onWrathOfGod(x:Int,y:Int) {
+	public function slap(fromX:Int, fromY:Int) {
+		lockAiS(1);
 		cancelAction();
 		cancelVelocities();
+
+		game.camera.shakeS(1, 0.2);
+		game.camera.bump(0,5);
+		dz = -0.1;
+		dx = -dir*0.04;
+		spr.anim.play("d_hit").setSpeed(0.03);
+		fx.flashBangS(0xffcc00, 0.1, 0.5);
 	}
 
 	function onDamage(dmg:Int, from:Null<Entity>) {
@@ -516,10 +506,14 @@ class Entity {
 		sprSquashY = v;
 	}
 
-	public function releaseCarriedEnt() {
+	public function releaseCarriedEnt(throwIt=false) {
 		if( carriedEnt==null )
 			return;
 
+		if( throwIt ) {
+			carriedEnt.dz = -0.12;
+			carriedEnt.dx = dir*0.2;
+		}
 		carriedEnt.isCarried = false;
 		carriedEnt = null;
 	}

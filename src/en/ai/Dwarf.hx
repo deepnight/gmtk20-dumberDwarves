@@ -9,7 +9,7 @@ class Dwarf extends en.Ai {
 		initLife(5);
 		ALL.push(this);
 		weight = 8;
-		detectRadius = 9;
+		detectRadius = 12;
 		atkRange = 1.5;
 
 		spr.anim.registerStateAnim("d_hit", 10, 0.15, function() return hasAffect(Stun) );
@@ -23,7 +23,6 @@ class Dwarf extends en.Ai {
 		super.dispose();
 
 		ALL.remove(this);
-
 	}
 
 	override function onDamage(dmg:Int, from:Null<Entity>) {
@@ -39,11 +38,19 @@ class Dwarf extends en.Ai {
 		return super.getSpeed();
 	}
 
-
 	function takeDecision() {
 		var dh = new dn.DecisionHelper(Entity.ALL);
-		dh.keepOnly( function(e) return e.isAlive() && e.is(Item) );
-		dh.keepOnly( function(e) return distCase(e)<=detectRadius && sightCheckEnt(e) );
+		dh.keepOnly( function(e) return e.isAlive() && !isProhibited(e) && e.is(Item) && canDetect(e) );
+		dh.score( function(e) return -distCase(e)*0.1 );
+		dh.score( function(e) {
+			return
+				if( e.is(Item) )
+					switch e.as(Item).type {
+						case Gem: 1;
+						case Bait: 5;
+					}
+				else 0;
+		});
 		dh.useBest( function(e) {
 			if( e.is(Item) ) {
 				doTask( Grab(e.as(Item).type) );
@@ -53,13 +60,17 @@ class Dwarf extends en.Ai {
 
 	override function doTask(t:Task) {
 		if( t==Idle && task!=Idle )
-			cd.setS("decision", rnd(1,2));
+			cd.setS("decision", rnd(0.2,0.3));
 
 		super.doTask(t);
 	}
 
 	override function updateAi() {
 		super.updateAi();
+
+		if( taskFocus!=null )
+			if( !cd.hasSetS("focusFx",0.1) )
+				fx.focus(this, taskFocus);
 
 		switch task {
 			case Idle:

@@ -113,7 +113,7 @@ class Game extends Process {
 		dh.keepOnly( function(e) return e.isAlive() && M.dist(m.levelX, m.levelY, e.footX, e.footY) <= Const.GRID*2 );
 		dh.score( function(e) return -M.dist(m.levelX, m.levelY, e.footX, e.footY) );
 		dh.useBest( function(e) {
-			e.wrathOfGod(m.levelX, m.levelY);
+			e.slap(m.levelX, m.levelY);
 		});
 		if( dh.countRemaining()==0 ) {
 			if( useBait() ) {
@@ -121,8 +121,6 @@ class Game extends Process {
 				e.zr = -2;
 			}
 		}
-
-		en.Ai.ALL[0].goto(m.cx, m.cy);
 	}
 	function onMouseUp(e:hxd.Event) {
 		var m = new tools.MouseCoords(e.relX, e.relY);

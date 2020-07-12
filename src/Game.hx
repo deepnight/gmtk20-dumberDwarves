@@ -12,6 +12,8 @@ class Game extends Process {
 	public var hud : ui.Hud;
 
 	public var baits : Int;
+	var bg : h2d.Bitmap;
+	var mask : h2d.Bitmap;
 
 	var curGameSpeed = 1.0;
 	var slowMos : Map<String, { id:String, t:Float, f:Float }> = new Map();
@@ -27,8 +29,14 @@ class Game extends Process {
 		createRootInLayers(Main.ME.root, Const.DP_BG);
 
 		scroller = new h2d.Layers();
-		root.add(scroller, Const.DP_BG);
+		root.add(scroller, Const.DP_MAIN);
 		scroller.filter = new h2d.filter.ColorMatrix(); // force rendering for pixel perfect
+
+		bg = new h2d.Bitmap(h2d.Tile.fromColor(0x0));
+		root.add(bg, Const.DP_BG);
+
+		mask = new h2d.Bitmap(h2d.Tile.fromColor(0x0));
+		root.add(mask, Const.DP_UI);
 
 		Boot.ME.s2d.addEventListener(onEvent);
 
@@ -43,6 +51,10 @@ class Game extends Process {
 		hud = new ui.Hud();
 
 		startLevel(ledProject.levels[0]);
+	}
+
+	public function restartLevel() {
+		startLevel( level.data );
 	}
 
 	public function nextLevel() {
@@ -100,6 +112,12 @@ class Game extends Process {
 				case "BossDoor":
 					new en.BossDoor(cx,cy, ei.getIntField("Time"));
 
+				case "Label":
+					new en.Label(cx,cy, ei.getStringField("Text"));
+
+				case "Pointer":
+					new en.Pointer(cx,cy);
+
 				case "Crate":
 					new en.Breakable(cx,cy);
 
@@ -116,7 +134,11 @@ class Game extends Process {
 		refillBaits();
 		Process.resizeAll();
 
-		announce("Team ready!", "Lead these idiots to steal "+countRemainingGems()+" gems!", 0xffcc00, true);
+		if( level.data.getName().indexOf("Tuto")<0 )
+			announce("Team ready!", "Lead these idiots to steal "+countRemainingGems()+" gems!", 0xffcc00, true);
+
+		mask.visible = true;
+		tw.createMs(mask.alpha, 1>0, 600).end( function() mask.visible = false );
 	}
 
 
@@ -184,7 +206,7 @@ class Game extends Process {
 		var m = new tools.MouseCoords(e.relX, e.relY);
 
 		var dh = new dn.DecisionHelper(en.ai.Dwarf.ALL);
-		dh.keepOnly( function(e) return e.isAlive() && M.dist(m.levelX, m.levelY, e.centerX, e.centerY) <= Const.GRID*0.8 );
+		dh.keepOnly( function(e) return e.isAlive() && M.dist(m.levelX, m.levelY, e.centerX, e.centerY) <= Const.GRID*1.1 );
 		dh.score( function(e) return -M.dist(m.levelX, m.levelY, e.footX, e.footY) );
 		dh.useBest( function(e) {
 			e.slap(m.levelX, m.levelY);
@@ -193,7 +215,7 @@ class Game extends Process {
 		// No dwarf under cursor
 		if( dh.countRemaining()==0 ) {
 			var dh = new dn.DecisionHelper(en.Item.ALL);
-			dh.keepOnly( function(e) return e.isAlive() && ( e.type==BaitFull || e.type==BaitPart ) && !e.isCarried && M.dist(m.levelX, m.levelY, e.centerX, e.centerY) <= Const.GRID*0.8 );
+			dh.keepOnly( function(e) return e.isAlive() && ( e.type==BaitFull || e.type==BaitPart ) && !e.isCarried && M.dist(m.levelX, m.levelY, e.centerX, e.centerY) <= Const.GRID*1.1 );
 			dh.score( function(e) return -M.dist(m.levelX, m.levelY, e.footX, e.footY) );
 			dh.useBest( function(e) {
 				fx.dirtExplosion(e.centerX, e.centerY, 0xa97852);
@@ -222,7 +244,12 @@ class Game extends Process {
 
 	override function onResize() {
 		super.onResize();
+
 		scroller.setScale(Const.SCALE);
+		mask.scaleX = w();
+		mask.scaleY = h();
+		bg.scaleX = w();
+		bg.scaleY = h();
 	}
 
 
@@ -382,7 +409,10 @@ class Game extends Process {
 
 			// Restart
 			if( ca.selectPressed() )
-				Main.ME.startGame();
+				if( Key.isDown(Key.SHIFT) )
+					Main.ME.startGame();
+				else
+					restartLevel();
 		}
 
 		// Bait refill

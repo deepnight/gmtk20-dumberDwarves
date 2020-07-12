@@ -144,17 +144,20 @@ class Entity {
 
 
 	public function slap(fromX:Int, fromY:Int) {
-		popText("!");
 		lockAiS(0.25);
 		cancelAction();
 		cancelVelocities();
 
 		game.camera.shakeS(0.3, 0.2);
 		game.camera.bump(0,-5);
-		dz = -0.1;
-		dx = -dir*0.04;
-		spr.anim.play("d_hit").setSpeed(0.03);
+		dir = 1;
+		dz = -0.15;
+		dx = -dir*0.05;
+
+		spr.anim.play("d_hit").setSpeed(0.1);
 		fx.flashBangS(0xffcc00, 0.1, 0.5);
+		fx.slap(this);
+		popText("!");
 	}
 
 	function onDamage(dmg:Int, from:Null<Entity>) {

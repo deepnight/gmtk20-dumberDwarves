@@ -67,6 +67,28 @@ class Camera extends dn.Process {
 			}
 		}
 
+		// Follow all dwarves
+		if( en.ai.Dwarf.ALL.length>0 ) {
+			var s = 0.006;
+			var deadZone = 5;
+			var tx = 0.;
+			var ty = 0.;
+			for(e in en.ai.Dwarf.ALL) {
+				tx+=e.footX;
+				ty+=e.footY;
+			}
+			tx/=en.ai.Dwarf.ALL.length;
+			ty/=en.ai.Dwarf.ALL.length;
+
+			var d = M.dist(x,y, tx, ty);
+			if( d>=deadZone ) {
+				var a = Math.atan2( ty-y, tx-x );
+				dx += Math.cos(a) * (d-deadZone) * s * tmod;
+				dy += Math.sin(a) * (d-deadZone) * s * tmod;
+			}
+		}
+
+
 		var frict = 0.89;
 		x += dx*tmod;
 		dx *= Math.pow(frict,tmod);

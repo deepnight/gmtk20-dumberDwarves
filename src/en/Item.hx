@@ -62,10 +62,10 @@ class Item extends Entity {
 		if( type==Bomb && isCarried ) {
 			bombTimerS += tmod/Const.FPS;
 			if( !cd.hasSetS("warn",0.2) )
-				blink(0xffffff, 0);
+				blink(0xffffff, 0.1);
 
 			if( bombTimerS>=2 ) {
-				getCarrier().hit(99,this);
+				getCarrier().hit(9999,this);
 				fx.flashBangS(0xffcc00, 0.5, 0.5);
 				game.camera.shakeS(2, 0.2);
 				fx.explosion(centerX, centerY);

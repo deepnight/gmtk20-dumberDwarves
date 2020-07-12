@@ -258,7 +258,7 @@ empty
   index: -1
 emptyBone
   rotate: false
-  xy: 60, 121
+  xy: 35, 141
   size: 15, 8
   orig: 15, 8
   offset: 0, 0
@@ -335,7 +335,7 @@ fxGib2
   index: -1
 fxImpact0
   rotate: false
-  xy: 60, 111
+  xy: 60, 124
   size: 15, 9
   orig: 15, 9
   offset: 0, 0
@@ -480,6 +480,13 @@ pixel
   orig: 1, 1
   offset: 0, 0
   index: -1
+pointer
+  rotate: false
+  xy: 60, 111
+  size: 15, 12
+  orig: 15, 12
+  offset: 0, 0
+  index: -1
 uiBaitOff
   rotate: false
   xy: 35, 128
@@ -489,7 +496,7 @@ uiBaitOff
   index: -1
 uiBaitOn
   rotate: false
-  xy: 52, 130
+  xy: 52, 134
   size: 16, 12
   orig: 16, 12
   offset: 0, 0

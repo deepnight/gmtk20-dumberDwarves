@@ -208,14 +208,20 @@
             <key type="filename">export_tiles/crate0-61.png</key>
             <key type="filename">export_tiles/crate0-63.png</key>
             <key type="filename">export_tiles/crate0-65.png</key>
+            <key type="filename">export_tiles/crate0-66.png</key>
+            <key type="filename">export_tiles/crate0-69.png</key>
             <key type="filename">export_tiles/crate0.png</key>
             <key type="filename">export_tiles/fxCircle0.png</key>
             <key type="filename">export_tiles/gStone0.png</key>
             <key type="filename">export_tiles/gStone1.png</key>
+            <key type="filename">export_tiles/gStone2.png</key>
             <key type="filename">export_tiles/i_Bait.png</key>
             <key type="filename">export_tiles/i_BaitFull.png</key>
             <key type="filename">export_tiles/i_BaitPart.png</key>
             <key type="filename">export_tiles/i_Bomb.png</key>
+            <key type="filename">export_tiles/wallDetail0.png</key>
+            <key type="filename">export_tiles/wallDetail1.png</key>
+            <key type="filename">export_tiles/wallDetail2.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -598,6 +604,7 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">export_tiles/pointer.png</key>
             <key type="filename">export_tiles/uiBaitOff.png</key>
             <key type="filename">export_tiles/uiBaitOn.png</key>
             <struct type="IndividualSpriteSettings">

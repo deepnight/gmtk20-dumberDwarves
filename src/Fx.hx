@@ -496,6 +496,23 @@ class Fx extends dn.Process {
 		}
 	}
 
+	public function slap(e:Entity) {
+		for(i in 0...7) {
+			var p = allocTopAdd(getTile("fxSplatter"), e.centerX+e.dir*20+rnd(0,5,true), e.centerY-10+rnd(0,5,true));
+			p.colorize(C.interpolateInt(0xffcc00, 0xff0000, rnd(0,1)));
+			p.dx = -e.dir * rnd(15,20);
+			p.dy = rnd(2,4);
+			p.frict = 0.7;
+			// p.dr = e.dir*0.03;
+			// p.drFrict = 0.8;
+			p.rotation = -0.3;
+			p.scaleY = rnd(0.5,1);
+			p.scaleXMul = rnd(0.94,0.95);
+			p.scaleYMul = rnd(0.94,0.95);
+			p.lifeS = 0.1;
+		}
+	}
+
 
 	override function update() {
 		super.update();

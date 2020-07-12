@@ -68,7 +68,7 @@ class Level extends dn.Process {
 	public function render() {
 		root.removeChildren();
 
-		var col = C.hexToInt( PALETTES[ M.imin(levelId,PALETTES.length) ] );
+		var col = C.hexToInt( PALETTES[ M.imin(levelId,PALETTES.length-1) ] );
 		root.filter = C.getColorizeFilterH2d(col, 0.5);
 
 		// Ground

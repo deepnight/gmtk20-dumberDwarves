@@ -17,7 +17,7 @@ class Hud extends dn.Process {
 
 		flow = new h2d.Flow(root);
 		flow.layout = Vertical;
-		flow.backgroundTile = h2d.Tile.fromColor(0x0);
+		// flow.backgroundTile = h2d.Tile.fromColor(0x0);
 		flow.padding = 2;
 	}
 

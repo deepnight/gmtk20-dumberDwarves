@@ -1,6 +1,6 @@
 {
 	"dataVersion":1,
-	"nextUniqId":23,
+	"nextUniqId":24,
 	"defs":{
 		"layers":[
 			{
@@ -210,6 +210,20 @@
 				"fieldDefs":[
 					
 				]
+			},
+			{
+				"uid":23,
+				"name":"MobGen",
+				"width":16,
+				"height":16,
+				"color":16711901,
+				"maxPerLevel":0,
+				"discardExcess":true,
+				"pivotX":0.5,
+				"pivotY":0.5,
+				"fieldDefs":[
+					
+				]
 			}
 		],
 		"tilesets":[
@@ -231,6 +245,113 @@
 		]
 	},
 	"levels":[
+		{
+			"uid":22,
+			"pxWid":256,
+			"pxHei":256,
+			"layerInstances":[
+				{
+					"levelId":22,
+					"layerDefId":1,
+					"pxOffsetX":0,
+					"pxOffsetY":0,
+					"intGrid":[
+						
+					],
+					"gridTiles":[
+						
+					],
+					"entityInstances":[
+						
+					]
+				},
+				{
+					"levelId":22,
+					"layerDefId":7,
+					"pxOffsetX":0,
+					"pxOffsetY":0,
+					"intGrid":[
+						
+					],
+					"gridTiles":[
+						
+					],
+					"entityInstances":[
+						{
+							"defId":19,
+							"x":40,
+							"y":96,
+							"fieldInstances":[
+								
+							]
+						},
+						{
+							"defId":23,
+							"x":200,
+							"y":216,
+							"fieldInstances":[
+								
+							]
+						},
+						{
+							"defId":9,
+							"x":184,
+							"y":56,
+							"fieldInstances":[
+								{
+									"defId":10,
+									"internalValue":{
+										"id":3,
+										"p":[
+											"Gem"
+										]
+									}
+								}
+							]
+						},
+						{
+							"defId":11,
+							"x":72,
+							"y":96,
+							"fieldInstances":[
+								
+							]
+						}
+					]
+				},
+				{
+					"levelId":22,
+					"layerDefId":18,
+					"pxOffsetX":0,
+					"pxOffsetY":0,
+					"intGrid":[
+						
+					],
+					"gridTiles":[
+						
+					],
+					"entityInstances":[
+						
+					]
+				},
+				{
+					"levelId":22,
+					"layerDefId":20,
+					"pxOffsetX":0,
+					"pxOffsetY":0,
+					"intGrid":[
+						
+					],
+					"gridTiles":[
+						
+					],
+					"entityInstances":[
+						
+					]
+				}
+			],
+			"customName":"Lab"
+		},
 		{
 			"uid":0,
 			"pxWid":416,
@@ -1084,81 +1205,7 @@
 					]
 				}
 			],
-			"customName":"Lab"
-		},
-		{
-			"uid":22,
-			"pxWid":256,
-			"pxHei":256,
-			"layerInstances":[
-				{
-					"levelId":22,
-					"layerDefId":1,
-					"pxOffsetX":0,
-					"pxOffsetY":0,
-					"intGrid":[
-						
-					],
-					"gridTiles":[
-						
-					],
-					"entityInstances":[
-						
-					]
-				},
-				{
-					"levelId":22,
-					"layerDefId":7,
-					"pxOffsetX":0,
-					"pxOffsetY":0,
-					"intGrid":[
-						
-					],
-					"gridTiles":[
-						
-					],
-					"entityInstances":[
-						{
-							"defId":11,
-							"x":56,
-							"y":144,
-							"fieldInstances":[
-								
-							]
-						}
-					]
-				},
-				{
-					"levelId":22,
-					"layerDefId":18,
-					"pxOffsetX":0,
-					"pxOffsetY":0,
-					"intGrid":[
-						
-					],
-					"gridTiles":[
-						
-					],
-					"entityInstances":[
-						
-					]
-				},
-				{
-					"levelId":22,
-					"layerDefId":20,
-					"pxOffsetX":0,
-					"pxOffsetY":0,
-					"intGrid":[
-						
-					],
-					"gridTiles":[
-						
-					],
-					"entityInstances":[
-						
-					]
-				}
-			]
+			"customName":"Entrance"
 		}
 	],
 	"name":"God",

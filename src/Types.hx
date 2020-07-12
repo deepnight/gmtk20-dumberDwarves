@@ -19,4 +19,5 @@ enum Task {
 	BringToCart;
 	AttackDwarf(e:en.ai.Dwarf);
 	WaitWithItem(e:en.Item);
+	ExitLevel;
 }

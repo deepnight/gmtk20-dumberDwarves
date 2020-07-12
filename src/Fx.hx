@@ -275,26 +275,23 @@ class Fx extends dn.Process {
 		}
 	}
 
-	public function dirtGibs(x:Float, y:Float, ang:Float, c:UInt) {
-		var n = 40;
-		for(i in 0...n) {
-			var a = ang+rnd(0,0.3,true);
-			var p = allocBgNormal( getTile("fxGib"), x+rnd(0,3,true), y+rnd(0,6,true));
+
+
+	public function dirtExplosion(x:Float,y:Float, c:UInt) {
+		for(i in 0...70) {
+			var p = allocBgNormal( getTile("fxGib"), x+rnd(0,5,true), y+rnd(0,5,true));
+			p.setFadeS(rnd(0.4,0.6), 0, rnd(1,2));
 			p.colorize(c);
-			p.setFadeS(rnd(0.7,1), 0, rnd(13,15));
 			p.rotation = rnd(0,M.PI2);
-			p.setScale( rnd(0.4, 0.7,true) );
-			p.scaleMul = rnd(0.997, 0.999);
-
-			p.moveAng(a, rnd(0.2,0.6));
-			p.gy = rnd(0.01, 0.08);
-			p.frict = rnd(0.96, 0.98);
-			p.groundY = p.y + rnd(5,16);
+			p.setScale(rnd(0.4,0.7,true));
+			p.scaleMul = rnd(0.995, 0.999);
+			p.moveAwayFrom(x,y, rnd(1,2));
+			p.frict = rnd(0.84, 0.93);
+			p.lifeS = rnd(8,10);
 			p.onUpdate = _bloodPhysics;
-
-			p.lifeS = rnd(10,12);
 		}
 	}
+
 
 	public function explosion(x:Float, y:Float) {
 		// Core

@@ -144,7 +144,7 @@ class Entity {
 
 
 	public function slap(fromX:Int, fromY:Int) {
-		lockAiS(1);
+		lockAiS(0.4);
 		cancelAction();
 		cancelVelocities();
 
@@ -301,25 +301,8 @@ class Entity {
 		cd = null;
 	}
 
-	public function popText(str:String, ?c=0xffffff) {
-		var wrapper = new h2d.Object();
-		game.scroller.add( wrapper, Const.DP_UI );
-		var tf = new h2d.Text(Assets.fontPixel, wrapper);
-		tf.text = str;
-		tf.textColor = c;
-		tf.x = -Std.int( tf.textWidth*0.5 );
-		tf.y = -Std.int( tf.textHeight*0.5 );
-
-		// var p = game.createChildProcess( function(p) {
-		// }, function(p) {
-		// 	wrapper.remove();
-		// });
-
-		wrapper.x = Std.int( headX );
-		wrapper.y = Std.int( headY );
-		game.tw.createMs(wrapper.y, wrapper.y-10, 100).end( function() {
-			game.tw.createMs(wrapper.alpha, 1000|0, 1000).end( wrapper.remove );
-		});
+	public inline function popText(str:String, ?c=0xffffff) {
+		game.popText(headX, headY, str, c);
 	}
 
 	public inline function debugFloat(v:Float, ?c=0xffffff) {
@@ -496,6 +479,14 @@ class Entity {
 		cd.setS("keepBlink",keep);
 	}
 
+	public function toFront() {
+		game.scroller.over(spr);
+	}
+
+	public function toBack() {
+		game.scroller.under(spr);
+	}
+
 
 	public function setSquashX(v:Float) {
 		sprSquashX = v;
@@ -515,6 +506,7 @@ class Entity {
 			carriedEnt.dx = dir*0.2;
 		}
 		carriedEnt.isCarried = false;
+		carriedEnt.toBack();
 		carriedEnt = null;
 	}
 
@@ -527,6 +519,7 @@ class Entity {
 
 		releaseCarriedEnt();
 		carriedEnt = e;
+		carriedEnt.toFront();
 		carriedEnt.isCarried = true;
 	}
 

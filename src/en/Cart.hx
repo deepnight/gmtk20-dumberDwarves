@@ -17,7 +17,10 @@ class Cart extends Entity {
 		score++;
 		popText("+1 GEM");
 		game.refillBaits();
-		game.announce("Gem stolen!", game.countRemainingGems()+" remaining", 0x1ebae1);
+		if( game.countRemainingGems()>0 )
+			game.announce("Gem stolen!", "Food restored. "+game.countRemainingGems()+" gems remaining", 0x1ebae1, false);
+		else
+			game.announce("Level wiped!", 0xffcc00, true);
 
 		dz = -0.08;
 

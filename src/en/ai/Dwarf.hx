@@ -6,7 +6,7 @@ class Dwarf extends en.Ai {
 	public function new(x,y) {
 		super(x,y);
 
-		initLife(5);
+		initLife(999);
 		ALL.push(this);
 		weight = 8;
 		detectRadius = 12;
@@ -28,10 +28,11 @@ class Dwarf extends en.Ai {
 	override function onDamage(dmg:Int, from:Null<Entity>) {
 		super.onDamage(dmg, from);
 
-		setAffectS(Stun,0.7);
+		setAffectS(Stun,0.45);
+		fx.flashBangS(0xff0000, 0.1, 0.2);
 
 		if( from!=null )
-			bumpFrom(from, 0.04);
+			bumpFrom(from, 0.08);
 	}
 
 	override function onDie(?from:Entity) {
@@ -92,6 +93,11 @@ class Dwarf extends en.Ai {
 
 		switch task {
 			case Idle:
+				if( game.countRemainingGems()==0 ) {
+					doTask(ExitLevel);
+					return;
+				}
+
 				if( !cd.has("pickIdlePt") ) {
 					cd.setS("pickIdlePt",rnd(1,1.5));
 					var dh = new dn.DecisionHelper( dn.Bresenham.getDisc(cx,cy, 4) );
@@ -117,12 +123,11 @@ class Dwarf extends en.Ai {
 				if( distCase(e)<=1 )
 					chargeAtk(e);
 
-			case Grab(it):
-			case BringToCart:
-			case AttackDwarf(e):
 			case WaitWithItem(e):
 				if( !cd.hasSetS("huh",3) )
 					popText("Huh?");
+
+			case _:
 		}
 	}
 
@@ -131,9 +136,9 @@ class Dwarf extends en.Ai {
 	override function chargeAtk(e) {
 		super.chargeAtk(e);
 
-		chargeAction("atk", 0.09, function() {
+		chargeAction("atk", 0.07, function() {
 			spr.anim.play(atkA ? "d_atkA" : "d_atkB").setSpeed(0.2);
-			lockAiS(atkA ? 0.1 : 0.4);
+			lockAiS(atkA ? 0.1 : 0.3);
 			cd.setS("resetAtk",0.4);
 			atkA = !atkA;
 

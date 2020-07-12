@@ -12,7 +12,6 @@ class Item extends Entity {
 		if( t==null )
 			throw "Unknown item type";
 
-		game.scroller.add(spr, Const.DP_FRONT);
 		ALL.push(this);
 		type = t;
 		enableShadow();
@@ -66,7 +65,7 @@ class Item extends Entity {
 				blink(0xffffff, 0);
 
 			if( bombTimerS>=2 ) {
-				game.announce("Dwarf obliterated", 0xff0000);
+				game.announce("Dwarf obliterated", 0xff0000, true);
 				getCarrier().hit(99,this);
 				fx.flashBangS(0xffcc00, 0.5, 0.5);
 				game.camera.shakeS(2, 0.2);

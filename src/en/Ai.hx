@@ -10,12 +10,12 @@ class Ai extends Entity {
 	var atkRange = 1.0; // case
 	var bubble : Null<h2d.Object>;
 	var prohibiteds : Array<{ e:Entity, sec:Float }> = [];
+	var baseSpeed = rnd(0.005,0.007);
 
 	private function new(x,y) {
 		super(x,y);
 
 		origin = this.makePoint();
-		Game.ME.scroller.add(spr, Const.DP_AI);
 		spr.filter = new dn.heaps.filter.PixelOutline();
 
 		ALL.push(this);
@@ -33,10 +33,26 @@ class Ai extends Entity {
 			if( p.e==e )
 				return;
 
+		var t = 20;
+		if( e.is(Item) )
+			t = switch e.as(Item).type {
+				case Gem: 8;
+				case BaitFull, BaitPart: t;
+				case Bomb: t;
+			}
+
 		prohibiteds.push({
 			e: e,
-			sec: 10,
+			sec: t,
 		});
+	}
+
+	override function chargeAction(id:String, sec:Float, cb:() -> Void) {
+		super.chargeAction(id, sec, cb);
+		dx*=0.2;
+		dy*=0.2;
+		bdx*=0.2;
+		bdy*=0.2;
 	}
 
 	public function isProhibited(e:Entity) {
@@ -114,6 +130,9 @@ class Ai extends Entity {
 		switch task {
 			case Idle:
 				popText("??");
+
+			case ExitLevel:
+				popText("I need to go!");
 
 			case Grab(i):
 				prohibit(i);
@@ -206,6 +225,13 @@ class Ai extends Entity {
 						doTask(Idle);
 					});
 
+			case ExitLevel:
+				var c = en.Cart.ME;
+				setBubble("i_Cart", false);
+				goto(c.cx, c.cy);
+				if( distCase(c)<=1 )
+					destroy();
+
 			case Break(e):
 				setBubble("crate");
 				showTaskFocus(e);
@@ -248,6 +274,7 @@ class Ai extends Entity {
 					case BaitFull, BaitPart: spd*=1.5;
 					case Bomb:
 				}
+				case ExitLevel: spd*=3;
 				case WaitWithItem(e):
 				case Break(e):
 				case BringToCart: spd*=2;
@@ -281,7 +308,7 @@ class Ai extends Entity {
 	}
 
 	function getSpeed() {
-		return 0.005;
+		return baseSpeed;
 	}
 
 	inline function lockAtk(s:Float) {

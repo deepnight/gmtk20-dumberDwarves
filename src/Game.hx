@@ -54,7 +54,6 @@ class Game extends Process {
 				startLevel(l);
 				break;
 			}
-		announce("Game over", 0xff0000);
 	}
 
 	public function startLevel(l:led.Level) {
@@ -78,7 +77,13 @@ class Game extends Process {
 					var e = new en.ai.Dwarf(cx,cy);
 
 				case "Mob":
-					new en.ai.Mob(cx,cy);
+					switch ei.getStringField("Type") {
+						case "Gob": new en.ai.mob.Goblin(cx,cy);
+						case _: trace("unknown mob");
+					}
+
+				case "MobGen":
+					new en.MobGen(cx,cy);
 
 				case "Crate":
 					new en.Breakable(cx,cy);
@@ -96,7 +101,7 @@ class Game extends Process {
 		refillBaits();
 		Process.resizeAll();
 
-		announce("Team ready!", "Steal "+countRemainingGems()+" gems!", 0xffcc00);
+		announce("Team ready!", "Lead these idiots to steal "+countRemainingGems()+" gems!", 0xffcc00, true);
 	}
 
 
@@ -136,19 +141,57 @@ class Game extends Process {
 		hud.invalidate();
 	}
 
+	public function popText(x:Float, y:Float, str:String, ?c=0xffffff) {
+		var wrapper = new h2d.Object();
+		scroller.add( wrapper, Const.DP_UI );
+		var tf = new h2d.Text(Assets.fontPixel, wrapper);
+		tf.text = str;
+		tf.textColor = c;
+		tf.x = -Std.int( tf.textWidth*0.5 );
+		tf.y = -Std.int( tf.textHeight*0.5 );
+
+		// var p = game.createChildProcess( function(p) {
+		// }, function(p) {
+		// 	wrapper.remove();
+		// });
+
+		wrapper.x = Std.int( x );
+		wrapper.y = Std.int( y );
+		tw.createMs(wrapper.y, wrapper.y-10, 100).end( function() {
+			tw.createMs(wrapper.alpha, 1000|0, 1000).end( wrapper.remove );
+		});
+	}
+
 	function onMouseDown(e:hxd.Event) {
 		var m = new tools.MouseCoords(e.relX, e.relY);
 
 		var dh = new dn.DecisionHelper(en.ai.Dwarf.ALL);
-		dh.keepOnly( function(e) return e.isAlive() && M.dist(m.levelX, m.levelY, e.centerX, e.centerY) <= Const.GRID*0.9 );
+		dh.keepOnly( function(e) return e.isAlive() && M.dist(m.levelX, m.levelY, e.centerX, e.centerY) <= Const.GRID*0.8 );
 		dh.score( function(e) return -M.dist(m.levelX, m.levelY, e.footX, e.footY) );
 		dh.useBest( function(e) {
 			e.slap(m.levelX, m.levelY);
 		});
+
+		// No dwarf under cursor
 		if( dh.countRemaining()==0 ) {
-			if( useBait() ) {
-				var e = new en.Item(m.cx, m.cy, BaitFull);
-				e.zr = -2;
+			var dh = new dn.DecisionHelper(en.Item.ALL);
+			dh.keepOnly( function(e) return e.isAlive() && ( e.type==BaitFull || e.type==BaitPart ) && !e.isCarried && M.dist(m.levelX, m.levelY, e.centerX, e.centerY) <= Const.GRID*0.8 );
+			dh.score( function(e) return -M.dist(m.levelX, m.levelY, e.footX, e.footY) );
+			dh.useBest( function(e) {
+				fx.dirtExplosion(e.centerX, e.centerY, 0xa97852);
+				e.destroy();
+			});
+
+			// No bait under cursor
+			if( dh.countRemaining()==0 ) {
+				if( useBait() ) {
+					var e = new en.Item(m.cx, m.cy, BaitFull);
+					e.zr = -2;
+				}
+				else {
+					if( !cd.hasSetS("foodWarn", 1) )
+						popText(m.levelX, m.levelY, "No food, steam a GEM to refill", 0xff0000);
+				}
 			}
 		}
 	}
@@ -251,13 +294,13 @@ class Game extends Process {
 		return n;
 	}
 
-	public function announce(str:String, ?sub:String, c:UInt) {
+	public function announce(str:String, ?sub:String, c:UInt, big:Bool) {
 		var pad = 10;
 		var w = new h2d.Object();
 		root.add(w, Const.DP_UI);
 		w.scale(Const.DP_UI);
 
-		var tf = new h2d.Text(Assets.fontMedium, w);
+		var tf = new h2d.Text(big ? Assets.fontLarge : Assets.fontMedium, w);
 		tf.text = str.toUpperCase();
 		tf.textColor = c;
 		tf.x = -pad;

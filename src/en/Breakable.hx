@@ -11,6 +11,7 @@ class Breakable extends Entity {
 		weight = 3;
 		enableShadow();
 		bumpFrict*=0.8;
+		toBack();
 	}
 
 	override function dispose() {

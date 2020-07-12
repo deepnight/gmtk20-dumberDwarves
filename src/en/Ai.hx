@@ -159,14 +159,12 @@ class Ai extends Entity {
 	function chargeAtk(e:Entity) {}
 
 	function updateAutoAttack() {
+		if( isChargingAction("atk") || !canAct() && !isChargingAction() )
+			return;
+
 		for(e in getAttackables())
 			if( e.isAlive() && distCase(e)<=atkRange ) {
-				if( isChargingAction() ) {
-					cancelAction();
-					if( !canAct() )
-						return;
-				}
-
+				cancelAction();
 				dir = dirTo(e);
 				dx*=0.8;
 				dy*=0.8;
@@ -189,7 +187,7 @@ class Ai extends Entity {
 		if( canAct() )
 			updateAi();
 
-		if( !cd.has("atkLock") && !isChargingAction("atk") )
+		if( !cd.has("atkLock") )
 			updateAutoAttack();
 	}
 }

@@ -7,7 +7,7 @@ class Mob extends en.Ai {
 		super(x,y);
 		ALL.push(this);
 		initLife(3);
-		detectRadius = 5;
+		detectRadius = 7;
 		atkRange = 0.8;
 		weight = 1;
 
@@ -43,6 +43,9 @@ class Mob extends en.Ai {
 			for(e in Dwarf.ALL)
 				if( distCase(e)<=detectRadius && sightCheckEnt(e) ) {
 					// TODO alert friends
+					for(m in ALL)
+						if( m!=this && m.isAlive() && distCase(m)<=4 && sightCheckEnt(m) )
+							m.doTask( AttackDwarf(e) );
 					doTask( AttackDwarf(e) );
 				}
 		}

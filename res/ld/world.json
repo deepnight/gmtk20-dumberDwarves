@@ -765,14 +765,6 @@
 							]
 						},
 						{
-							"defId":11,
-							"x":56,
-							"y":160,
-							"fieldInstances":[
-								
-							]
-						},
-						{
 							"defId":13,
 							"x":218,
 							"y":166,
@@ -886,14 +878,6 @@
 						},
 						{
 							"defId":11,
-							"x":40,
-							"y":144,
-							"fieldInstances":[
-								
-							]
-						},
-						{
-							"defId":11,
 							"x":56,
 							"y":128,
 							"fieldInstances":[
@@ -913,6 +897,17 @@
 											"Bait"
 										]
 									}
+								}
+							]
+						},
+						{
+							"defId":13,
+							"x":40,
+							"y":176,
+							"fieldInstances":[
+								{
+									"defId":14,
+									"internalValue":null
 								}
 							]
 						}

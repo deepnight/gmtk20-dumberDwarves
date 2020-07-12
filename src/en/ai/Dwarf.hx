@@ -113,7 +113,7 @@ class Dwarf extends en.Ai {
 					});
 				}
 
-				if( !cd.hasSetS("decision", 1) )
+				if( !cd.hasSetS("decision", 0.6) )
 					takeDecision();
 
 			case Grab(it):
@@ -128,7 +128,7 @@ class Dwarf extends en.Ai {
 
 		chargeAction("atk", 0.12, function() {
 			spr.anim.play(atkA ? "d_atkA" : "d_atkB").setSpeed(0.2);
-			lockAiS(atkA ? 0.2 : 0.5);
+			lockAiS(atkA ? 0.15 : 0.4);
 			cd.setS("resetAtk",0.7);
 			atkA = !atkA;
 

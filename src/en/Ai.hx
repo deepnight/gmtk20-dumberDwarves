@@ -208,7 +208,7 @@ class Ai extends Entity {
 						case _: 1;
 					}
 					chargeAction("pick", t, function() {
-						if( i.isCarried ) {
+						if( i.isCarried || !i.isAlive() ) {
 							popText("?");
 							return;
 						}
@@ -253,7 +253,7 @@ class Ai extends Entity {
 				setBubble("danger", false);
 
 				if( !cd.hasSetS("pickFleePt",0.5) ) {
-					var dh = new dn.DecisionHelper( dn.Bresenham.getDisc(cx,cy,5) );
+					var dh = new dn.DecisionHelper( dn.Bresenham.getDisc(cx,cy,7) );
 					dh.keepOnly( function(pt) return !level.hasCollision(pt.x,pt.y) && sightCheckCase(pt.x,pt.y) );
 					dh.score( function(pt) return e.distCaseFree(pt.x, pt.y) );
 					dh.score( function(pt) return !e.sightCheckCase(pt.x, pt.y) ? 3 : 0 );

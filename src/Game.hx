@@ -132,9 +132,10 @@ class Game extends Process {
 		}
 
 		refillBaits();
+
 		Process.resizeAll();
 
-		if( level.data.getName().indexOf("Tuto")<0 )
+		if( level.data.getName().indexOf("Tuto")<0 && en.Item.ALL.length>0 )
 			announce("Team ready!", "Lead these idiots to steal "+countRemainingGems()+" gems!", 0xffcc00, true);
 
 		mask.visible = true;
@@ -205,36 +206,43 @@ class Game extends Process {
 	function onMouseDown(e:hxd.Event) {
 		var m = new tools.MouseCoords(e.relX, e.relY);
 
-		var dh = new dn.DecisionHelper(en.ai.Dwarf.ALL);
-		dh.keepOnly( function(e) return e.isAlive() && M.dist(m.levelX, m.levelY, e.centerX, e.centerY) <= Const.GRID*1.1 );
+		if( level.levelId==0 )
+			return;
+
+		var dh = new dn.DecisionHelper(en.Item.ALL);
+		dh.keepOnly( function(e) return e.isAlive() && ( e.type==BaitFull || e.type==BaitPart ) && !e.isCarried && M.dist(m.levelX, m.levelY, e.centerX, e.centerY) <= Const.GRID*1.1 );
 		dh.score( function(e) return -M.dist(m.levelX, m.levelY, e.footX, e.footY) );
 		dh.useBest( function(e) {
-			e.slap(m.levelX, m.levelY);
+			fx.dirtExplosion(e.centerX, e.centerY, 0xa97852);
+			e.destroy();
 		});
 
-		// No dwarf under cursor
+		// No bait under cursor
 		if( dh.countRemaining()==0 ) {
-			var dh = new dn.DecisionHelper(en.Item.ALL);
-			dh.keepOnly( function(e) return e.isAlive() && ( e.type==BaitFull || e.type==BaitPart ) && !e.isCarried && M.dist(m.levelX, m.levelY, e.centerX, e.centerY) <= Const.GRID*1.1 );
+
+			// Click dwarf?
+			var dh = new dn.DecisionHelper(en.ai.Dwarf.ALL);
+			dh.keepOnly( function(e) return e.isAlive() && M.dist(m.levelX, m.levelY, e.centerX, e.centerY) <= Const.GRID*1.1 );
 			dh.score( function(e) return -M.dist(m.levelX, m.levelY, e.footX, e.footY) );
 			dh.useBest( function(e) {
-				fx.dirtExplosion(e.centerX, e.centerY, 0xa97852);
-				e.destroy();
+				e.slap(m.levelX, m.levelY);
 			});
 
-			// No bait under cursor
-			if( dh.countRemaining()==0 ) {
+			// No dwarf under cursor
+			if( dh.countRemaining()==0 ){
 				if( useBait() ) {
 					var e = new en.Item(m.cx, m.cy, BaitFull);
 					e.zr = -2;
 				}
 				else {
 					if( !cd.hasSetS("foodWarn", 1) )
-						popText(m.levelX, m.levelY, "No food, steam a GEM to refill", 0xff0000);
+						popText(m.levelX, m.levelY, "No food bait.", 0xff0000);
 				}
 			}
 		}
 	}
+
+
 	function onMouseUp(e:hxd.Event) {
 		var m = new tools.MouseCoords(e.relX, e.relY);
 	}
@@ -418,7 +426,7 @@ class Game extends Process {
 		// Bait refill
 		if( baits==Const.BAITS )
 			cd.unset("autoRefill");
-		if( !cd.hasSetS("autoRefill",3) )
+		if( !cd.hasSetS("autoRefill",10) )
 			refillBaits(1);
 	}
 }

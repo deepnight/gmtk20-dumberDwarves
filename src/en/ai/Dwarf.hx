@@ -54,7 +54,7 @@ class Dwarf extends en.Ai {
 	}
 
 	function takeDecision() {
-		if( game.countRemainingGems()==0 ) {
+		if( game.countRemainingGems()==0 && Cart.ME!=null ) {
 			doTask(ExitLevel);
 			return;
 		}

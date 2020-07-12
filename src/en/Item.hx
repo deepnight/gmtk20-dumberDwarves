@@ -4,7 +4,7 @@ class Item extends Entity {
 	public static var ALL : Array<Item> = [];
 
 	public var type : ItemType;
-	var bombTimerS = 0.;
+	public var bombTimerS = 0.;
 
 	public function new(x,y, t:ItemType) {
 		super(x,y);
@@ -59,15 +59,17 @@ class Item extends Entity {
 		if( !isCarried && type==Gem && zr==0 && !cd.hasSetS("jump",1) )
 			dz = -0.05;
 
-		if( type==Bomb && isCarried ) {
+		if( type==Bomb && ( isCarried || bombTimerS>0 ) ) {
 			bombTimerS += tmod/Const.FPS;
 			if( !cd.hasSetS("warn",0.2) )
 				blink(0xffffff, 0.1);
 
 			if( bombTimerS>=2 ) {
-				getCarrier().hit(9999,this);
-				fx.flashBangS(0xffcc00, 0.5, 0.5);
-				game.camera.shakeS(2, 0.2);
+				if( isCarried ) {
+					getCarrier().hit(9999,this);
+					fx.flashBangS(0xffcc00, 0.5, 0.5);
+					game.camera.shakeS(2, 0.2);
+				}
 				fx.explosion(centerX, centerY);
 				destroy();
 			}

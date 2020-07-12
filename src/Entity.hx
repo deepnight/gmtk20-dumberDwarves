@@ -514,6 +514,9 @@ class Entity {
 		}
 		carriedEnt.isCarried = false;
 		carriedEnt.toBack();
+		if( carriedEnt.is(en.Item) && carriedEnt.as(en.Item).type==Bomb && carriedEnt.as(en.Item).bombTimerS>0 ) {
+			carriedEnt.as(en.Item).bombTimerS = 1.5;
+		}
 		carriedEnt = null;
 	}
 
@@ -718,8 +721,9 @@ class Entity {
 			var a = carriedEnt.angTo(this) + rnd(0,0.7,true);
 			carriedEnt.dx *= Math.pow(0.85,tmod);
 			carriedEnt.dy *= Math.pow(0.85,tmod);
-			carriedEnt.dx += Math.cos(a)*0.016 * tmod;
-			carriedEnt.dy += Math.sin(a)*0.016 * tmod;
+			var s = 0.019;
+			carriedEnt.dx += Math.cos(a)*s * tmod;
+			carriedEnt.dy += Math.sin(a)*s * tmod;
 		}
 
 		#if debug

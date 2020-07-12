@@ -11,7 +11,8 @@ class MobGen extends Entity {
 	public function new(x,y) {
 		super(x,y);
 		ALL.push(this);
-		spr.set("cart");
+		spr.set("gen");
+		enableShadow();
 		game.scroller.add(spr, Const.DP_BG);
 	}
 
@@ -29,6 +30,11 @@ class MobGen extends Entity {
 		return e;
 	}
 
+	override function postUpdate() {
+		super.postUpdate();
+		spr.alpha = 0.6;
+	}
+
 	override function update() {
 		super.update();
 
@@ -43,6 +49,7 @@ class MobGen extends Entity {
 		// Spawn
 		if( !cd.hasSetS("spawn",delay) ) {
 			var n = perSpawn;
+			dz = -rnd(0.05,0.12);
 			while( n-->0 && children.length<maxChildren )
 				children.push( spawn() );
 		}

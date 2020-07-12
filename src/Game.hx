@@ -206,7 +206,7 @@ class Game extends Process {
 	function onMouseDown(e:hxd.Event) {
 		var m = new tools.MouseCoords(e.relX, e.relY);
 
-		if( level.levelId==0 )
+		if( level.levelId<=1 || !level.isValid(m.cx,m.cy) || level.hasCollision(m.cx,m.cy) )
 			return;
 
 		var dh = new dn.DecisionHelper(en.Item.ALL);
@@ -345,6 +345,30 @@ class Game extends Process {
 			if( e.isAlive() && e.type==Gem )
 				n++;
 		return n;
+	}
+
+	public function gameOver() {
+		var tf = new h2d.Text(Assets.fontSmall);
+		root.add(tf, Const.DP_UI);
+		tf.textColor = 0xff0000;
+		tf.text = "Press R to restart this level.";
+		tf.setScale(Const.UI_SCALE);
+		tf.x = Std.int( w()*0.5 - tf.textWidth*0.5*tf.scaleX );
+
+		createChildProcess(function(p) {
+			var any = false;
+			for(e in en.ai.Dwarf.ALL) {
+				if( e.isAlive() ) {
+					any = true;
+					break;
+				}
+			}
+
+			if( any ) {
+				tf.remove();
+				p.destroy();
+			}
+		});
 	}
 
 	public function announce(str:String, ?sub:String, c:UInt, big:Bool) {

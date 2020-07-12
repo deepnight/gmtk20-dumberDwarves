@@ -45,6 +45,8 @@ class Dwarf extends en.Ai {
 
 	override function onDie(?from:Entity) {
 		super.onDie(from);
+		if( ALL.length==1 )
+			game.gameOver();
 		fx.bloodExplosion(centerX, centerY);
 		game.announce("Dwarf obliterated", 0xff0000, true);
 	}

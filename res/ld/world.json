@@ -499,22 +499,6 @@
 							]
 						},
 						{
-							"defId":9,
-							"x":184,
-							"y":56,
-							"fieldInstances":[
-								{
-									"defId":10,
-									"internalValue":{
-										"id":3,
-										"p":[
-											"Gem"
-										]
-									}
-								}
-							]
-						},
-						{
 							"defId":11,
 							"x":24,
 							"y":128,
@@ -573,22 +557,6 @@
 										"id":0,
 										"p":[
 											1
-										]
-									}
-								}
-							]
-						},
-						{
-							"defId":9,
-							"x":136,
-							"y":40,
-							"fieldInstances":[
-								{
-									"defId":10,
-									"internalValue":{
-										"id":3,
-										"p":[
-											"Gem"
 										]
 									}
 								}

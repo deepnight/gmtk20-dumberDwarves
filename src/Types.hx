@@ -13,6 +13,7 @@ enum ItemType {
 }
 
 enum Task {
+	Wait(untilFrame:Float);
 	Idle;
 	Grab(e:en.Item);
 	Break(e:en.Breakable);

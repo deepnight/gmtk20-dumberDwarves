@@ -131,6 +131,8 @@ class Ai extends Entity {
 			case Idle:
 				popText("??");
 
+			case Wait(_):
+
 			case ExitLevel:
 				popText("I need to go!");
 
@@ -173,6 +175,15 @@ class Ai extends Entity {
 		switch task {
 
 			case Idle:
+
+			case Wait(until):
+				if( ftime>=until ) {
+					doTask(Idle);
+					return;
+				}
+
+				if( !cd.hasSetS("jumpWait",0.3) )
+					dz = -0.11;
 
 			case WaitWithItem(e):
 				if( carriedEnt==null )
@@ -295,6 +306,7 @@ class Ai extends Entity {
 			var spd = getSpeed()*10;
 			switch task {
 				case Idle:
+				case Wait(untilFrame):
 				case Grab(e): switch e.type {
 					case Gem: spd*=2;
 					case BaitFull, BaitPart: spd*=1.5;

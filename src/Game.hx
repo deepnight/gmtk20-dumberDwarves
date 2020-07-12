@@ -57,6 +57,8 @@ class Game extends Process {
 	}
 
 	public function startLevel(l:led.Level) {
+		cd.unset("levelDone");
+		cd.unset("nextLevelLock");
 		for(e in Entity.ALL)
 			e.destroy();
 		gc();
@@ -344,6 +346,13 @@ class Game extends Process {
 		super.update();
 
 		for(e in Entity.ALL) if( !e.destroyed ) e.update();
+
+		if( countRemainingGems()<=0 && en.ai.Dwarf.ALL.length==0 && !cd.has("levelDone") ) {
+			cd.setS("levelDone",Const.INFINITE);
+			cd.setS("nextLevelLock",2);
+		}
+		if( cd.has("levelDone") && !cd.has("nextLevelLock") )
+			nextLevel();
 
 		if( !ui.Console.ME.isActive() && !ui.Modal.hasAny() ) {
 			#if hl

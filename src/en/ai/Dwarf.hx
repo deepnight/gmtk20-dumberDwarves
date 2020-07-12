@@ -17,6 +17,8 @@ class Dwarf extends en.Ai {
 		spr.anim.registerStateAnim("d_act", 2, 0.15, function() return isChargingAction() );
 		spr.anim.registerStateAnim("d_walk", 1, rnd(0.11,0.15), function() return isWalking() );
 		spr.anim.registerStateAnim("d_idle", 0, 0.1);
+
+		doTask( Wait(ftime+1.5*Const.FPS) );
 	}
 
 	override function dispose() {

@@ -33,6 +33,7 @@ class Entity {
 	public var frictY = 0.93;
 	public var bumpFrict = 0.97;
 	public var hasCollisions = true;
+	public var weight = 0.;
 
 	public var hei(default,set) : Float = Const.GRID*0.7;
 	inline function set_hei(v) { invalidateDebugBounds=true;  return hei=v; }
@@ -615,9 +616,35 @@ class Entity {
 		prevFrameFootY = footY;
 	}
 
+	function onBeforePhysics() {}
+
 	public function fixedUpdate() {} // runs at a "guaranteed" 30 fps
 
-    public function update() { // runs at an unknown fps
+	public function update() { // runs at an unknown fps
+		// Circular collisions
+		if( weight>0 ) {
+			var repel = 0.04;
+			for(e in ALL )
+				if( e!=this && e.weight>0 && e.isAlive() && M.fabs(e.cx-cx)<=2 && M.fabs(e.cy-cy)<=2 ) {
+					var d = distPx(e);
+					var r = Const.GRID*0.5;
+					if( distPx(e)<=r ) {
+						var a = Math.atan2(e.footY-footY, e.footX-footX) + rnd(0,0.05,true);
+						var pow = 0.3 + 0.7 * (1-d/r);
+
+						var wr = weight / ( e.weight + weight );
+						e.dx += Math.cos(a) * repel*pow*wr * tmod;
+						e.dy += Math.sin(a) * repel*pow*wr * tmod;
+
+						wr = 1-wr;
+						dx += -Math.cos(a) * repel*pow*wr * tmod;
+						dy += -Math.sin(a) * repel*pow*wr * tmod;
+					}
+				}
+		}
+
+		onBeforePhysics();
+
 		// X
 		var steps = M.ceil( M.fabs(dxTotal*tmod) );
 		var step = dxTotal*tmod / steps;

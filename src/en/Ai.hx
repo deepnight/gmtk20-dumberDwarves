@@ -6,7 +6,6 @@ class Ai extends Entity {
 	var task : Task;
 	var detectRadius = 5;
 	var path : Array<CPoint> = [];
-	public var weight = 1.0;
 	var origin : CPoint;
 	var atkRange = 1.0; // case
 
@@ -70,9 +69,9 @@ class Ai extends Entity {
 			case Idle:
 
 			case Grab(it):
-				// if( !isCarryingItem(it) ) {
+				if( !isCarryingItem(it) ) {
 					// Seek target
-					// releaseCarriedEnt();
+					releaseCarriedEnt();
 					cancelPath();
 					var dh = new dn.DecisionHelper(Item.ALL);
 					dh.keepOnly( function(i) return i.isAlive() && i.type==it );
@@ -88,13 +87,20 @@ class Ai extends Entity {
 									case Gem: carry(i);
 									case Bait: i.consume(this);
 								}
-								doTask(Idle);
 							});
 						}
 					});
-				// }
-				// else
-					// goto(1,1);
+				}
+				else {
+					var c = en.Cart.ME;
+					goto(c.cx, c.cy);
+					if( distCase(c)<=1 )
+						chargeAction("drop", 1, function() {
+							c.dropGem();
+							carriedEnt.destroy();
+							doTask(Idle);
+						});
+				}
 
 			case AttackDwarf(e):
 				if( distCase(e)>2 || !sightCheckEnt(e) )
@@ -173,26 +179,6 @@ class Ai extends Entity {
 
 	override function update() {
 		super.update();
-
-		// Circular collisions
-		var repel = 0.04;
-		for(e in ALL )
-			if( e!=this && e.isAlive() && M.fabs(e.cx-cx)<=2 && M.fabs(e.cy-cy)<=2 ) {
-				var d = distPx(e);
-				var r = Const.GRID*0.5;
-				if( distPx(e)<=r ) {
-					var a = Math.atan2(e.footY-footY, e.footX-footX) + rnd(0,0.05,true);
-					var pow = 0.3 + 0.7 * (1-d/r);
-
-					var wr = weight / ( e.weight + weight );
-					e.dx += Math.cos(a) * repel*pow*wr * tmod;
-					e.dy += Math.sin(a) * repel*pow*wr * tmod;
-
-					wr = 1-wr;
-					dx += -Math.cos(a) * repel*pow*wr * tmod;
-					dy += -Math.sin(a) * repel*pow*wr * tmod;
-				}
-			}
 
 		if( canAct() )
 			updateAi();

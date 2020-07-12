@@ -1,6 +1,6 @@
 {
 	"dataVersion":1,
-	"nextUniqId":19,
+	"nextUniqId":20,
 	"defs":{
 		"layers":[
 			{
@@ -13,7 +13,7 @@
 				},
 				"name":"Entities",
 				"gridSize":16,
-				"displayOpacity":1,
+				"displayOpacity":0.8,
 				"intGridValues":[
 					{
 						"color":0
@@ -161,6 +161,20 @@
 							]
 						}
 					}
+				]
+			},
+			{
+				"uid":19,
+				"name":"Cart",
+				"width":24,
+				"height":16,
+				"color":11052416,
+				"maxPerLevel":0,
+				"discardExcess":true,
+				"pivotX":0.5,
+				"pivotY":1,
+				"fieldDefs":[
+					
 				]
 			}
 		],
@@ -656,22 +670,6 @@
 					"entityInstances":[
 						{
 							"defId":9,
-							"x":24,
-							"y":248,
-							"fieldInstances":[
-								{
-									"defId":10,
-									"internalValue":{
-										"id":3,
-										"p":[
-											"Gem"
-										]
-									}
-								}
-							]
-						},
-						{
-							"defId":9,
 							"x":232,
 							"y":120,
 							"fieldInstances":[
@@ -768,58 +766,10 @@
 						},
 						{
 							"defId":11,
-							"x":168,
+							"x":56,
 							"y":160,
 							"fieldInstances":[
 								
-							]
-						},
-						{
-							"defId":9,
-							"x":47,
-							"y":127,
-							"fieldInstances":[
-								{
-									"defId":10,
-									"internalValue":{
-										"id":3,
-										"p":[
-											"Bait"
-										]
-									}
-								}
-							]
-						},
-						{
-							"defId":9,
-							"x":72,
-							"y":64,
-							"fieldInstances":[
-								{
-									"defId":10,
-									"internalValue":{
-										"id":3,
-										"p":[
-											"Bait"
-										]
-									}
-								}
-							]
-						},
-						{
-							"defId":9,
-							"x":216,
-							"y":56,
-							"fieldInstances":[
-								{
-									"defId":10,
-									"internalValue":{
-										"id":3,
-										"p":[
-											"Bait"
-										]
-									}
-								}
 							]
 						},
 						{
@@ -837,17 +787,6 @@
 							"defId":13,
 							"x":187,
 							"y":135,
-							"fieldInstances":[
-								{
-									"defId":14,
-									"internalValue":null
-								}
-							]
-						},
-						{
-							"defId":13,
-							"x":121,
-							"y":132,
 							"fieldInstances":[
 								{
 									"defId":14,
@@ -922,25 +861,43 @@
 							]
 						},
 						{
-							"defId":13,
-							"x":80,
-							"y":92,
+							"defId":19,
+							"x":72,
+							"y":144,
+							"fieldInstances":[
+								
+							]
+						},
+						{
+							"defId":9,
+							"x":120,
+							"y":216,
 							"fieldInstances":[
 								{
-									"defId":14,
-									"internalValue":null
+									"defId":10,
+									"internalValue":{
+										"id":3,
+										"p":[
+											"Gem"
+										]
+									}
 								}
 							]
 						},
 						{
-							"defId":13,
-							"x":95,
-							"y":220,
+							"defId":11,
+							"x":40,
+							"y":144,
 							"fieldInstances":[
-								{
-									"defId":14,
-									"internalValue":null
-								}
+								
+							]
+						},
+						{
+							"defId":11,
+							"x":56,
+							"y":128,
+							"fieldInstances":[
+								
 							]
 						}
 					]
@@ -964,6 +921,10 @@
 						},
 						{
 							"coordId":211,
+							"v":0
+						},
+						{
+							"coordId":212,
 							"v":0
 						},
 						{

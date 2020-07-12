@@ -56,6 +56,9 @@ class Game extends Process {
 				case "Item":
 					var v = new en.Item( cx, cy, ItemType.createByName( ei.getStringField("Type") ) );
 
+				case "Cart":
+					var v = new en.Cart( cx, cy );
+
 				case _: trace("Unknown entity "+ei.def.name);
 			}
 		}

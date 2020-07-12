@@ -9,6 +9,7 @@ class Mob extends en.Ai {
 		initLife(1);
 		detectRadius = 5;
 		atkRange = 0.8;
+		weight = 1;
 
 		spr.anim.registerStateAnim("a_atk_charge", 2, 0.15, function() return isChargingAction("atk") );
 		spr.anim.registerStateAnim("a_walk", 1, 0.15, function() return isWalking() );

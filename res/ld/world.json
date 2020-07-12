@@ -1,6 +1,6 @@
 {
 	"dataVersion":1,
-	"nextUniqId":22,
+	"nextUniqId":23,
 	"defs":{
 		"layers":[
 			{
@@ -399,18 +399,6 @@
 							"v":0
 						},
 						{
-							"coordId":157,
-							"v":0
-						},
-						{
-							"coordId":158,
-							"v":0
-						},
-						{
-							"coordId":159,
-							"v":0
-						},
-						{
 							"coordId":160,
 							"v":0
 						},
@@ -543,10 +531,6 @@
 							"v":0
 						},
 						{
-							"coordId":321,
-							"v":0
-						},
-						{
 							"coordId":327,
 							"v":0
 						},
@@ -559,10 +543,6 @@
 							"v":0
 						},
 						{
-							"coordId":347,
-							"v":0
-						},
-						{
 							"coordId":353,
 							"v":0
 						},
@@ -572,10 +552,6 @@
 						},
 						{
 							"coordId":364,
-							"v":0
-						},
-						{
-							"coordId":373,
 							"v":0
 						},
 						{
@@ -898,7 +874,7 @@
 						},
 						{
 							"defId":11,
-							"x":56,
+							"x":104,
 							"y":128,
 							"fieldInstances":[
 								
@@ -906,8 +882,8 @@
 						},
 						{
 							"defId":21,
-							"x":24,
-							"y":128,
+							"x":56,
+							"y":112,
 							"fieldInstances":[
 								
 							]
@@ -969,14 +945,6 @@
 							]
 						},
 						{
-							"defId":11,
-							"x":40,
-							"y":160,
-							"fieldInstances":[
-								
-							]
-						},
-						{
 							"defId":9,
 							"x":40,
 							"y":248,
@@ -990,6 +958,78 @@
 										]
 									}
 								}
+							]
+						},
+						{
+							"defId":21,
+							"x":200,
+							"y":128,
+							"fieldInstances":[
+								
+							]
+						},
+						{
+							"defId":21,
+							"x":232,
+							"y":240,
+							"fieldInstances":[
+								
+							]
+						},
+						{
+							"defId":21,
+							"x":280,
+							"y":256,
+							"fieldInstances":[
+								
+							]
+						},
+						{
+							"defId":21,
+							"x":376,
+							"y":176,
+							"fieldInstances":[
+								
+							]
+						},
+						{
+							"defId":9,
+							"x":376,
+							"y":120,
+							"fieldInstances":[
+								{
+									"defId":10,
+									"internalValue":{
+										"id":3,
+										"p":[
+											"Bomb"
+										]
+									}
+								}
+							]
+						},
+						{
+							"defId":21,
+							"x":24,
+							"y":96,
+							"fieldInstances":[
+								
+							]
+						},
+						{
+							"defId":21,
+							"x":40,
+							"y":96,
+							"fieldInstances":[
+								
+							]
+						},
+						{
+							"defId":21,
+							"x":40,
+							"y":112,
+							"fieldInstances":[
+								
 							]
 						}
 					]
@@ -1045,6 +1085,80 @@
 				}
 			],
 			"customName":"Lab"
+		},
+		{
+			"uid":22,
+			"pxWid":256,
+			"pxHei":256,
+			"layerInstances":[
+				{
+					"levelId":22,
+					"layerDefId":1,
+					"pxOffsetX":0,
+					"pxOffsetY":0,
+					"intGrid":[
+						
+					],
+					"gridTiles":[
+						
+					],
+					"entityInstances":[
+						
+					]
+				},
+				{
+					"levelId":22,
+					"layerDefId":7,
+					"pxOffsetX":0,
+					"pxOffsetY":0,
+					"intGrid":[
+						
+					],
+					"gridTiles":[
+						
+					],
+					"entityInstances":[
+						{
+							"defId":11,
+							"x":56,
+							"y":144,
+							"fieldInstances":[
+								
+							]
+						}
+					]
+				},
+				{
+					"levelId":22,
+					"layerDefId":18,
+					"pxOffsetX":0,
+					"pxOffsetY":0,
+					"intGrid":[
+						
+					],
+					"gridTiles":[
+						
+					],
+					"entityInstances":[
+						
+					]
+				},
+				{
+					"levelId":22,
+					"layerDefId":20,
+					"pxOffsetX":0,
+					"pxOffsetY":0,
+					"intGrid":[
+						
+					],
+					"gridTiles":[
+						
+					],
+					"entityInstances":[
+						
+					]
+				}
+			]
 		}
 	],
 	"name":"God",

@@ -46,6 +46,13 @@ class Ai extends Entity {
 		return false;
 	}
 
+	public function isItemProhibited(it:ItemType) {
+		for(p in prohibiteds)
+			if( p.e.is(Item) && p.e.as(Item).type==it )
+				return true;
+		return false;
+	}
+
 	public function isWalking() {
 		return canAct() && ( M.fabs(dx)>=0.004 || M.fabs(dy)>=0.004 );
 	}
@@ -106,10 +113,11 @@ class Ai extends Entity {
 
 		switch task {
 			case Idle:
+				popText("??");
+
 			case Grab(i):
 				prohibit(i);
 				releaseCarriedEnt(true);
-
 
 			case Break(e):
 				prohibit(e);
@@ -193,8 +201,8 @@ class Ai extends Entity {
 				goto(c.cx, c.cy);
 				if( distCase(c)<=1 )
 					chargeAction("drop", 1, function() {
-						c.dropGem();
 						carriedEnt.destroy();
+						c.onDropGem();
 						doTask(Idle);
 					});
 

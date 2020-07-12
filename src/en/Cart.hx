@@ -13,10 +13,11 @@ class Cart extends Entity {
 		enableShadow();
 	}
 
-	public function dropGem() {
+	public function onDropGem() {
 		score++;
 		popText("+1 GEM");
 		game.refillBaits();
+		game.announce("Gem stolen!", game.countRemainingGems()+" remaining", 0x1ebae1);
 
 		dz = -0.08;
 

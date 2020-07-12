@@ -224,7 +224,7 @@ class Fx extends dn.Process {
 
 	public function bloodExplosion(x:Float,y:Float) {
 		for(i in 0...70) {
-			var p = allocTopNormal( getTile("fxGib"), x+rnd(0,5,true), y+rnd(0,5,true));
+			var p = allocBgNormal( getTile("fxGib"), x+rnd(0,5,true), y+rnd(0,5,true));
 			p.setFadeS(rnd(0.4,0.6), 0, rnd(1,2));
 			p.colorize(0xdd0000);
 			p.rotation = rnd(0,M.PI2);
@@ -238,7 +238,7 @@ class Fx extends dn.Process {
 		}
 
 		for(i in 0...20) {
-			var p = allocTopNormal( getTile("fxSplatter"), x+rnd(0,5,true), y+rnd(0,5,true));
+			var p = allocBgNormal( getTile("fxSplatter"), x+rnd(0,5,true), y+rnd(0,5,true));
 			p.setFadeS(rnd(0.4,0.6), 0, rnd(1,2));
 			p.setCenterRatio(0.3,0.5);
 			p.colorize( C.interpolateInt(0x550000,0xdd0000,rnd(0,1)) );

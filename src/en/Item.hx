@@ -66,7 +66,7 @@ class Item extends Entity {
 				blink(0xffffff, 0);
 
 			if( bombTimerS>=2 ) {
-				popText("BOOM");
+				game.announce("Dwarf obliterated", 0xff0000);
 				getCarrier().hit(99,this);
 				fx.flashBangS(0xffcc00, 0.5, 0.5);
 				game.camera.shakeS(2, 0.2);

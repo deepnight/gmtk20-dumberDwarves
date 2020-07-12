@@ -48,12 +48,14 @@ class Dwarf extends en.Ai {
 		dh.keepOnly( function(e) return e.is(Item) || e.is(Breakable) );
 		dh.keepOnly( function(e) return e.isAlive() && !isProhibited(e) && canDetect(e) );
 		dh.score( function(e) return rnd(0,2) );
-		dh.score( function(e) return -distCase(e)*0.1 );
+		dh.score( function(e) return -distCase(e)*0.2 );
+
+		// Score based on itemType
 		dh.score( function(e) {
 			return
 				if( e.is(Item) )
 					switch e.as(Item).type {
-						case Gem: 1;
+						case Gem: 2;
 						case BaitFull, BaitPart: 5;
 						case Bomb: 0.75;
 					}
@@ -62,6 +64,7 @@ class Dwarf extends en.Ai {
 				else
 					0;
 		});
+
 		dh.useBest( function(e) {
 			if( e.is(Item) )
 				doTask( Grab(e.as(Item)) );

@@ -39,9 +39,34 @@ class Game extends Process {
 
 		// Init main components
 		camera = new Camera();
-		level = new Level( ledProject.getLevel("Lab") );
 		fx = new Fx();
 		hud = new ui.Hud();
+
+		startLevel(ledProject.levels[0]);
+	}
+
+	public function nextLevel() {
+		var next = false;
+		for(l in ledProject.levels)
+			if( l==level.data )
+				next = true;
+			else if( next ) {
+				startLevel(l);
+				break;
+			}
+		announce("Game over", 0xff0000);
+	}
+
+	public function startLevel(l:led.Level) {
+		for(e in Entity.ALL)
+			e.destroy();
+		gc();
+		fx.clear();
+
+		if( level!=null )
+			level.destroy();
+
+		level = new Level(l);
 
 		// Attach entities
 		var li = level.data.getLayerInstance("Entities");
@@ -69,9 +94,11 @@ class Game extends Process {
 		}
 
 		refillBaits();
-
 		Process.resizeAll();
+
+		announce("Team ready!", "Steal "+countRemainingGems()+" gems!", 0xffcc00);
 	}
+
 
 	function onEvent(e:hxd.Event) {
 		switch e.kind {
@@ -216,6 +243,45 @@ class Game extends Process {
 		Assets.tiles.tmod = tmod;
 	}
 
+	public function countRemainingGems() {
+		var n = 0;
+		for(e in en.Item.ALL)
+			if( e.isAlive() && e.type==Gem )
+				n++;
+		return n;
+	}
+
+	public function announce(str:String, ?sub:String, c:UInt) {
+		var pad = 10;
+		var w = new h2d.Object();
+		root.add(w, Const.DP_UI);
+		w.scale(Const.DP_UI);
+
+		var tf = new h2d.Text(Assets.fontMedium, w);
+		tf.text = str.toUpperCase();
+		tf.textColor = c;
+		tf.x = -pad;
+		tf.blendMode = Add;
+
+		if( sub!=null ) {
+			var stf = new h2d.Text(Assets.fontPixel, w);
+			stf.text = sub.toUpperCase();
+			stf.textColor = c;
+			stf.x = tf.x + tf.textWidth - stf.textWidth;
+			stf.y = tf.textHeight;
+			stf.blendMode = Add;
+		}
+
+		var wid = this.w();
+		var hei = this.h();
+		w.y = Std.int( hei*0.5-tf.textHeight*0.5*w.scaleY );
+		tw.createMs(w.x, -200 > wid-tf.textWidth*w.scaleX, 200, TElasticEnd);
+		if( sub==null )
+			tw.createMs(w.alpha, 1000|0, 200).end( w.remove );
+		else
+			tw.createMs(w.alpha, 2500|0, 200).end( w.remove );
+	}
+
 	override function fixedUpdate() {
 		super.fixedUpdate();
 
@@ -240,6 +306,8 @@ class Game extends Process {
 			#if debug
 			if( ca.isKeyboardPressed(Key.D) )
 				fx.bloodExplosion(50,50);
+			if( ca.isKeyboardPressed(Key.N) )
+				nextLevel();
 			#end
 
 			// Restart

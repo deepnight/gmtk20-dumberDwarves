@@ -426,7 +426,7 @@ class Entity {
 
 
 	public function canAct() {
-		return isAlive() && !isCarried && !aiLocked() && !isChargingAction();
+		return isAlive() && !isCarried && !aiLocked() && !isChargingAction() && !hasAffect(Stun);
 	}
 
 	public inline function hasAffect(k:Affect) {

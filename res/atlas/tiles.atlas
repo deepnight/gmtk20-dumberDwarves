@@ -18,44 +18,51 @@ a_atk1
   orig: 32, 16
   offset: 0, 0
   index: -1
+a_atk2
+  rotate: false
+  xy: 79, 101
+  size: 32, 16
+  orig: 32, 16
+  offset: 0, 0
+  index: -1
 a_atk_charge0
   rotate: false
-  xy: 104, 101
+  xy: 26, 121
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_idle0
   rotate: false
-  xy: 104, 118
+  xy: 43, 130
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_idle1
   rotate: false
-  xy: 71, 126
+  xy: 26, 138
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_walk0
   rotate: false
-  xy: 104, 135
+  xy: 1, 146
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_walk1
   rotate: false
-  xy: 1, 121
+  xy: 96, 118
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_walk2
   rotate: false
-  xy: 18, 121
+  xy: 96, 135
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -116,30 +123,37 @@ d_atkB2
   orig: 48, 24
   offset: 0, 0
   index: -1
-d_idle0
+d_hit0
   rotate: false
   xy: 99, 26
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
-d_walk0
+d_idle0
   rotate: false
   xy: 99, 51
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
+d_walk0
+  rotate: false
+  xy: 46, 105
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
 d_walk1
   rotate: false
-  xy: 79, 101
+  xy: 1, 121
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 d_walk2
   rotate: false
-  xy: 46, 105
+  xy: 71, 118
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
@@ -153,7 +167,7 @@ empty
   index: -1
 fxCircle0
   rotate: false
-  xy: 35, 130
+  xy: 60, 143
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -188,7 +202,7 @@ fxGib2
   index: -1
 fxImpact0
   rotate: false
-  xy: 88, 126
+  xy: 112, 101
   size: 15, 9
   orig: 15, 9
   offset: 0, 0

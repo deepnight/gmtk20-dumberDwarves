@@ -181,6 +181,24 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">export_tiles/a_atk0.png</key>
+            <key type="filename">export_tiles/a_atk1.png</key>
+            <key type="filename">export_tiles/a_atk2.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>8,4,16,8</rect>
+                <key>scale9Paddings</key>
+                <rect>8,4,16,8</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export_tiles/a_atk_charge0.png</key>
             <key type="filename">export_tiles/a_idle0.png</key>
             <key type="filename">export_tiles/a_idle1.png</key>
             <key type="filename">export_tiles/a_walk0.png</key>
@@ -223,6 +241,7 @@
             </struct>
             <key type="filename">export_tiles/d_atkA3.png</key>
             <key type="filename">export_tiles/d_atk_charge0.png</key>
+            <key type="filename">export_tiles/d_hit0.png</key>
             <key type="filename">export_tiles/d_idle0.png</key>
             <key type="filename">export_tiles/d_walk0.png</key>
             <key type="filename">export_tiles/d_walk1.png</key>

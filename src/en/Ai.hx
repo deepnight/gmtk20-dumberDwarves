@@ -4,10 +4,11 @@ class Ai extends Entity {
 	public static var ALL : Array<Ai> = [];
 
 	var task : Task;
-	var detectRadius = 10;
+	var detectRadius = 5;
 	var path : Array<CPoint> = [];
 	public var weight = 1.0;
 	var origin : CPoint;
+	var atkRange = 1.0; // case
 
 	private function new(x,y) {
 		super(x,y);
@@ -137,8 +138,29 @@ class Ai extends Entity {
 		}
 	}
 
+	function getAttackables() : Array<Entity> {
+		return [];
+	}
+
+	function chargeAtk(e:Entity) {}
+
+	function updateAutoAttack() {
+		for(e in getAttackables())
+			if( e.isAlive() && distCase(e)<=atkRange ) {
+				dir = dirTo(e);
+				dx*=0.8;
+				dy*=0.8;
+				chargeAtk(e);
+				break;
+			}
+	}
+
 	function getSpeed() {
 		return 0.005;
+	}
+
+	inline function lockAtk(s:Float) {
+		cd.setS("atkLock",s);
 	}
 
 	override function update() {
@@ -149,10 +171,10 @@ class Ai extends Entity {
 		for(e in ALL )
 			if( e!=this && e.isAlive() && M.fabs(e.cx-cx)<=2 && M.fabs(e.cy-cy)<=2 ) {
 				var d = distPx(e);
-				var r = Const.GRID;
+				var r = Const.GRID*0.5;
 				if( distPx(e)<=r ) {
 					var a = Math.atan2(e.footY-footY, e.footX-footX) + rnd(0,0.05,true);
-					var pow = 1-d/r;
+					var pow = 0.3 + 0.7 * (1-d/r);
 
 					var wr = weight / ( e.weight + weight );
 					e.dx += Math.cos(a) * repel*pow*wr * tmod;
@@ -166,5 +188,8 @@ class Ai extends Entity {
 
 		if( canAct() )
 			updateAi();
+
+		if( canAct() && !cd.has("atkLock") )
+			updateAutoAttack();
 	}
 }

@@ -22,7 +22,7 @@ class Assets {
 		tiles = dn.heaps.assets.Atlas.load("atlas/tiles.atlas");
 
 		tiles.defineAnim("a_walk", "0(2), 1, 2(2), 1");
-		tiles.defineAnim("a_atk", "0, 1(2)");
+		tiles.defineAnim("a_atk", "0, 1(1), 2(2)");
 
 		tiles.defineAnim("d_walk", "0(2), 1, 2(2), 1");
 		tiles.defineAnim("d_atkA", "0, 1(2), 2(2), 3(3)");

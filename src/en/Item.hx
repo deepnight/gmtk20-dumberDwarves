@@ -25,12 +25,20 @@ class Item extends Entity {
 		ALL.remove(this);
 	}
 
-	public function consume(by:Entity) {
+	public function consume(by:en.Ai) {
 		switch type {
 			case Gem:
-			case Bait:
+			case BaitFull:
+				type = BaitPart;
+				spr.set("i_"+type.getName());
+				dz = -0.1;
+				blink(0xffcc00);
+				by.prohibit(this);
+
+			case BaitPart:
+				fx.emptyBone(this);
+				destroy();
 		}
-		destroy();
 	}
 
 	override function postUpdate() {

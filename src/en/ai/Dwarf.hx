@@ -49,7 +49,7 @@ class Dwarf extends en.Ai {
 				if( e.is(Item) )
 					switch e.as(Item).type {
 						case Gem: 1;
-						case Bait: 5;
+						case BaitFull, BaitPart: 5;
 					}
 				else if( e.is(Breakable) )
 					1;
@@ -109,6 +109,7 @@ class Dwarf extends en.Ai {
 					chargeAtk(e);
 
 			case Grab(it):
+			case BringToCart:
 			case AttackDwarf(e):
 		}
 	}
@@ -135,7 +136,7 @@ class Dwarf extends en.Ai {
 			else
 				bumpEnt(e, rnd(0.08,0.09));
 
-			game.camera.shakeS(0.2,0.4);
+			game.camera.shakeS(0.2,0.2);
 			game.camera.bump(dir*4,0);
 			fx.blood(e.headX, e.headY, angTo(e));
 			fx.bloodImpact(e.headX, e.headY, angTo(e));

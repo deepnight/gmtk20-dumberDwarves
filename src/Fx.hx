@@ -265,6 +265,24 @@ class Fx extends dn.Process {
 		p.lifeS = 0.1;
 	}
 
+	public function emptyBone(e:Entity) {
+		var p = allocBgNormal(getTile("emptyBone"), e.footX, e.footY-4);
+		p.setFadeS(1,0,5);
+		p.dy = -rnd(2,3);
+		p.dr = rnd(0.1, 0.2, true);
+		p.dx = rnd(1,2,true);
+		p.groundY = e.footY;
+		p.bounceMul = 0;
+		p.frict = 0.93;
+		p.gy = 0.2;
+		p.lifeS = 6;
+		p.onBounce = function() {
+			p.dy = p.gy = 0;
+			p.rotation = rnd(0,0.3,true);
+			p.dr = 0;
+		}
+	}
+
 	public function prohibited(e:Entity) {
 		var p = allocTopNormal(getTile("fxProhib"), e.centerX, e.centerY);
 		p.colorize(0xff0000);

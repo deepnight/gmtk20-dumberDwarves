@@ -48,21 +48,21 @@ a_idle1
   index: -1
 a_walk0
   rotate: false
-  xy: 95, 154
+  xy: 95, 147
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_walk1
   rotate: false
-  xy: 61, 168
+  xy: 95, 164
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_walk2
   rotate: false
-  xy: 78, 168
+  xy: 61, 168
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -83,7 +83,7 @@ cart
   index: -1
 crate0
   rotate: false
-  xy: 40, 172
+  xy: 78, 168
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -174,7 +174,7 @@ d_idle0
   index: -1
 d_walk0
   rotate: false
-  xy: 96, 129
+  xy: 96, 122
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
@@ -200,9 +200,16 @@ empty
   orig: 1, 1
   offset: 0, 0
   index: -1
+emptyBone
+  rotate: false
+  xy: 112, 113
+  size: 15, 8
+  orig: 15, 8
+  offset: 0, 0
+  index: -1
 fxCircle0
   rotate: false
-  xy: 18, 173
+  xy: 40, 172
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -237,7 +244,7 @@ fxGib2
   index: -1
 fxImpact0
   rotate: false
-  xy: 96, 118
+  xy: 112, 103
   size: 15, 9
   orig: 15, 9
   offset: 0, 0
@@ -293,7 +300,21 @@ fxTail0
   index: -1
 i_Bait
   rotate: false
+  xy: 18, 173
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+i_BaitFull
+  rotate: false
   xy: 1, 183
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+i_BaitPart
+  rotate: false
+  xy: 95, 181
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -321,16 +342,16 @@ pixel
   index: -1
 uiBaitOff
   rotate: false
-  xy: 112, 103
-  size: 15, 12
-  orig: 15, 12
+  xy: 57, 185
+  size: 16, 12
+  orig: 16, 12
   offset: 0, 0
   index: -1
 uiBaitOn
   rotate: false
-  xy: 112, 116
-  size: 15, 12
-  orig: 15, 12
+  xy: 74, 185
+  size: 16, 12
+  orig: 16, 12
   offset: 0, 0
   index: -1
 uiBar

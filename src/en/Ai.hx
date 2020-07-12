@@ -108,9 +108,16 @@ class Ai extends Entity {
 			case Idle:
 			case Grab(i):
 				prohibit(i);
+				releaseCarriedEnt(true);
+
 
 			case Break(e):
 				prohibit(e);
+
+			case BringToCart:
+				if( isCarrying(Item) )
+					prohibit( carriedEnt );
+				releaseCarriedEnt(true);
 
 			case AttackDwarf(e):
 		}
@@ -140,42 +147,44 @@ class Ai extends Entity {
 					return;
 				}
 
-				if( carriedEnt!=i ) {
-					// Seek target
-					releaseCarriedEnt();
-					goto(i.cx,i.cy);
-					showTaskFocus(i);
-					setBubble("i_"+Std.string(i.type));
-					if( distCase(i)<=0.8 ) {
-						var t = switch i.type {
-							case Bait: 0.3;
-							case _: 1;
-						}
-						chargeAction("pick", t, function() {
-							switch i.type {
-								case Gem:
-									carry(i);
-
-								case Bait:
-									i.consume(this);
-									doTask(Idle);
-							}
-						});
+				// Seek target
+				releaseCarriedEnt();
+				goto(i.cx,i.cy);
+				showTaskFocus(i);
+				setBubble("i_"+Std.string(i.type));
+				if( distCase(i)<=0.8 ) {
+					var t = switch i.type {
+						case BaitFull, BaitPart: 0.4;
+						case _: 1;
 					}
+					chargeAction("pick", t, function() {
+						switch i.type {
+							case Gem:
+								carry(i);
+								doTask(BringToCart);
+
+							case BaitFull, BaitPart:
+								i.consume(this);
+								doTask(Idle);
+						}
+					});
 				}
-				else {
-					// Bring back to Cart
-					var c = en.Cart.ME;
-					showTaskFocus(c);
-					setBubble("i_Cart", false);
-					goto(c.cx, c.cy);
-					if( distCase(c)<=1 )
-						chargeAction("drop", 1, function() {
-							c.dropGem();
-							carriedEnt.destroy();
-							doTask(Idle);
-						});
+
+			case BringToCart:
+				if( carriedEnt==null ) {
+					doTask(Idle);
+					return;
 				}
+				var c = en.Cart.ME;
+				showTaskFocus(c);
+				setBubble("i_Cart", false);
+				goto(c.cx, c.cy);
+				if( distCase(c)<=1 )
+					chargeAction("drop", 1, function() {
+						c.dropGem();
+						carriedEnt.destroy();
+						doTask(Idle);
+					});
 
 			case Break(e):
 				setBubble("crate");
@@ -212,6 +221,16 @@ class Ai extends Entity {
 			dir = pt.footX<footX ? -1 : 1;
 			var a = Math.atan2(pt.footY-footY, pt.footX-footX);
 			var spd = getSpeed()*10;
+			switch task {
+				case Idle:
+				case Grab(e): switch e.type {
+					case Gem: spd*=2;
+					case BaitFull, BaitPart: spd*=1.5;
+				}
+				case Break(e):
+				case BringToCart: spd*=2;
+				case AttackDwarf(e):
+			}
 			dx += Math.cos(a)*spd;
 			dy += Math.sin(a)*spd;
 			cd.setS("stepLock",0.4);
@@ -265,7 +284,7 @@ class Ai extends Entity {
 			if( !p.e.isAlive() || p.sec<=0 )
 				prohibiteds.splice(i,1);
 			else {
-				if( !p.e.cd.hasSetS("prohibFx", 0.5) && !p.e.isCarried )
+				if( !p.e.cd.hasSetS("prohibFx", 0.5) && !p.e.isCarried && ( !p.e.is(Item) || p.e.as(Item).type!=BaitPart ) )
 					fx.prohibited(p.e);
 				i++;
 			}

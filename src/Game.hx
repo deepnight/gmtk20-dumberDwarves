@@ -113,14 +113,14 @@ class Game extends Process {
 		var m = new tools.MouseCoords(e.relX, e.relY);
 
 		var dh = new dn.DecisionHelper(en.ai.Dwarf.ALL);
-		dh.keepOnly( function(e) return e.isAlive() && M.dist(m.levelX, m.levelY, e.footX, e.footY) <= Const.GRID*0.8 );
+		dh.keepOnly( function(e) return e.isAlive() && M.dist(m.levelX, m.levelY, e.centerX, e.centerY) <= Const.GRID*0.9 );
 		dh.score( function(e) return -M.dist(m.levelX, m.levelY, e.footX, e.footY) );
 		dh.useBest( function(e) {
 			e.slap(m.levelX, m.levelY);
 		});
 		if( dh.countRemaining()==0 ) {
 			if( useBait() ) {
-				var e = new en.Item(m.cx, m.cy, Bait);
+				var e = new en.Item(m.cx, m.cy, BaitFull);
 				e.zr = -2;
 			}
 		}

@@ -9,7 +9,7 @@ class Cart extends Entity {
 		super(x,y);
 		spr.set("cart");
 		ME = this;
-		weight = 10;
+		weight = 20;
 		enableShadow();
 	}
 

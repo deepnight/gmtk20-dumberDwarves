@@ -148,8 +148,8 @@ class Entity {
 		cancelAction();
 		cancelVelocities();
 
-		game.camera.shakeS(1, 0.2);
-		game.camera.bump(0,5);
+		game.camera.shakeS(0.3, 0.2);
+		game.camera.bump(0,-5);
 		dz = -0.1;
 		dx = -dir*0.04;
 		spr.anim.play("d_hit").setSpeed(0.03);
@@ -626,10 +626,10 @@ class Entity {
 		// Circular collisions
 		if( weight>0 ) {
 			var repel = 0.04;
+			var r = Const.GRID*0.6;
 			for(e in ALL )
 				if( e!=this && e.weight>0 && e.isAlive() && M.fabs(e.cx-cx)<=2 && M.fabs(e.cy-cy)<=2 ) {
 					var d = distPx(e);
-					var r = Const.GRID*0.9;
 					if( distPx(e)<=r ) {
 						var a = Math.atan2(e.footY-footY, e.footX-footX) + rnd(0,0.05,true);
 						var pow = 0.3 + 0.7 * (1-d/r);
@@ -718,8 +718,8 @@ class Entity {
 			var a = carriedEnt.angTo(this) + rnd(0,0.7,true);
 			carriedEnt.dx *= Math.pow(0.85,tmod);
 			carriedEnt.dy *= Math.pow(0.85,tmod);
-			carriedEnt.dx += Math.cos(a)*0.008 * tmod;
-			carriedEnt.dy += Math.sin(a)*0.008 * tmod;
+			carriedEnt.dx += Math.cos(a)*0.016 * tmod;
+			carriedEnt.dy += Math.sin(a)*0.016 * tmod;
 		}
 
 		#if debug

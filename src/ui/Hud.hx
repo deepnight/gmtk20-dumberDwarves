@@ -7,6 +7,7 @@ class Hud extends dn.Process {
 
 	var flow : h2d.Flow;
 	var invalidated = true;
+	var lastBaits = 0;
 
 	public function new() {
 		super(Game.ME);
@@ -34,7 +35,26 @@ class Hud extends dn.Process {
 		for(i in 0...Const.BAITS) {
 			var active = i+1<=game.baits;
 			var e = Assets.tiles.h_get("uiBait"+(active?"On":"Off"), flow);
+			e.scale(2);
+			if( active && i+1>lastBaits ) {
+				var a = Assets.tiles.h_get("fxExplosion", flow);
+				a.blendMode = Add;
+				a.colorize(0x9effa5);
+				a.setCenterRatio(0.5,0.5);
+				a.rotation = M.PI;
+				a.scale(2);
+
+				a.anim.play("fxExplosion");
+				a.anim.killAfterPlay();
+				a.anim.setSpeed(0.2);
+
+				flow.getProperties(a).isAbsolute = true;
+				flow.reflow();
+				a.x = e.x + e.tile.width*0.5 * e.scaleX;
+				a.y = e.y + e.tile.height*0.5 * e.scaleY;
+			}
 		}
+		lastBaits = game.baits;
 	}
 
 	override function postUpdate() {

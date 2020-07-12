@@ -148,11 +148,14 @@ class Game extends Process {
 		return true;
 	}
 
-	public function refillBaits() {
+	public function refillBaits(?n:Int) {
 		if( baits>=Const.BAITS )
 			return;
 
-		baits = Const.BAITS;
+		if( n==null )
+			baits = Const.BAITS;
+		else
+			baits = M.imin(Const.BAITS, baits+n);
 		hud.invalidate();
 	}
 
@@ -381,6 +384,12 @@ class Game extends Process {
 			if( ca.selectPressed() )
 				Main.ME.startGame();
 		}
+
+		// Bait refill
+		if( baits==Const.BAITS )
+			cd.unset("autoRefill");
+		if( !cd.hasSetS("autoRefill",3) )
+			refillBaits(1);
 	}
 }
 

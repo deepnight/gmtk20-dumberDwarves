@@ -776,8 +776,8 @@
 						},
 						{
 							"defId":9,
-							"x":72,
-							"y":136,
+							"x":47,
+							"y":127,
 							"fieldInstances":[
 								{
 									"defId":10,
@@ -819,6 +819,127 @@
 											"Bait"
 										]
 									}
+								}
+							]
+						},
+						{
+							"defId":13,
+							"x":218,
+							"y":166,
+							"fieldInstances":[
+								{
+									"defId":14,
+									"internalValue":null
+								}
+							]
+						},
+						{
+							"defId":13,
+							"x":187,
+							"y":135,
+							"fieldInstances":[
+								{
+									"defId":14,
+									"internalValue":null
+								}
+							]
+						},
+						{
+							"defId":13,
+							"x":121,
+							"y":132,
+							"fieldInstances":[
+								{
+									"defId":14,
+									"internalValue":null
+								}
+							]
+						},
+						{
+							"defId":13,
+							"x":185,
+							"y":204,
+							"fieldInstances":[
+								{
+									"defId":14,
+									"internalValue":null
+								}
+							]
+						},
+						{
+							"defId":13,
+							"x":327,
+							"y":158,
+							"fieldInstances":[
+								{
+									"defId":14,
+									"internalValue":null
+								}
+							]
+						},
+						{
+							"defId":13,
+							"x":344,
+							"y":98,
+							"fieldInstances":[
+								{
+									"defId":14,
+									"internalValue":null
+								}
+							]
+						},
+						{
+							"defId":13,
+							"x":236,
+							"y":40,
+							"fieldInstances":[
+								{
+									"defId":14,
+									"internalValue":null
+								}
+							]
+						},
+						{
+							"defId":13,
+							"x":253,
+							"y":79,
+							"fieldInstances":[
+								{
+									"defId":14,
+									"internalValue":null
+								}
+							]
+						},
+						{
+							"defId":13,
+							"x":144,
+							"y":62,
+							"fieldInstances":[
+								{
+									"defId":14,
+									"internalValue":null
+								}
+							]
+						},
+						{
+							"defId":13,
+							"x":80,
+							"y":92,
+							"fieldInstances":[
+								{
+									"defId":14,
+									"internalValue":null
+								}
+							]
+						},
+						{
+							"defId":13,
+							"x":95,
+							"y":220,
+							"fieldInstances":[
+								{
+									"defId":14,
+									"internalValue":null
 								}
 							]
 						}

@@ -564,6 +564,7 @@ class Entity {
         spr.scaleX = dir*sprScaleX * sprSquashX;
         spr.scaleY = sprScaleY * sprSquashY;
 		spr.visible = entityVisible;
+		spr.alpha = isCarried ? 0.6 : 1;
 
 		if( shadow!=null ) {
 			// shadow.visible = !isCarried;

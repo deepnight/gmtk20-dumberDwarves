@@ -70,9 +70,9 @@ class Ai extends Entity {
 			case Idle:
 
 			case Grab(it):
-				if( !isCarryingItem(it) ) {
+				// if( !isCarryingItem(it) ) {
 					// Seek target
-					releaseCarriedEnt();
+					// releaseCarriedEnt();
 					cancelPath();
 					var dh = new dn.DecisionHelper(Item.ALL);
 					dh.keepOnly( function(i) return i.isAlive() && i.type==it );
@@ -88,13 +88,13 @@ class Ai extends Entity {
 									case Gem: carry(i);
 									case Bait: i.consume(this);
 								}
-
+								doTask(Idle);
 							});
 						}
 					});
-				}
-				else
-					goto(1,1);
+				// }
+				// else
+					// goto(1,1);
 
 			case AttackDwarf(e):
 				if( distCase(e)>2 || !sightCheckEnt(e) )
@@ -149,6 +149,12 @@ class Ai extends Entity {
 	function updateAutoAttack() {
 		for(e in getAttackables())
 			if( e.isAlive() && distCase(e)<=atkRange ) {
+				if( isChargingAction() ) {
+					cancelAction();
+					if( !canAct() )
+						return;
+				}
+
 				dir = dirTo(e);
 				dx*=0.8;
 				dy*=0.8;
@@ -191,7 +197,7 @@ class Ai extends Entity {
 		if( canAct() )
 			updateAi();
 
-		if( canAct() && !cd.has("atkLock") )
+		if( !cd.has("atkLock") && !isChargingAction("atk") )
 			updateAutoAttack();
 	}
 }

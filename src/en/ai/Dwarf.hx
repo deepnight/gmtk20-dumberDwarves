@@ -13,8 +13,9 @@ class Dwarf extends en.Ai {
 		detectRadius = 9;
 		atkRange = 1.5;
 
-		spr.anim.registerStateAnim("d_hit", 3, 0.15, function() return hasAffect(Stun) );
-		spr.anim.registerStateAnim("d_atk_charge", 2, 0.15, function() return isChargingAction("atk") );
+		spr.anim.registerStateAnim("d_hit", 10, 0.15, function() return hasAffect(Stun) );
+		spr.anim.registerStateAnim("d_atk_charge", 3, 0.15, function() return isChargingAction("atk") );
+		spr.anim.registerStateAnim("d_act", 2, 0.15, function() return isChargingAction() );
 		spr.anim.registerStateAnim("d_walk", 1, rnd(0.11,0.15), function() return isWalking() );
 		spr.anim.registerStateAnim("d_idle", 0, 0.1);
 	}
@@ -54,8 +55,11 @@ class Dwarf extends en.Ai {
 
 	override function onDamage(dmg:Int, from:Null<Entity>) {
 		super.onDamage(dmg, from);
+
 		setAffectS(Stun,0.7);
-		bumpFrom(from, 0.04);
+
+		if( from!=null )
+			bumpFrom(from, 0.04);
 	}
 
 	override function getSpeed():Float {

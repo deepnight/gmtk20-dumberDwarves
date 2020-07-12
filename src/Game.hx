@@ -84,12 +84,12 @@ class Game extends Process {
 	function onMouseDown(e:hxd.Event) {
 		var m = new tools.MouseCoords(e.relX, e.relY);
 
-		// var dh = new dn.DecisionHelper(en.Ai.ALL);
-		// dh.keepOnly( function(e) return e.isAlive() && M.dist(m.levelX, m.levelY, e.footX, e.footY) <= Const.GRID*2 );
-		// dh.score( function(e) return -M.dist(m.levelX, m.levelY, e.footX, e.footY) );
-		// dh.useBest( function(e) {
-		// 	e.wrathOfGod(m.levelX, m.levelY);
-		// });
+		var dh = new dn.DecisionHelper(en.ai.Dwarf.ALL);
+		dh.keepOnly( function(e) return e.isAlive() && M.dist(m.levelX, m.levelY, e.footX, e.footY) <= Const.GRID*2 );
+		dh.score( function(e) return -M.dist(m.levelX, m.levelY, e.footX, e.footY) );
+		dh.useBest( function(e) {
+			e.wrathOfGod(m.levelX, m.levelY);
+		});
 
 		en.Ai.ALL[0].goto(m.cx, m.cy);
 	}

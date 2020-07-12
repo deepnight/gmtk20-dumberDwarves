@@ -27,56 +27,70 @@ a_atk2
   index: -1
 a_atk_charge0
   rotate: false
-  xy: 26, 139
+  xy: 96, 118
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_idle0
   rotate: false
-  xy: 1, 146
+  xy: 96, 135
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_idle1
   rotate: false
-  xy: 96, 118
+  xy: 69, 143
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_walk0
   rotate: false
-  xy: 96, 135
+  xy: 44, 155
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_walk1
   rotate: false
-  xy: 62, 143
+  xy: 26, 156
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_walk2
   rotate: false
-  xy: 79, 143
+  xy: 1, 171
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 bubble
   rotate: false
-  xy: 44, 130
+  xy: 26, 139
   size: 17, 16
   orig: 17, 16
   offset: 0, 0
   index: -1
-d_atk_charge0
+d_act0
   rotate: false
   xy: 99, 1
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+d_act1
+  rotate: false
+  xy: 99, 26
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+d_atk_charge0
+  rotate: false
+  xy: 99, 51
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
@@ -104,7 +118,7 @@ d_atkA2
   index: -1
 d_atkA3
   rotate: false
-  xy: 99, 1
+  xy: 99, 51
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
@@ -132,35 +146,35 @@ d_atkB2
   index: -1
 d_hit0
   rotate: false
-  xy: 99, 26
+  xy: 46, 105
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 d_idle0
   rotate: false
-  xy: 99, 51
+  xy: 1, 121
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 d_walk0
   rotate: false
-  xy: 46, 105
+  xy: 71, 118
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 d_walk1
   rotate: false
-  xy: 1, 121
+  xy: 44, 130
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 d_walk2
   rotate: false
-  xy: 71, 118
+  xy: 1, 146
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
@@ -174,7 +188,7 @@ empty
   index: -1
 fxCircle0
   rotate: false
-  xy: 43, 147
+  xy: 86, 152
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -258,7 +272,7 @@ fxTail0
   index: -1
 i_Bait
   rotate: false
-  xy: 18, 156
+  xy: 61, 160
   size: 16, 16
   orig: 16, 16
   offset: 0, 0

@@ -13,5 +13,6 @@ enum ItemType {
 enum Task {
 	Idle;
 	Grab(e:en.Item);
+	Break(e:en.Breakable);
 	AttackDwarf(e:en.ai.Dwarf);
 }

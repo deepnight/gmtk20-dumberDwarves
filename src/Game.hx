@@ -55,6 +55,9 @@ class Game extends Process {
 				case "Mob":
 					new en.ai.Mob(cx,cy);
 
+				case "Crate":
+					new en.Breakable(cx,cy);
+
 				case "Item":
 					var v = new en.Item( cx, cy, ItemType.createByName( ei.getStringField("Type") ) );
 
@@ -110,7 +113,7 @@ class Game extends Process {
 		var m = new tools.MouseCoords(e.relX, e.relY);
 
 		var dh = new dn.DecisionHelper(en.ai.Dwarf.ALL);
-		dh.keepOnly( function(e) return e.isAlive() && M.dist(m.levelX, m.levelY, e.footX, e.footY) <= Const.GRID*2 );
+		dh.keepOnly( function(e) return e.isAlive() && M.dist(m.levelX, m.levelY, e.footX, e.footY) <= Const.GRID*0.8 );
 		dh.score( function(e) return -M.dist(m.levelX, m.levelY, e.footX, e.footY) );
 		dh.useBest( function(e) {
 			e.slap(m.levelX, m.levelY);

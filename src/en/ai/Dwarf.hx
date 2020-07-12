@@ -40,7 +40,9 @@ class Dwarf extends en.Ai {
 
 	function takeDecision() {
 		var dh = new dn.DecisionHelper(Entity.ALL);
-		dh.keepOnly( function(e) return e.isAlive() && !isProhibited(e) && e.is(Item) && canDetect(e) );
+		dh.keepOnly( function(e) return e.is(Item) || e.is(Breakable) );
+		dh.keepOnly( function(e) return e.isAlive() && !isProhibited(e) && canDetect(e) );
+		dh.score( function(e) return rnd(0,2) );
 		dh.score( function(e) return -distCase(e)*0.1 );
 		dh.score( function(e) {
 			return
@@ -49,12 +51,16 @@ class Dwarf extends en.Ai {
 						case Gem: 1;
 						case Bait: 5;
 					}
-				else 0;
+				else if( e.is(Breakable) )
+					1;
+				else
+					0;
 		});
 		dh.useBest( function(e) {
-			if( e.is(Item) ) {
+			if( e.is(Item) )
 				doTask( Grab(e.as(Item)) );
-			}
+			else if( e.is(Breakable) )
+				doTask( Break(e.as(Breakable)) );
 		});
 	}
 
@@ -94,6 +100,14 @@ class Dwarf extends en.Ai {
 				if( !cd.hasSetS("decision", 0.6) )
 					takeDecision();
 
+			case Break(e):
+				if( !e.isAlive() ) {
+					doTask(Idle);
+					return;
+				}
+				if( distCase(e)<=1 )
+					chargeAtk(e);
+
 			case Grab(it):
 			case AttackDwarf(e):
 		}
@@ -107,7 +121,7 @@ class Dwarf extends en.Ai {
 		chargeAction("atk", 0.09, function() {
 			spr.anim.play(atkA ? "d_atkA" : "d_atkB").setSpeed(0.2);
 			lockAiS(atkA ? 0.1 : 0.4);
-			cd.setS("resetAtk",0.7);
+			cd.setS("resetAtk",0.4);
 			atkA = !atkA;
 
 			if( !e.isAlive() || distCase(e)>atkRange*2 )
@@ -143,7 +157,7 @@ class Dwarf extends en.Ai {
 	override function update() {
 		super.update();
 
-		if( atkA && !cd.has("resetAtk") )
+		if( !atkA && !cd.has("resetAtk") )
 			atkA = true;
 	}
 }

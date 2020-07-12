@@ -41,7 +41,7 @@ a_idle0
   index: -1
 a_idle1
   rotate: false
-  xy: 1, 167
+  xy: 1, 166
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -77,8 +77,15 @@ bubble
 cart
   rotate: false
   xy: 1, 146
-  size: 21, 20
-  orig: 21, 20
+  size: 21, 19
+  orig: 21, 19
+  offset: 0, 0
+  index: -1
+crate0
+  rotate: false
+  xy: 40, 172
+  size: 16, 16
+  orig: 16, 16
   offset: 0, 0
   index: -1
 d_act0
@@ -195,7 +202,7 @@ empty
   index: -1
 fxCircle0
   rotate: false
-  xy: 40, 172
+  xy: 18, 173
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -286,7 +293,7 @@ fxTail0
   index: -1
 i_Bait
   rotate: false
-  xy: 18, 173
+  xy: 1, 183
   size: 16, 16
   orig: 16, 16
   offset: 0, 0

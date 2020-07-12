@@ -629,7 +629,7 @@ class Entity {
 			for(e in ALL )
 				if( e!=this && e.weight>0 && e.isAlive() && M.fabs(e.cx-cx)<=2 && M.fabs(e.cy-cy)<=2 ) {
 					var d = distPx(e);
-					var r = Const.GRID*0.5;
+					var r = Const.GRID*0.9;
 					if( distPx(e)<=r ) {
 						var a = Math.atan2(e.footY-footY, e.footX-footX) + rnd(0,0.05,true);
 						var pow = 0.3 + 0.7 * (1-d/r);

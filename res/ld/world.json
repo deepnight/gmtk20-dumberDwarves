@@ -1,6 +1,6 @@
 {
 	"dataVersion":1,
-	"nextUniqId":20,
+	"nextUniqId":22,
 	"defs":{
 		"layers":[
 			{
@@ -45,6 +45,26 @@
 				"tilePivotY":0
 			},
 			{
+				"uid":20,
+				"type":{
+					"id":2,
+					"p":[
+						
+					]
+				},
+				"name":"Details",
+				"gridSize":16,
+				"displayOpacity":1,
+				"intGridValues":[
+					{
+						"color":0
+					}
+				],
+				"tilesetDefId":16,
+				"tilePivotX":0,
+				"tilePivotY":0
+			},
+			{
 				"uid":18,
 				"type":{
 					"id":2,
@@ -52,7 +72,7 @@
 						
 					]
 				},
-				"name":"Tiles",
+				"name":"Bg",
 				"gridSize":16,
 				"displayOpacity":1,
 				"intGridValues":[
@@ -169,6 +189,20 @@
 				"width":24,
 				"height":16,
 				"color":11052416,
+				"maxPerLevel":0,
+				"discardExcess":true,
+				"pivotX":0.5,
+				"pivotY":1,
+				"fieldDefs":[
+					
+				]
+			},
+			{
+				"uid":21,
+				"name":"Crate",
+				"width":16,
+				"height":16,
+				"color":10641476,
 				"maxPerLevel":0,
 				"discardExcess":true,
 				"pivotX":0.5,
@@ -373,6 +407,18 @@
 							"v":0
 						},
 						{
+							"coordId":159,
+							"v":0
+						},
+						{
+							"coordId":160,
+							"v":0
+						},
+						{
+							"coordId":161,
+							"v":0
+						},
+						{
 							"coordId":162,
 							"v":0
 						},
@@ -457,7 +503,7 @@
 							"v":0
 						},
 						{
-							"coordId":265,
+							"coordId":262,
 							"v":0
 						},
 						{
@@ -497,6 +543,10 @@
 							"v":0
 						},
 						{
+							"coordId":321,
+							"v":0
+						},
+						{
 							"coordId":327,
 							"v":0
 						},
@@ -509,6 +559,10 @@
 							"v":0
 						},
 						{
+							"coordId":347,
+							"v":0
+						},
+						{
 							"coordId":353,
 							"v":0
 						},
@@ -518,6 +572,10 @@
 						},
 						{
 							"coordId":364,
+							"v":0
+						},
+						{
+							"coordId":373,
 							"v":0
 						},
 						{
@@ -702,8 +760,8 @@
 						},
 						{
 							"defId":9,
-							"x":216,
-							"y":240,
+							"x":88,
+							"y":232,
 							"fieldInstances":[
 								{
 									"defId":10,
@@ -761,28 +819,6 @@
 											"Gem"
 										]
 									}
-								}
-							]
-						},
-						{
-							"defId":13,
-							"x":218,
-							"y":166,
-							"fieldInstances":[
-								{
-									"defId":14,
-									"internalValue":null
-								}
-							]
-						},
-						{
-							"defId":13,
-							"x":187,
-							"y":135,
-							"fieldInstances":[
-								{
-									"defId":14,
-									"internalValue":null
 								}
 							]
 						},
@@ -869,25 +905,73 @@
 							]
 						},
 						{
-							"defId":9,
-							"x":56,
-							"y":200,
+							"defId":21,
+							"x":24,
+							"y":128,
 							"fieldInstances":[
-								{
-									"defId":10,
-									"internalValue":{
-										"id":3,
-										"p":[
-											"Gem"
-										]
-									}
-								}
+								
+							]
+						},
+						{
+							"defId":21,
+							"x":136,
+							"y":160,
+							"fieldInstances":[
+								
+							]
+						},
+						{
+							"defId":21,
+							"x":152,
+							"y":144,
+							"fieldInstances":[
+								
+							]
+						},
+						{
+							"defId":21,
+							"x":40,
+							"y":224,
+							"fieldInstances":[
+								
+							]
+						},
+						{
+							"defId":21,
+							"x":24,
+							"y":256,
+							"fieldInstances":[
+								
+							]
+						},
+						{
+							"defId":21,
+							"x":136,
+							"y":256,
+							"fieldInstances":[
+								
+							]
+						},
+						{
+							"defId":21,
+							"x":120,
+							"y":208,
+							"fieldInstances":[
+								
+							]
+						},
+						{
+							"defId":11,
+							"x":88,
+							"y":144,
+							"fieldInstances":[
+								
 							]
 						},
 						{
 							"defId":11,
 							"x":40,
-							"y":144,
+							"y":160,
 							"fieldInstances":[
 								
 							]
@@ -897,6 +981,21 @@
 				{
 					"levelId":0,
 					"layerDefId":18,
+					"pxOffsetX":0,
+					"pxOffsetY":0,
+					"intGrid":[
+						
+					],
+					"gridTiles":[
+						
+					],
+					"entityInstances":[
+						
+					]
+				},
+				{
+					"levelId":0,
+					"layerDefId":20,
 					"pxOffsetX":0,
 					"pxOffsetY":0,
 					"intGrid":[

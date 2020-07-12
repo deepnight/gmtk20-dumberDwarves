@@ -109,6 +109,9 @@ class Ai extends Entity {
 			case Grab(i):
 				prohibit(i);
 
+			case Break(e):
+				prohibit(e);
+
 			case AttackDwarf(e):
 		}
 
@@ -173,6 +176,11 @@ class Ai extends Entity {
 							doTask(Idle);
 						});
 				}
+
+			case Break(e):
+				setBubble("crate");
+				showTaskFocus(e);
+				goto(e.cx,e.cy);
 
 			case AttackDwarf(e):
 				if( !e.isAlive() ) {

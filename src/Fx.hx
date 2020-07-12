@@ -192,7 +192,9 @@ class Fx extends dn.Process {
 		}
 	}
 
-	public function bloodImpact(x:Float, y:Float, ang:Float) {
+
+
+	public function impact(x:Float, y:Float, ang:Float) {
 		for(i in 0...3) {
 			var p = allocTopAdd(getTile("fxImpact"), x+rnd(0,2,true),y+4+rnd(0,2,true));
 			p.setFadeS(rnd(0.3,0.8), 0, 0.07);
@@ -204,7 +206,9 @@ class Fx extends dn.Process {
 			p.scaleXMul = rnd(0.994, 0.996);
 			p.lifeS = rnd(0.06,0.08);
 		}
+	}
 
+	public function bloodImpact(x:Float, y:Float, ang:Float) {
 		for(i in 0...40) {
 			var a = ang+rnd(0,0.3,true);
 			var p = allocTopNormal( getTile("fxGib"), x+rnd(0,5,true), y+rnd(0,5,true));
@@ -286,6 +290,26 @@ class Fx extends dn.Process {
 			p.setScale(rnd(0.4,0.7,true));
 			p.scaleMul = rnd(0.995, 0.999);
 			p.moveAwayFrom(x,y, rnd(1,2));
+			p.frict = rnd(0.84, 0.93);
+			p.lifeS = rnd(8,10);
+			p.onUpdate = _bloodPhysics;
+		}
+	}
+
+
+
+	public function dirtImpact(x:Float,y:Float, c:UInt, ang:Float) {
+		for(i in 0...70) {
+			var p = allocBgNormal( getTile("fxGib"), x+rnd(0,5,true), y+rnd(0,5,true));
+			p.setFadeS(rnd(0.4,0.6), 0, rnd(1,2));
+			p.colorize(C.toBlack(c,rnd(0,0.4)));
+			p.rotation = rnd(0,M.PI2);
+			p.setScale(rnd(0.4,0.7,true));
+			p.scaleMul = rnd(0.995, 0.999);
+			p.moveAwayFrom(x,y, rnd(0.7,2));
+			var s = rnd(1,3);
+			p.dx+=Math.cos(ang)*s;
+			p.dy+=Math.sin(ang)*s;
 			p.frict = rnd(0.84, 0.93);
 			p.lifeS = rnd(8,10);
 			p.onUpdate = _bloodPhysics;

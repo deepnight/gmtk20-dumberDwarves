@@ -170,8 +170,13 @@ class Dwarf extends en.Ai {
 
 			game.camera.shakeS(0.2,0.2);
 			game.camera.bump(dir*4,0);
-			fx.blood(e.headX, e.headY, angTo(e));
-			fx.bloodImpact(e.headX, e.headY, angTo(e));
+			fx.impact(e.headX, e.headY, angTo(e));
+			if( e.is(Mob) ) {
+				fx.bloodImpact(e.headX, e.headY, angTo(e));
+				fx.blood(e.headX, e.headY, angTo(e));
+			}
+			else
+				fx.dirtImpact(e.centerX, e.centerY, 0xb57a40, angTo(e));
 		});
 	}
 

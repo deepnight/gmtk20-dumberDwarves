@@ -14,6 +14,11 @@ class Breakable extends Entity {
 		toBack();
 	}
 
+	override function onDie(?from:Entity) {
+		super.onDie(from);
+		fx.dirtExplosion(centerX, centerY, 0xb57a40);
+	}
+
 	override function dispose() {
 		super.dispose();
 		ALL.remove(this);

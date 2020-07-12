@@ -67,7 +67,13 @@ class Game extends Process {
 		if( level!=null )
 			level.destroy();
 
-		level = new Level(l);
+		var idx = 0;
+		for(pl in ledProject.levels)
+			if( pl==l )
+				break;
+			else
+				idx++;
+		level = new Level(idx,l);
 
 		// Attach entities
 		var li = level.data.getLayerInstance("Entities");

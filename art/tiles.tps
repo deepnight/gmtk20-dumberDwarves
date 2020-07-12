@@ -206,8 +206,12 @@
             <key type="filename">export_tiles/a_walk2.png</key>
             <key type="filename">export_tiles/crate0-60.png</key>
             <key type="filename">export_tiles/crate0-61.png</key>
+            <key type="filename">export_tiles/crate0-63.png</key>
+            <key type="filename">export_tiles/crate0-65.png</key>
             <key type="filename">export_tiles/crate0.png</key>
             <key type="filename">export_tiles/fxCircle0.png</key>
+            <key type="filename">export_tiles/gStone0.png</key>
+            <key type="filename">export_tiles/gStone1.png</key>
             <key type="filename">export_tiles/i_Bait.png</key>
             <key type="filename">export_tiles/i_BaitFull.png</key>
             <key type="filename">export_tiles/i_BaitPart.png</key>
@@ -280,6 +284,8 @@
             <key type="filename">export_tiles/d_walk0.png</key>
             <key type="filename">export_tiles/d_walk1.png</key>
             <key type="filename">export_tiles/d_walk2.png</key>
+            <key type="filename">export_tiles/wall0.png</key>
+            <key type="filename">export_tiles/wall1.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>

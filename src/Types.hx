@@ -12,6 +12,6 @@ enum ItemType {
 
 enum Task {
 	Idle;
-	Grab(it:ItemType);
+	Grab(e:en.Item);
 	AttackDwarf(e:en.ai.Dwarf);
 }

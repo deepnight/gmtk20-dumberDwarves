@@ -5,7 +5,6 @@ class Ai extends Entity {
 
 	var task : Task;
 	var detectRadius = 5;
-	var taskFocus : Null<Entity>;
 	var path : Array<CPoint> = [];
 	var origin : CPoint;
 	var atkRange = 1.0; // case
@@ -100,7 +99,6 @@ class Ai extends Entity {
 		cancelPath();
 		task = t;
 		clearBubble();
-		taskFocus = null;
 	}
 
 	override function slap(x:Int,y:Int) {
@@ -108,19 +106,18 @@ class Ai extends Entity {
 
 		switch task {
 			case Idle:
-			case Grab(it):
-				if( carriedEnt!=null ) {
-					prohibit(carriedEnt);
-					releaseCarriedEnt(true);
-				}
-				else if( taskFocus!=null )
-					prohibit(taskFocus);
+			case Grab(i):
+				prohibit(i);
 
 			case AttackDwarf(e):
 		}
 
 		doTask( Idle );
 	}
+
+
+	function showTaskFocus(e:Entity) {}
+
 
 	public function goto(tcx:Int, tcy:Int) {
 		path = game.level.pf.getPath(cx,cy, tcx,tcy);
@@ -133,44 +130,40 @@ class Ai extends Entity {
 
 			case Idle:
 
-			case Grab(it):
-				if( !isCarryingItem(it) ) {
+			case Grab(i):
+ 				if( !i.isAlive() || i.isCarried && i.getCarrier()!=this ) {
+					// Lost target
+					doTask(Idle);
+					return;
+				}
+
+				if( carriedEnt!=i ) {
 					// Seek target
 					releaseCarriedEnt();
-					cancelPath();
-					setBubble("i_"+Std.string(it));
-					var dh = new dn.DecisionHelper(Item.ALL);
-					dh.keepOnly( function(i) return i.isAlive() && i.type==it && canDetect(i) && !isProhibited(i) );
-					dh.remove( function(i) return i.isCarried );
-					dh.score( function(i) return -distCase(i) );
-
-					if( dh.countRemaining()<=0 )
-						doTask(Idle);
-
-					dh.useBest( function(i) {
-						taskFocus = i;
-						goto(i.cx, i.cy);
-						if( distCase(i)<=0.8 ) {
-							var t = switch it {
-								case Bait: 0.3;
-								case _: 1;
-							}
-							chargeAction("pick", t, function() {
-								switch it {
-									case Gem:
-										carry(i);
-
-									case Bait:
-										i.consume(this);
-										doTask(Idle);
-								}
-							});
+					goto(i.cx,i.cy);
+					showTaskFocus(i);
+					setBubble("i_"+Std.string(i.type));
+					if( distCase(i)<=0.8 ) {
+						var t = switch i.type {
+							case Bait: 0.3;
+							case _: 1;
 						}
-					});
+						chargeAction("pick", t, function() {
+							switch i.type {
+								case Gem:
+									carry(i);
+
+								case Bait:
+									i.consume(this);
+									doTask(Idle);
+							}
+						});
+					}
 				}
 				else {
+					// Bring back to Cart
 					var c = en.Cart.ME;
-					taskFocus = c;
+					showTaskFocus(c);
 					setBubble("i_Cart", false);
 					goto(c.cx, c.cy);
 					if( distCase(c)<=1 )
@@ -182,9 +175,16 @@ class Ai extends Entity {
 				}
 
 			case AttackDwarf(e):
-				taskFocus = e;
-				if( distCase(e)>2 || !sightCheckEnt(e) )
+				if( !e.isAlive() ) {
+					// Lost target
+					doTask(Idle);
+					return;
+				}
+
+				if( distCase(e)>2 || !sightCheckEnt(e) ) {
+					showTaskFocus(e);
 					goto(e.cx, e.cy);
+				}
 				else {
 					cancelPath();
 					var a = angTo(e);
@@ -193,22 +193,6 @@ class Ai extends Entity {
 					dy += Math.sin(a) * spd * tmod;
 				}
 		}
-
-
-		// Movement
-		// if( moveTarget.cx>=0 && moveTarget.distCase(this)>0.4 && !cd.has("stepLock") ) {
-		// 	fx.markerFree(moveTarget.footX, moveTarget.footY, 0.5);
-		// 	var a = Math.atan2(moveTarget.footY-footY, moveTarget.footX-footX);
-		// 	var spd = 0.09;
-		// 	spd *= switch task {
-		// 		case Idle: 0.6;
-		// 		case _: 1;
-		// 	}
-		// 	dir = dx>0 ? 1 : dx<0 ? -1 : dir;
-		// 	dx += Math.cos(a)*spd;
-		// 	dy += Math.sin(a)*spd;
-		// 	cd.setS("stepLock",0.4);
-		// }
 
 		// Remove reached path nodes
 		while( path.length>0 && distCaseFree(path[0].cx, path[0].cy)<=0.3 )
@@ -269,13 +253,14 @@ class Ai extends Entity {
 		while( i<prohibiteds.length ) {
 			var p = prohibiteds[i];
 			p.sec -= tmod/Const.FPS;
-			if( !p.e.cd.hasSetS("prohibFx", 0.5) )
-				fx.prohibited(p.e);
 
 			if( !p.e.isAlive() || p.sec<=0 )
 				prohibiteds.splice(i,1);
-			else
+			else {
+				if( !p.e.cd.hasSetS("prohibFx", 0.5) && !p.e.isCarried )
+					fx.prohibited(p.e);
 				i++;
+			}
 		}
 	}
 }

@@ -53,7 +53,7 @@ class Dwarf extends en.Ai {
 		});
 		dh.useBest( function(e) {
 			if( e.is(Item) ) {
-				doTask( Grab(e.as(Item).type) );
+				doTask( Grab(e.as(Item)) );
 			}
 		});
 	}
@@ -65,12 +65,15 @@ class Dwarf extends en.Ai {
 		super.doTask(t);
 	}
 
+	override function showTaskFocus(e:Entity) {
+		super.showTaskFocus(e);
+
+		if( !cd.hasSetS("focusFx",0.1) )
+			fx.focus(this, e);
+	}
+
 	override function updateAi() {
 		super.updateAi();
-
-		if( taskFocus!=null )
-			if( !cd.hasSetS("focusFx",0.1) )
-				fx.focus(this, taskFocus);
 
 		switch task {
 			case Idle:

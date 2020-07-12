@@ -10,7 +10,7 @@ class Cart extends Entity {
 		spr.set("cart");
 		ME = this;
 		weight = 10;
-		spr.filter = new dn.heaps.filter.PixelOutline();
+		enableShadow();
 	}
 
 	public function dropGem() {

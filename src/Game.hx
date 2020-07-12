@@ -84,7 +84,12 @@ class Game extends Process {
 					}
 
 				case "MobGen":
-					new en.MobGen(cx,cy);
+					var e = new en.MobGen(cx,cy);
+					e.perSpawn = ei.getIntField("PerSpawn");
+					e.maxChildren = ei.getIntField("MaxChildren");
+
+				case "BossDoor":
+					new en.BossDoor(cx,cy, ei.getIntField("Time"));
 
 				case "Crate":
 					new en.Breakable(cx,cy);

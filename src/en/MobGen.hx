@@ -4,8 +4,8 @@ class MobGen extends Entity {
 	public static var ALL : Array<MobGen> = [];
 
 	var children : Array<en.ai.Mob> = [];
-	var maxChildren = 5;
-	var perSpawn = 2;
+	public var maxChildren = 5;
+	public var perSpawn = 2;
 
 	public function new(x,y) {
 		super(x,y);

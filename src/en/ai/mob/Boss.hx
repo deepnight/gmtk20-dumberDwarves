@@ -23,7 +23,7 @@ class Boss extends en.ai.Mob {
 	}
 
 	override function getSpeed():Float {
-		return super.getSpeed()*0.8;
+		return super.getSpeed()*0.55;
 	}
 
 	override function onBeforePhysics() {

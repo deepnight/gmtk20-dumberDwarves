@@ -1,6 +1,6 @@
 {
 	"dataVersion":1,
-	"nextUniqId":24,
+	"nextUniqId":28,
 	"defs":{
 		"layers":[
 			{
@@ -222,7 +222,112 @@
 				"pivotX":0.5,
 				"pivotY":0.5,
 				"fieldDefs":[
-					
+					{
+						"uid":26,
+						"type":{
+							"id":0,
+							"p":[
+								
+							]
+						},
+						"name":"MaxChildren",
+						"canBeNull":false,
+						"editorDisplayMode":{
+							"id":2,
+							"p":[
+								
+							]
+						},
+						"editorDisplayPos":{
+							"id":0,
+							"p":[
+								
+							]
+						},
+						"min":1,
+						"max":null,
+						"defaultOverride":{
+							"id":0,
+							"p":[
+								3
+							]
+						}
+					},
+					{
+						"uid":27,
+						"type":{
+							"id":0,
+							"p":[
+								
+							]
+						},
+						"name":"PerSpawn",
+						"canBeNull":false,
+						"editorDisplayMode":{
+							"id":2,
+							"p":[
+								
+							]
+						},
+						"editorDisplayPos":{
+							"id":0,
+							"p":[
+								
+							]
+						},
+						"min":1,
+						"max":null,
+						"defaultOverride":{
+							"id":0,
+							"p":[
+								1
+							]
+						}
+					}
+				]
+			},
+			{
+				"uid":24,
+				"name":"BossDoor",
+				"width":24,
+				"height":32,
+				"color":16711680,
+				"maxPerLevel":1,
+				"discardExcess":false,
+				"pivotX":0.5,
+				"pivotY":1,
+				"fieldDefs":[
+					{
+						"uid":25,
+						"type":{
+							"id":0,
+							"p":[
+								
+							]
+						},
+						"name":"Time",
+						"canBeNull":false,
+						"editorDisplayMode":{
+							"id":2,
+							"p":[
+								
+							]
+						},
+						"editorDisplayPos":{
+							"id":0,
+							"p":[
+								
+							]
+						},
+						"min":1,
+						"max":null,
+						"defaultOverride":{
+							"id":0,
+							"p":[
+								30
+							]
+						}
+					}
 				]
 			}
 		],
@@ -290,7 +395,14 @@
 							"x":200,
 							"y":216,
 							"fieldInstances":[
-								
+								{
+									"defId":26,
+									"internalValue":null
+								},
+								{
+									"defId":27,
+									"internalValue":null
+								}
 							]
 						},
 						{
@@ -355,6 +467,22 @@
 							"y":128,
 							"fieldInstances":[
 								
+							]
+						},
+						{
+							"defId":24,
+							"x":136,
+							"y":48,
+							"fieldInstances":[
+								{
+									"defId":25,
+									"internalValue":{
+										"id":0,
+										"p":[
+											5
+										]
+									}
+								}
 							]
 						}
 					]

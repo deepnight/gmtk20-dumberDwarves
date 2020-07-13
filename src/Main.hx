@@ -1,4 +1,3 @@
-import Data;
 import hxd.Key;
 
 class Main extends dn.Process {
@@ -26,25 +25,10 @@ class Main extends dn.Process {
         hxd.Res.initEmbed();
         #end
 
-        // Hot reloading
-		#if debug
-        hxd.res.Resource.LIVE_UPDATE = true;
-        hxd.Res.data.watch(function() {
-            delayer.cancelById("cdb");
-
-            delayer.addS("cdb", function() {
-            	Data.load( hxd.Res.data.entry.getBytes().toString() );
-            	if( Game.ME!=null )
-                    Game.ME.onCdbReload();
-            }, 0.2);
-        });
-		#end
-
 		// Assets & data init
 		Assets.init();
 		new ui.Console(Assets.fontTiny, s);
 		Lang.init("en");
-		Data.load( hxd.Res.data.entry.getText() );
 
 		// Game controller
 		controller = new dn.heaps.Controller(s);

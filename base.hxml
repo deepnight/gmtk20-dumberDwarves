@@ -1,5 +1,4 @@
 -cp src
--lib castle
 -lib heaps
 -lib deepnightLibs
 -lib led-haxe-api

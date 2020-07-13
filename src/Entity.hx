@@ -487,12 +487,12 @@ class Entity {
 	}
 
 	public function toFront() {
-		if( !game.destroyed )
+		if( Game.ME!=null && !game.destroyed )
 			game.scroller.over(spr);
 	}
 
 	public function toBack() {
-		if( !game.destroyed )
+		if( Game.ME!=null && !game.destroyed )
 			game.scroller.under(spr);
 	}
 

@@ -372,6 +372,9 @@ class Game extends Process {
 	}
 
 	public function announce(str:String, ?sub:String, c:UInt, big:Bool) {
+		if( Console.ME.hasFlag("screen") )
+			return;
+
 		var pad = 10;
 		var w = new h2d.Object();
 		root.add(w, Const.DP_UI);

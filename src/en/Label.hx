@@ -11,4 +11,9 @@ class Label extends Entity {
 		tf.x = Std.int(-tf.textWidth*0.5);
 		tf.y = Std.int(-tf.textHeight );
 	}
+
+	override function postUpdate() {
+		super.postUpdate();
+		spr.visible = !Console.ME.hasFlag("screen");
+	}
 }

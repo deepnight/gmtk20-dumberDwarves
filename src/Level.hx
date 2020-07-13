@@ -1,7 +1,16 @@
 class Level extends dn.Process {
 	static var PALETTES = [
 		"#605383",
+		"#739fb1",
 		"#6c835a",
+		"#834841",
+		"#9d715b",
+		"#538360",
+		"#a79765",
+		"#605383",
+		"#835671",
+		"#538360",
+		"#5d98a3",
 	];
 
 	public var game(get,never) : Game; inline function get_game() return Game.ME;

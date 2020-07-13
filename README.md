@@ -4,6 +4,8 @@ Dumber Dwarves is a dungeon crawler where you can’t control the adventurers di
 
 The game was created in 48h (well, more like 35h) for the GMTK 2020 game jam. The theme was “Out of Control“.
 
+Play it here: https://deepnight.net/games/dumber-dwarves/
+
 ## Compiling
 
 You'll need:

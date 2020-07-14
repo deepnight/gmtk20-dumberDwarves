@@ -34,7 +34,10 @@ class Hud extends dn.Process {
 		flow.removeChildren();
 		for(i in 0...Const.BAITS) {
 			var active = i+1<=game.baits;
-			var e = Assets.tiles.h_get("uiBait"+(active?"On":"Off"), flow);
+			var k = "uiBait"+(active?"On":"Off");
+			if( game.kidMode )
+				k = active ? "i_HeartFull" : "i_HeartHollow";
+			var e = Assets.tiles.h_get(k, flow);
 			e.scale(2);
 			if( active && i+1>lastBaits ) {
 				var a = Assets.tiles.h_get("fxExplosion", flow);

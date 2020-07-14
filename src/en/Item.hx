@@ -20,8 +20,17 @@ class Item extends Entity {
 		if( type!=Gem )
 			spr.filter = new dn.heaps.filter.PixelOutline();
 
-		spr.set("i_"+type.getName());
+		refreshIcon();
 		cd.setS("jump",rnd(0,1));
+	}
+
+	public function refreshIcon() {
+		if( game.kidMode && type==BaitFull )
+			spr.set("i_HeartFull");
+		else if( game.kidMode && type==BaitPart )
+			spr.set("i_HeartPart");
+		else
+			spr.set("i_"+type.getName());
 	}
 
 	override function dispose() {
@@ -36,7 +45,7 @@ class Item extends Entity {
 
 			case BaitFull:
 				type = BaitPart;
-				spr.set("i_"+type.getName());
+				refreshIcon();
 				dz = -0.1;
 				blink(0xffcc00);
 				by.prohibit(this);

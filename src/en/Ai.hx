@@ -200,7 +200,8 @@ class Ai extends Entity {
 				releaseCarriedEnt();
 				goto(i.cx,i.cy);
 				showTaskFocus(i);
-				setBubble("i_"+Std.string(i.type), i.type!=Bomb);
+				setBubble(i.spr.groupName, i.type!=Bomb);
+				// setBubble("i_"+Std.string(i.type), i.type!=Bomb);
 				if( distCase(i)<=0.8 ) {
 					var t = switch i.type {
 						case BaitFull, BaitPart: 0.3;

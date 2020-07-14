@@ -448,6 +448,9 @@ class Game extends Process {
 				kidMode = !kidMode;
 				if( kidMode )
 					fx.clear();
+				for(e in en.Item.ALL)
+					e.refreshIcon();
+				hud.invalidate();
 				announce("Kid mode: "+(kidMode ? "ON" : "off"), kidMode ? 0x00ff00 : 0xff0000, false);
 			}
 

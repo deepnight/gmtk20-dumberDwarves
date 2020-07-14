@@ -27,42 +27,42 @@ a_atk2
   index: -1
 a_atk_charge0
   rotate: false
-  xy: 128, 98
+  xy: 77, 105
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_idle0
   rotate: false
-  xy: 127, 115
+  xy: 76, 122
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_idle1
   rotate: false
-  xy: 26, 137
+  xy: 173, 87
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_walk0
   rotate: false
-  xy: 1, 139
+  xy: 146, 93
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_walk1
   rotate: false
-  xy: 43, 137
+  xy: 120, 105
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 a_walk2
   rotate: false
-  xy: 198, 87
+  xy: 190, 87
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -76,7 +76,7 @@ bossDoor
   index: -1
 bubble
   rotate: false
-  xy: 128, 80
+  xy: 77, 87
   size: 17, 17
   orig: 17, 17
   offset: 0, 0
@@ -90,70 +90,70 @@ cart
   index: -1
 crate0-60
   rotate: false
-  xy: 215, 87
+  xy: 207, 87
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 crate0-61
   rotate: false
-  xy: 215, 87
+  xy: 207, 87
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 crate0-63
   rotate: false
-  xy: 215, 87
+  xy: 207, 87
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 crate0-65
   rotate: false
-  xy: 215, 87
+  xy: 207, 87
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 crate0-66
   rotate: false
-  xy: 215, 87
+  xy: 207, 87
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 crate0-69
   rotate: false
-  xy: 215, 87
+  xy: 207, 87
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 crate0
   rotate: false
-  xy: 232, 87
+  xy: 224, 87
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 d_act0
   rotate: false
-  xy: 27, 87
+  xy: 121, 80
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 d_act1
   rotate: false
-  xy: 1, 89
+  xy: 27, 87
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 d_atk_charge0
   rotate: false
-  xy: 52, 87
+  xy: 1, 89
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
@@ -181,7 +181,7 @@ d_atkA2
   index: -1
 d_atkA3
   rotate: false
-  xy: 52, 87
+  xy: 1, 89
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
@@ -209,35 +209,35 @@ d_atkB2
   index: -1
 d_hit0
   rotate: false
-  xy: 173, 87
+  xy: 52, 87
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 d_idle0
   rotate: false
-  xy: 146, 93
+  xy: 95, 104
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 d_walk0
   rotate: false
-  xy: 77, 104
+  xy: 26, 112
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 d_walk1
   rotate: false
-  xy: 102, 110
+  xy: 1, 114
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 d_walk2
   rotate: false
-  xy: 26, 112
+  xy: 51, 112
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
@@ -258,21 +258,21 @@ empty
   index: -1
 emptyBone
   rotate: false
-  xy: 112, 101
+  xy: 180, 104
   size: 15, 8
   orig: 15, 8
   offset: 0, 0
   index: -1
 fxCircle0
   rotate: false
-  xy: 198, 104
+  xy: 1, 164
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 fxDot0
   rotate: false
-  xy: 249, 70
+  xy: 27, 79
   size: 3, 3
   orig: 3, 3
   offset: 0, 0
@@ -307,7 +307,7 @@ fxExplosion3
   index: -1
 fxExplosion4
   rotate: false
-  xy: 86, 78
+  xy: 95, 78
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
@@ -328,14 +328,14 @@ fxGib1
   index: -1
 fxGib2
   rotate: false
-  xy: 242, 66
+  xy: 27, 63
   size: 6, 5
   orig: 6, 5
   offset: 0, 0
   index: -1
 fxImpact0
   rotate: false
-  xy: 112, 91
+  xy: 76, 139
   size: 15, 9
   orig: 15, 9
   offset: 0, 0
@@ -398,7 +398,7 @@ fxSplatter2
   index: -1
 fxStar0
   rotate: false
-  xy: 251, 60
+  xy: 27, 73
   size: 3, 5
   orig: 3, 5
   offset: 0, 0
@@ -419,49 +419,49 @@ gen
   index: -1
 gStone0
   rotate: false
-  xy: 171, 112
+  xy: 1, 181
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 gStone1
   rotate: false
-  xy: 144, 118
+  xy: 1, 198
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 gStone2
   rotate: false
-  xy: 127, 132
+  xy: 1, 215
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 i_Bait
   rotate: false
-  xy: 101, 135
+  xy: 1, 232
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 i_BaitFull
   rotate: false
-  xy: 215, 104
+  xy: 18, 164
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 i_BaitPart
   rotate: false
-  xy: 232, 104
+  xy: 18, 181
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 i_Bomb
   rotate: false
-  xy: 188, 121
+  xy: 18, 198
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -475,9 +475,30 @@ i_Cart
   index: -1
 i_Gem
   rotate: false
-  xy: 1, 114
+  xy: 26, 137
   size: 24, 24
   orig: 24, 24
+  offset: 0, 0
+  index: -1
+i_HeartFull
+  rotate: false
+  xy: 242, 60
+  size: 13, 13
+  orig: 13, 13
+  offset: 0, 0
+  index: -1
+i_HeartHollow
+  rotate: false
+  xy: 242, 74
+  size: 13, 13
+  orig: 13, 13
+  offset: 0, 0
+  index: -1
+i_HeartPart
+  rotate: false
+  xy: 86, 61
+  size: 13, 13
+  orig: 13, 13
   offset: 0, 0
   index: -1
 pixel
@@ -489,70 +510,70 @@ pixel
   index: -1
 pointer
   rotate: false
-  xy: 112, 78
+  xy: 93, 129
   size: 15, 12
   orig: 15, 12
   offset: 0, 0
   index: -1
 uiBaitOff
   rotate: false
-  xy: 101, 152
+  xy: 137, 110
   size: 16, 12
   orig: 16, 12
   offset: 0, 0
   index: -1
 uiBaitOn
   rotate: false
-  xy: 205, 121
+  xy: 120, 122
   size: 16, 12
   orig: 16, 12
   offset: 0, 0
   index: -1
 uiBar
   rotate: false
-  xy: 249, 66
+  xy: 27, 69
   size: 6, 3
   orig: 6, 3
   offset: 0, 0
   index: -1
 uiBarBg
   rotate: false
-  xy: 242, 60
+  xy: 86, 75
   size: 8, 5
   orig: 8, 5
   offset: 0, 0
   index: -1
 wall0
   rotate: false
-  xy: 51, 112
+  xy: 1, 139
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 wall1
   rotate: false
-  xy: 76, 129
+  xy: 51, 137
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 wallDetail0
   rotate: false
-  xy: 161, 129
+  xy: 18, 215
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 wallDetail1
   rotate: false
-  xy: 144, 135
+  xy: 18, 232
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 wallDetail2
   rotate: false
-  xy: 118, 149
+  xy: 163, 104
   size: 16, 16
   orig: 16, 16
   offset: 0, 0

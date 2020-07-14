@@ -172,7 +172,47 @@ class Fx extends dn.Process {
 		p.gy = 0;
 	}
 
+
+	public function sparksHit(x:Float, y:Float, ang:Float) {
+		for(i in 0...16) {
+			var a = ang+rnd(0,0.2,true);
+			var p = allocTopAdd( getTile("fxStar"), x+rnd(0,5,true), y+rnd(0,5,true));
+			p.setFadeS(rnd(0.7,1), 0, rnd(1,2));
+			p.colorize( C.interpolateInt(0xffcc00, 0xa02fa3, rnd(0,1)) );
+			p.rotation = rnd(0,M.PI2);
+			p.setScale( rnd(2,3,true) );
+			p.scaleMul = rnd(0.98, 0.99);
+			p.dr = rnd(0.1,0.2);
+			p.gx = rnd(0,0.05,true);
+			p.gy = rnd(0,0.05,true);
+
+			p.moveAng(a, rnd(3,10));
+			p.frict = rnd(0.86, 0.90);
+		}
+	}
+
+	public function sparks(x:Float, y:Float, c=0xffcc00) {
+		for(i in 0...30) {
+			var p = allocTopAdd( getTile("fxStar"), x+rnd(0,5,true), y+rnd(0,5,true));
+			p.setFadeS(rnd(0.7,1), 0, rnd(1,2));
+			p.colorize(c);
+			p.rotation = rnd(0,M.PI2);
+			p.setScale( rnd(2,3,true) );
+			p.scaleMul = rnd(0.98, 0.99);
+			p.dr = rnd(0.1,0.2);
+			p.gx = rnd(0,0.05,true);
+			p.gy = rnd(0,0.05,true);
+
+			p.moveAwayFrom(x,y, rnd(3,5));
+			p.frict = rnd(0.86, 0.90);
+		}
+	}
+
 	public function blood(x:Float, y:Float, ang:Float) {
+		if( game.kidMode ) {
+			sparksHit(x,y,ang);
+			return;
+		}
 		for(i in 0...30) {
 			var a = ang+rnd(0,0.2,true);
 			var p = allocBgNormal( getTile("fxGib"), x+rnd(0,5,true), y+rnd(0,5,true));
@@ -209,6 +249,10 @@ class Fx extends dn.Process {
 	}
 
 	public function bloodImpact(x:Float, y:Float, ang:Float) {
+		if( game.kidMode ) {
+			sparksHit(x,y,ang);
+			return;
+		}
 		for(i in 0...40) {
 			var a = ang+rnd(0,0.3,true);
 			var p = allocTopNormal( getTile("fxGib"), x+rnd(0,5,true), y+rnd(0,5,true));
@@ -227,6 +271,10 @@ class Fx extends dn.Process {
 
 
 	public function bloodExplosion(x:Float,y:Float) {
+		if( game.kidMode ) {
+			sparks(x,y);
+			return;
+		}
 		for(i in 0...70) {
 			var p = allocBgNormal( getTile("fxGib"), x+rnd(0,5,true), y+rnd(0,5,true));
 			p.setFadeS(rnd(0.4,0.6), 0, rnd(1,2));
@@ -257,6 +305,10 @@ class Fx extends dn.Process {
 	}
 
 	public function gibs(x:Float, y:Float, ang:Float, c:UInt) {
+		if( game.kidMode ) {
+			sparks(x,y);
+			return;
+		}
 		var n = 40;
 		for(i in 0...n) {
 			var a = ang+rnd(0,0.3,true);

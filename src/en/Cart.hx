@@ -15,6 +15,7 @@ class Cart extends Entity {
 
 	public function onDropGem() {
 		score++;
+		fx.sparks(centerX, centerY, 0x06b4ed);
 		popText("+1 GEM");
 		game.refillBaits();
 		if( game.countRemainingGems()>0 )

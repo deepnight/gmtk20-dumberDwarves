@@ -515,7 +515,7 @@ class Entity {
 			carriedEnt.dx = dir*0.3;
 		}
 		carriedEnt.isCarried = false;
-		carriedEnt.toBack();
+		// carriedEnt.toBack();
 		if( carriedEnt.is(en.Item) && carriedEnt.as(en.Item).type==Bomb && carriedEnt.as(en.Item).bombTimerS>0 ) {
 			carriedEnt.as(en.Item).bombTimerS = 1.5;
 		}
@@ -531,7 +531,7 @@ class Entity {
 
 		releaseCarriedEnt();
 		carriedEnt = e;
-		carriedEnt.toFront();
+		// carriedEnt.toFront();
 		carriedEnt.isCarried = true;
 	}
 

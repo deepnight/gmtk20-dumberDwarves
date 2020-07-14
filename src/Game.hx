@@ -11,6 +11,8 @@ class Game extends Process {
 	public var level : Level;
 	public var hud : ui.Hud;
 
+	public var kidMode = false;
+
 	public var baits : Int;
 	var bg : h2d.Bitmap;
 	var mask : h2d.Bitmap;
@@ -441,6 +443,13 @@ class Game extends Process {
 			if( ca.isKeyboardPressed(Key.N) )
 				nextLevel();
 			#end
+
+			if( ca.isKeyboardPressed(Key.K) ) {
+				kidMode = !kidMode;
+				if( kidMode )
+					fx.clear();
+				announce("Kid mode: "+(kidMode ? "ON" : "off"), kidMode ? 0x00ff00 : 0xff0000, false);
+			}
 
 			// Restart
 			if( ca.selectPressed() )

@@ -43,7 +43,7 @@ class Game extends Process {
 		Boot.ME.s2d.addEventListener(onEvent);
 
 		// Load L-Ed project
-		var raw = hxd.Res.ld.world_json.entry.getText();
+		var raw = hxd.Res.ld.world.entry.getText();
 		var json = haxe.Json.parse(raw);
 		ledProject = led.Project.fromJson(json);
 
